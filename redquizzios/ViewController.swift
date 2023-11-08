@@ -24,5 +24,17 @@ extension UIButton{
         self.layer.cornerRadius = roundPts
         self.layer.masksToBounds = true
     }
+    
+}
+
+extension UIImageView{
+    func round(){
+        layer.borderWidth = 1
+        layer.masksToBounds = false
+        layer.borderColor = UIColor.white.cgColor
+        layer.cornerRadius = min(self.frame.width, self.frame.height) / 2
+
+        clipsToBounds = true
+    }
 }
 
