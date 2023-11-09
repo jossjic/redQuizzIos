@@ -14,6 +14,7 @@
 		83D4C09C2AE1ADCB00A8C167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83D4C09B2AE1ADCB00A8C167 /* Assets.xcassets */; };
 		83D4C09F2AE1ADCB00A8C167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D4C09D2AE1ADCB00A8C167 /* LaunchScreen.storyboard */; };
 		83DE67462AFC0AAD00079503 /* profileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE67452AFC0AAD00079503 /* profileController.swift */; };
+		FB0E24902AFD563E003422F5 /* statsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E248F2AFD563E003422F5 /* statsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		83D4C09E2AE1ADCB00A8C167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83D4C0A02AE1ADCB00A8C167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83DE67452AFC0AAD00079503 /* profileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileController.swift; sourceTree = "<group>"; };
+		FB0E248F2AFD563E003422F5 /* statsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +44,6 @@
 		83D4C0862AE1ADC900A8C167 = {
 			isa = PBXGroup;
 			children = (
-				83DE67452AFC0AAD00079503 /* profileController.swift */,
 				83D4C0912AE1ADC900A8C167 /* redquizzios */,
 				83D4C0902AE1ADC900A8C167 /* Products */,
 			);
@@ -59,6 +60,8 @@
 		83D4C0912AE1ADC900A8C167 /* redquizzios */ = {
 			isa = PBXGroup;
 			children = (
+				FB0E248F2AFD563E003422F5 /* statsController.swift */,
+				83DE67452AFC0AAD00079503 /* profileController.swift */,
 				83D4C0922AE1ADC900A8C167 /* AppDelegate.swift */,
 				83D4C0942AE1ADC900A8C167 /* SceneDelegate.swift */,
 				83D4C0962AE1ADC900A8C167 /* ViewController.swift */,
@@ -145,6 +148,7 @@
 				83D4C0932AE1ADC900A8C167 /* AppDelegate.swift in Sources */,
 				83D4C0952AE1ADC900A8C167 /* SceneDelegate.swift in Sources */,
 				83DE67462AFC0AAD00079503 /* profileController.swift in Sources */,
+				FB0E24902AFD563E003422F5 /* statsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
