@@ -8,8 +8,12 @@ class statsController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // Test push
-        profileImg.round()
    
     }
+    override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+        profileImg.round()
+        
+        }
 
 }
