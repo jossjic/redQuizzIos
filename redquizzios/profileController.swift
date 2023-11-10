@@ -14,6 +14,8 @@ class profileController: UIViewController {
     @IBOutlet weak var scoreBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
         
 
     }
