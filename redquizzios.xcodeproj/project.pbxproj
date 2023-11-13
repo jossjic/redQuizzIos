@@ -14,6 +14,7 @@
 		83D4C09C2AE1ADCB00A8C167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83D4C09B2AE1ADCB00A8C167 /* Assets.xcassets */; };
 		83D4C09F2AE1ADCB00A8C167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D4C09D2AE1ADCB00A8C167 /* LaunchScreen.storyboard */; };
 		83DE67462AFC0AAD00079503 /* profileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE67452AFC0AAD00079503 /* profileController.swift */; };
+		83E75C432B02A66E00154367 /* avatarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E75C422B02A66E00154367 /* avatarController.swift */; };
 		83EEA9FF2AFEC57F00417E1E /* scoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEA9FE2AFEC57F00417E1E /* scoreController.swift */; };
 		FB0E24902AFD563E003422F5 /* statsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E248F2AFD563E003422F5 /* statsController.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		83D4C09E2AE1ADCB00A8C167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83D4C0A02AE1ADCB00A8C167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83DE67452AFC0AAD00079503 /* profileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileController.swift; sourceTree = "<group>"; };
+		83E75C422B02A66E00154367 /* avatarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = avatarController.swift; sourceTree = "<group>"; };
 		83EEA9FE2AFEC57F00417E1E /* scoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = scoreController.swift; path = ../scoreController.swift; sourceTree = "<group>"; };
 		FB0E248F2AFD563E003422F5 /* statsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +64,7 @@
 		83D4C0912AE1ADC900A8C167 /* redquizzios */ = {
 			isa = PBXGroup;
 			children = (
+				83E75C422B02A66E00154367 /* avatarController.swift */,
 				83EEA9FE2AFEC57F00417E1E /* scoreController.swift */,
 				FB0E248F2AFD563E003422F5 /* statsController.swift */,
 				83DE67452AFC0AAD00079503 /* profileController.swift */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E75C432B02A66E00154367 /* avatarController.swift in Sources */,
 				83D4C0972AE1ADC900A8C167 /* ViewController.swift in Sources */,
 				83D4C0932AE1ADC900A8C167 /* AppDelegate.swift in Sources */,
 				83EEA9FF2AFEC57F00417E1E /* scoreController.swift in Sources */,

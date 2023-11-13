@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
@@ -72,7 +72,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Registrarse"/>
                                 <connections>
-                                    <segue destination="Y7j-L2-zTE" kind="show" id="2bK-yH-cKj"/>
+                                    <segue destination="Y7j-L2-zTE" kind="push" id="2bK-yH-cKj"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_cruz_svg" translatesAutoresizingMaskIntoConstraints="NO" id="jCz-ro-uAy">
@@ -101,13 +101,14 @@
                             <constraint firstItem="FWO-4e-p0x" firstAttribute="top" secondItem="dBx-mu-fkb" secondAttribute="bottom" constant="88" id="uTJ-D9-WRM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2Gd-S7-gal"/>
                     <connections>
                         <outlet property="registerBtn" destination="wch-hL-5df" id="mm8-3K-vy3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-53" y="-8"/>
+            <point key="canvasLocation" x="845.58139534883719" y="-8.3690987124463518"/>
         </scene>
         <!--Profile Controller-->
         <scene sceneID="URg-Nb-I7l">
@@ -254,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ab6-Ec-tKX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796.74418604651157" y="-14.163090128755366"/>
+            <point key="canvasLocation" x="1695.3488372093022" y="-14.163090128755366"/>
         </scene>
         <!--Stats Controller-->
         <scene sceneID="fzd-UG-Y9S">
@@ -365,7 +366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1H-rA-V8v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1621" y="-22"/>
+            <point key="canvasLocation" x="2518.6046511627906" y="-22.532188841201719"/>
         </scene>
         <!--Score Controller-->
         <scene sceneID="qXq-36-aqV">
@@ -570,7 +571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04a-0A-uNM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2413.953488372093" y="-4.5064377682403434"/>
+            <point key="canvasLocation" x="3312.5581395348836" y="-4.5064377682403434"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LO2-0o-lNg">
@@ -579,20 +580,68 @@
                     <view key="view" contentMode="scaleToFill" id="Tld-fr-UWc">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="gwN-hl-c2a">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQv-85-Qv5">
+                                <rect key="frame" x="35.666666666666664" y="89.666666666666671" width="71.666666666666686" height="35"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Volver"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi Avatar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzI-it-ZQh">
+                                <rect key="frame" x="138.66666666666666" y="198" width="152.99999999999997" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yfg-Ze-9ym">
+                                <rect key="frame" x="43" y="251.66666666666663" width="344" height="382"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yfg-Ze-9ym" secondAttribute="height" multiplier="9:10" id="xpY-1L-S4e"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBF-Aa-r8S">
+                                <rect key="frame" x="150.66666666666666" y="666.66666666666663" width="128.99999999999997" height="64.666666666666629"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VBF-Aa-r8S" secondAttribute="height" multiplier="2:1" id="w7T-VK-mhb"/>
+                                </constraints>
+                                <color key="tintColor" red="0.91960495710000001" green="0.28371536730000002" blue="0.24311304089999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Editar"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1rn-rA-7CC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NzI-it-ZQh" firstAttribute="centerX" secondItem="Tld-fr-UWc" secondAttribute="centerX" id="0vb-Tg-MPd"/>
+                            <constraint firstItem="ZQv-85-Qv5" firstAttribute="leading" secondItem="1rn-rA-7CC" secondAttribute="leading" constant="35.670000000000002" id="3XB-Cu-W1n"/>
+                            <constraint firstItem="gwN-hl-c2a" firstAttribute="centerY" secondItem="Tld-fr-UWc" secondAttribute="centerY" id="6Zv-gn-pDh"/>
+                            <constraint firstItem="gwN-hl-c2a" firstAttribute="width" secondItem="Tld-fr-UWc" secondAttribute="width" id="BRr-tS-RJK"/>
+                            <constraint firstItem="gwN-hl-c2a" firstAttribute="height" secondItem="Tld-fr-UWc" secondAttribute="height" id="NCd-kY-DdF"/>
+                            <constraint firstItem="yfg-Ze-9ym" firstAttribute="width" secondItem="Tld-fr-UWc" secondAttribute="width" multiplier="0.8" id="R3h-HA-qR2"/>
+                            <constraint firstItem="VBF-Aa-r8S" firstAttribute="centerY" secondItem="Tld-fr-UWc" secondAttribute="centerY" multiplier="1.5" id="Tad-sy-xyu"/>
+                            <constraint firstItem="yfg-Ze-9ym" firstAttribute="centerY" secondItem="Tld-fr-UWc" secondAttribute="centerY" multiplier="0.95" id="Vha-iJ-LM1"/>
+                            <constraint firstItem="NzI-it-ZQh" firstAttribute="centerY" secondItem="Tld-fr-UWc" secondAttribute="centerY" multiplier="0.47" id="bz7-KS-hwL"/>
+                            <constraint firstItem="VBF-Aa-r8S" firstAttribute="width" secondItem="Tld-fr-UWc" secondAttribute="width" multiplier="0.3" id="c5U-6H-1Lf"/>
+                            <constraint firstItem="ZQv-85-Qv5" firstAttribute="centerY" secondItem="Tld-fr-UWc" secondAttribute="centerY" multiplier="0.23" id="d31-HE-EdU"/>
+                            <constraint firstItem="gwN-hl-c2a" firstAttribute="centerX" secondItem="Tld-fr-UWc" secondAttribute="centerX" id="eUy-4B-cn3"/>
+                            <constraint firstItem="yfg-Ze-9ym" firstAttribute="centerX" secondItem="Tld-fr-UWc" secondAttribute="centerX" id="gtE-W6-GfK"/>
+                            <constraint firstItem="VBF-Aa-r8S" firstAttribute="centerX" secondItem="Tld-fr-UWc" secondAttribute="centerX" id="ob3-Lh-BSL"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QI9-hr-wbR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3138" y="3"/>
+            <point key="canvasLocation" x="4035.3488372093025" y="2.5751072961373391"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jGQ-Gt-N5m">
             <objects>
                 <viewController id="m86-9U-hew" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DMS-Hc-tgs">
-                        <rect key="frame" x="0.0" y="0.0" width="150.66666666666669" height="150.33333333333334"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150.66666666666669" height="150.66666666666666"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="9lP-qm-2YD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -604,11 +653,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XjZ-J7-P3U"/>
-        <segue reference="aYu-uc-cgk"/>
+        <segue reference="2bK-yH-cKj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2160" height="3840"/>
+        <image name="header" width="2160" height="3840"/>
         <image name="heart" width="500" height="500"/>
         <image name="logo_cruz_svg" width="500" height="500"/>
         <image name="placeholder-profile-sq-300x300" width="300" height="300"/>
