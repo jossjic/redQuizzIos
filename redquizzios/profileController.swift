@@ -22,9 +22,6 @@ class profileController: UIViewController {
     override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
         profileImg.round()
-        playBtn.round()
-        avatarBtn.round()
-        scoreBtn.round()
         }
 
 }

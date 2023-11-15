@@ -1,7 +1,7 @@
 
 import UIKit
 
-class avatarController: UIViewController {
+class Controller: UIViewController {
 //outlets
     override func viewDidLoad() {
         super.viewDidLoad()
