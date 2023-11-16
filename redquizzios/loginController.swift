@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class loginController: UIViewController {
 
     @IBOutlet weak var registerBtn: UIButton!
     override func viewDidLoad() {

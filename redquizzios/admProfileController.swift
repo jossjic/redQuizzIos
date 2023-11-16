@@ -1,8 +1,16 @@
-//
-//  admProfileController.swift
-//  redquizzios
-//
-//  Created by Administrador on 16/11/23.
-//
 
-import Foundation
+import UIKit
+
+class admProfileController: UIViewController {
+//outlets
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+   //buttons
+    }
+//actions
+
+}
