@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		837B88572B06DCB1009E3B4A /* firebaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B88562B06DCB1009E3B4A /* firebaseViewModel.swift */; };
 		837C79672B05635A009410B5 /* signupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C79662B056359009410B5 /* signupController.swift */; };
 		837C79692B0563E6009410B5 /* defaultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C79682B0563E6009410B5 /* defaultController.swift */; };
 		837C796B2B056865009410B5 /* avatarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C796A2B056865009410B5 /* avatarController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		837B88562B06DCB1009E3B4A /* firebaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firebaseViewModel.swift; sourceTree = "<group>"; };
 		837C79662B056359009410B5 /* signupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupController.swift; sourceTree = "<group>"; };
 		837C79682B0563E6009410B5 /* defaultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultController.swift; sourceTree = "<group>"; };
 		837C796A2B056865009410B5 /* avatarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = avatarController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				83D4C09B2AE1ADCB00A8C167 /* Assets.xcassets */,
 				83D4C09D2AE1ADCB00A8C167 /* LaunchScreen.storyboard */,
 				83D4C0A02AE1ADCB00A8C167 /* Info.plist */,
+				837B88562B06DCB1009E3B4A /* firebaseViewModel.swift */,
 				83FD8C022B069BC800F53577 /* GoogleService-Info.plist */,
 			);
 			path = redquizzios;
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837B88572B06DCB1009E3B4A /* firebaseViewModel.swift in Sources */,
 				837C796B2B056865009410B5 /* avatarController.swift in Sources */,
 				83FD8BAF2B068A4100F53577 /* gameController.swift in Sources */,
 				83D4C0972AE1ADC900A8C167 /* loginController.swift in Sources */,
