@@ -823,10 +823,10 @@
             </objects>
             <point key="canvasLocation" x="3382" y="751"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Controller-->
         <scene sceneID="qto-po-loh">
             <objects>
-                <viewController id="dxt-iN-bkB" sceneMemberID="viewController">
+                <viewController id="dxt-iN-bkB" customClass="gameController" customModule="redquizzios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Lf-fL-CAV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="916"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -901,6 +901,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hUk-01-7IH">
+                                <rect key="frame" x="21.333333333333343" y="435" width="385.33333333333326" height="4"/>
+                                <color key="tintColor" red="0.9196664095" green="0.28362026810000002" blue="0.24315798280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZGh-de-nIc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -908,12 +912,15 @@
                             <constraint firstItem="rIH-eK-Ic1" firstAttribute="centerX" secondItem="1Lf-fL-CAV" secondAttribute="centerX" id="1cA-Rf-MHn"/>
                             <constraint firstItem="3j9-4e-MAB" firstAttribute="centerX" secondItem="1Lf-fL-CAV" secondAttribute="centerX" id="4dU-Qh-PFq"/>
                             <constraint firstItem="ZG8-YN-N1S" firstAttribute="centerY" secondItem="1Lf-fL-CAV" secondAttribute="centerY" multiplier="0.23" id="8FH-nM-3Iq"/>
+                            <constraint firstItem="hUk-01-7IH" firstAttribute="centerX" secondItem="1Lf-fL-CAV" secondAttribute="centerX" id="9Cd-SP-ZON"/>
                             <constraint firstItem="3j9-4e-MAB" firstAttribute="centerY" secondItem="1Lf-fL-CAV" secondAttribute="centerY" multiplier="0.35" id="DrD-fU-FCL"/>
                             <constraint firstItem="6W8-A3-J7O" firstAttribute="leading" secondItem="ZGh-de-nIc" secondAttribute="leading" constant="35" id="FpF-IJ-DRI"/>
+                            <constraint firstItem="hUk-01-7IH" firstAttribute="top" secondItem="JY9-BZ-wAl" secondAttribute="bottom" constant="22.666666666666629" id="J08-C3-jbB"/>
                             <constraint firstItem="ZG8-YN-N1S" firstAttribute="width" secondItem="1Lf-fL-CAV" secondAttribute="width" multiplier="0.2" id="Lib-cS-5Zk"/>
                             <constraint firstItem="JY9-BZ-wAl" firstAttribute="height" secondItem="1Lf-fL-CAV" secondAttribute="height" multiplier="0.2" id="N2L-Sn-zlA"/>
                             <constraint firstItem="JY9-BZ-wAl" firstAttribute="width" secondItem="1Lf-fL-CAV" secondAttribute="width" multiplier="0.8" id="U9G-ZK-CrW"/>
                             <constraint firstItem="JY9-BZ-wAl" firstAttribute="centerY" secondItem="1Lf-fL-CAV" secondAttribute="centerY" multiplier="0.7" id="WE6-kl-kbz"/>
+                            <constraint firstItem="hUk-01-7IH" firstAttribute="width" secondItem="1Lf-fL-CAV" secondAttribute="width" multiplier="0.9" id="WLr-Ft-tne"/>
                             <constraint firstItem="JY9-BZ-wAl" firstAttribute="centerX" secondItem="1Lf-fL-CAV" secondAttribute="centerX" id="fCJ-gS-rcU"/>
                             <constraint firstItem="rIH-eK-Ic1" firstAttribute="centerY" secondItem="1Lf-fL-CAV" secondAttribute="centerY" multiplier="1.4" id="kzn-yy-5aF"/>
                             <constraint firstItem="ZGh-de-nIc" firstAttribute="trailing" secondItem="d58-fU-SiH" secondAttribute="trailing" constant="35" id="pq4-Md-1Ew"/>
@@ -923,6 +930,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="feL-lB-VzT"/>
+                    <connections>
+                        <outlet property="barTimer" destination="hUk-01-7IH" id="Fgh-Xa-F7b"/>
+                        <outlet property="btn1" destination="L6f-7G-Qpt" id="vsf-Bp-WF6"/>
+                        <outlet property="btn2" destination="BHS-1r-IqF" id="qNM-um-7JF"/>
+                        <outlet property="btn3" destination="aqV-N1-ht3" id="N4V-MF-fxf"/>
+                        <outlet property="btn4" destination="qDr-mo-7pV" id="JwA-LB-vYK"/>
+                        <outlet property="categoriaLbl" destination="3j9-4e-MAB" id="KaX-Bc-CuW"/>
+                        <outlet property="questionLbl" destination="JY9-BZ-wAl" id="wmo-Ji-bT2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjN-VF-FnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
