@@ -66,7 +66,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         
         Auth.auth().createUser(withEmail: mail, password: password){
             (result, error) in
-            if let error = error {
+            if error != nil  {
                 print("Error al registrar el usuario")
             } else {
                 print("Usuario registrado con éxito")
@@ -80,7 +80,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         
         Auth.auth().signIn(withEmail: mail, password: password) { (result, error) in
             
-            if  let error = error {
+            if  error != nil {
                 print("Error al iniciar sesión")
             } else {
                 print("Inicio de sesión exitoso")
