@@ -39,6 +39,7 @@
 		83FD8BF32B069B5300F53577 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 83FD8BF22B069B5300F53577 /* FirebaseFunctionsCombine-Community */; };
 		83FD8BFB2B069B5300F53577 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 83FD8BFA2B069B5300F53577 /* FirebaseMLModelDownloader */; };
 		83FD8BFD2B069B5300F53577 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 83FD8BFC2B069B5300F53577 /* FirebasePerformance */; };
+		B94D15992B0AB0A1000A9C2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D15982B0AB0A1000A9C2E /* User.swift */; };
 		FB0E24902AFD563E003422F5 /* statsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E248F2AFD563E003422F5 /* statsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		83FD8BAA2B06887800F53577 /* admCrudController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = admCrudController.swift; sourceTree = "<group>"; };
 		83FD8BAC2B0689E800F53577 /* editAvatarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editAvatarController.swift; sourceTree = "<group>"; };
 		83FD8BAE2B068A4100F53577 /* gameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameController.swift; sourceTree = "<group>"; };
+		B94D15982B0AB0A1000A9C2E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FB0E248F2AFD563E003422F5 /* statsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 				837B88562B06DCB1009E3B4A /* gameViewModel.swift */,
 				83D4C0982AE1ADC900A8C167 /* Main.storyboard */,
 				83D4C09B2AE1ADCB00A8C167 /* Assets.xcassets */,
+				B94D15982B0AB0A1000A9C2E /* User.swift */,
 				83D4C09D2AE1ADCB00A8C167 /* LaunchScreen.storyboard */,
 				83D4C0A02AE1ADCB00A8C167 /* Info.plist */,
 				835F00AF2B07FCB200CDD3DB /* Question.swift */,
@@ -247,6 +250,7 @@
 				83FD8BA52B06882100F53577 /* admProfileController.swift in Sources */,
 				FB0E24902AFD563E003422F5 /* statsController.swift in Sources */,
 				83FD8BA92B06886100F53577 /* admEditController.swift in Sources */,
+				B94D15992B0AB0A1000A9C2E /* User.swift in Sources */,
 				83FD8BAB2B06887800F53577 /* admCrudController.swift in Sources */,
 				83FD8BAD2B0689E800F53577 /* editAvatarController.swift in Sources */,
 				83FD8BA72B06884A00F53577 /* admUploadController.swift in Sources */,
