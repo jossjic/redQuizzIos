@@ -31,6 +31,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Iniciar Sesión"/>
                                         <connections>
+                                            <action selector="signInBtn:" destination="8fd-hs-Jbj" eventType="touchUpInside" id="uhg-Xf-uQ5"/>
                                             <segue destination="BYZ-38-t0r" kind="show" id="eb2-lx-69Z"/>
                                         </connections>
                                     </button>
@@ -68,9 +69,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="nwO-gA-w7J">
-                                                <rect key="frame" x="171.33333333333331" y="3.3333333333333712" width="171.33333333333331" height="50"/>
-                                            </datePicker>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Diq-MB-2Mn">
+                                                <rect key="frame" x="171.33333333333331" y="11.333333333333371" width="171.33333333333331" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xj6-Rz-DOG">
@@ -82,9 +85,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRC-pm-WHE">
-                                                <rect key="frame" x="171.33333333333331" y="0.0" width="171.33333333333331" height="56"/>
-                                            </pickerView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jB-hp-uha">
+                                                <rect key="frame" x="171.33333333333331" y="11" width="171.33333333333331" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -101,6 +106,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Registrarse" cornerStyle="capsule"/>
                                 <connections>
+                                    <action selector="registerBtn:" destination="8fd-hs-Jbj" eventType="touchUpInside" id="L1o-E2-pdL"/>
                                     <segue destination="BYZ-38-t0r" kind="show" id="aQE-dw-P6d"/>
                                 </connections>
                             </button>
@@ -124,7 +130,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="xgj-kF-fkL"/>
                     <connections>
+                        <outlet property="birthdayTxt" destination="9jB-hp-uha" id="NlX-in-3f2"/>
+                        <outlet property="genderTxt" destination="Diq-MB-2Mn" id="1Ls-vJ-ekX"/>
                         <outlet property="registerBtn" destination="pWK-HQ-cRk" id="clV-yy-m5Z"/>
+                        <outlet property="registerMail" destination="eaD-yn-TJY" id="RBG-ru-3aF"/>
+                        <outlet property="registerName" destination="5uv-yN-zmJ" id="QY5-HX-fOy"/>
+                        <outlet property="registerPass" destination="3eO-4E-MYs" id="eH2-l9-AW4"/>
+                        <outlet property="registerRepeatPass" destination="tIH-Hj-Bbb" id="O9o-HC-bej"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMh-4L-RdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1601,22 +1613,22 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
