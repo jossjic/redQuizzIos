@@ -9,9 +9,11 @@ class gameController: UIViewController {//outlets
     @IBOutlet weak var btn1: UIButton!
     @IBOutlet weak var barTimer: UIProgressView!
     @IBOutlet weak var categoriaLbl: UILabel!
+    @IBOutlet weak var vidas: UILabel!
     
     
-    let viewModel = GameViewModel()
+    let gameViewModel = GameViewModel()
+    let userViewModel = UserViewModel()
     var allQuestions: [Question] = []
     var pregunta = ""
     var categoria = ""
@@ -20,6 +22,7 @@ class gameController: UIViewController {//outlets
     var incorrecta2 = ""
     var incorrecta3 = ""
     var puntos = 0
+    var vidasUser = 0
     
     var puntuacion = 0
     
@@ -33,10 +36,10 @@ class gameController: UIViewController {//outlets
     
     override func viewDidLoad() {
             super.viewDidLoad()
-            viewModel.fetchData {
+            gameViewModel.fetchData {
                 print("dataFetched")
                 
-                self.allQuestions = self.viewModel.questions
+                self.allQuestions = self.gameViewModel.questions
                 self.allQuestions.shuffle()
                 self.startQuestionTimer()
                 
@@ -53,16 +56,66 @@ class gameController: UIViewController {//outlets
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(showNextQuestion), userInfo: nil, repeats: true)
             
             // Mostrar la primera pregunta inmediatamente al iniciar la vista
+           
             showNextQuestion()
             
         }
+        
+   
+        
 
         @objc func showNextQuestion() {
+            var switchB = false
+            var switchLF = false
+            // fetching and update lifes
+            self.userViewModel.fetchData {
+                let fUser = self.userViewModel.fetchedUser
+                self.vidasUser = fUser.vidas
+                self.vidas.text = "x " + String(self.vidasUser)
+                
+                if self.currentQuestionIndex >= self.allQuestions.count || self.vidasUser <= 0 {
+                    print("Vidas:", self.vidasUser)
+                    // Detener el temporizador si no hay más preguntas
+                    self.timer?.invalidate()
+                    switchB = true
+                    if self.vidasUser <= 0{
+                        
+                    } else {
+                        let alertController = UIAlertController(title: "Bien Hecho!", message: "Tu puntaje obtenido fue: "+String(self.puntuacion), preferredStyle: .alert)
+                        self.userViewModel.updateScore(score: self.puntuacion, type: "general")
+                        
+                        // Agregar acciones (botones) a la alerta
+                        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                            // Código a ejecutar cuando se presiona el botón OK
+                            print("Botón OK presionado")
+                        }
+                        alertController.addAction(okAction)
+                        
+                        // Mostrar la alerta
+                        self.present(alertController, animated: true, completion: nil)
+                                          }
+                    
+                    
+                             }
+            
             // Verificar si quedan más preguntas
-            guard currentQuestionIndex < allQuestions.count else {
-                // Detener el temporizador si no hay más preguntas
-                timer?.invalidate()
-                return
+            
+           
+            }
+            if switchB{
+                if switchLF{
+                    let alertController = UIAlertController(title: "Te quedaste sin vidas", message: "Espera un tiempo para volver a jugar :)", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                        // Código a ejecutar cuando se presiona el botón OK
+                        print("Botón OK presionado")
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    self.present(alertController, animated: true, completion: nil)                } else{
+                return switchLF
             }
 
             // Obtener la pregunta actual
@@ -79,6 +132,9 @@ class gameController: UIViewController {//outlets
             
             //Progress bar
             animateProgressBar()
+            
+            //Lifes Update
+            
             
         }
     
@@ -153,6 +209,15 @@ class gameController: UIViewController {//outlets
     func resIncorrecta(button:UIButton){
         button.backgroundColor = UIColor.red
         puntuacion -= puntos
+        if self.vidasUser>1{
+            self.userViewModel.updateLives(newLives: vidasUser - 1)
+            vidas.text = "x " + String(self.vidasUser - 1)
+        } else {
+            self.vidasUser = 0
+            vidas.text = "x 0"
+            self.userViewModel.updateLives(newLives: vidasUser)
+        }
+        
     }
     
     
