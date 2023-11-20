@@ -1,36 +1,33 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import FirebaseFirestore
+
 
 
 class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    
     
     
     @IBOutlet weak var registerName: UITextField!
     @IBOutlet weak var registerMail: UITextField!
     @IBOutlet weak var registerPass: UITextField!
     @IBOutlet weak var registerRepeatPass: UITextField!
-    @IBOutlet weak var genderTxt: UITextField!
-    @IBOutlet weak var birthdayTxt: UITextField!
+    @IBOutlet weak var birthdayPicker: UIDatePicker!
+    @IBOutlet weak var genderPicker: UIPickerView!
     
     let generos = ["Masculino", "Femenino"]
-    var genderPicker: UIPickerView!
-    var birthdayPicker: UIDatePicker!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        genderPicker = UIPickerView()
-        genderPicker.tag = 1
         genderPicker.delegate = self
         genderPicker.dataSource = self
-        genderTxt.inputView = genderPicker
-        genderTxt.text = generos[0]
         
-        birthdayPicker = UIDatePicker()
-        birthdayPicker.datePickerMode = .date
-        birthdayPicker.addTarget(self, action: #selector(birthdayPickerChanged), for: .valueChanged)
-        birthdayTxt.inputView = birthdayPicker
+        
         
     }
     
@@ -46,9 +43,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         return generos[row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        genderTxt.text = generos[row]
-    }
+    
     
     
     @IBAction func registerBtn(_ sender: Any) {
@@ -56,7 +51,9 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         let mail = registerMail.text!
         let password = registerPass.text!
         let repeatPassword = registerRepeatPass.text!
+        let gender = generos[genderPicker.selectedRow(inComponent: 0)]
         let birthday = birthdayPicker.date
+        
         
         
         if password != repeatPassword {
@@ -70,27 +67,30 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                 print("Error al registrar el usuario")
             } else {
                 print("Usuario registrado con éxito")
+                
+                if let userId = result?.user.uid {
+                    let userData: [String: Any] = [
+                        "name": name,
+                        "email": mail,
+                        "gender": gender,
+                        "birthday": birthday
+                    ]
+                    
+                    let db = Firestore.firestore()
+                    db.collection("users").document(userId).setData(userData) { error in
+                        if let error = error {
+                            print("Error al guardar los datos del usuario en Firestore: \(error.localizedDescription)")
+                        } else {
+                            print("Datos del usuario guardados en Firestore correctamente")
+                        }
+                    }
+                }
             }
         }
     }
     
-    @IBAction func signInBtn(_ sender: Any) {
-        let mail = registerMail.text!
-        let password = registerPass.text!
-        
-        Auth.auth().signIn(withEmail: mail, password: password) { (result, error) in
-            
-            if  error != nil {
-                print("Error al iniciar sesión")
-            } else {
-                print("Inicio de sesión exitoso")
-            }
-        }
-    }
     
-    @objc func birthdayPickerChanged(){
-        let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            birthdayTxt.text = dateFormatter.string(from:birthdayPicker.date)
+    @IBAction func loginBtn(_ sender: Any) {
+        performSegue(withIdentifier: "loginSegue", sender: self)
     }
 }
