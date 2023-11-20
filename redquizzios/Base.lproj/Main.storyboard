@@ -853,6 +853,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Volver"/>
                                 <connections>
+                                    <action selector="volverBtn:" destination="dxt-iN-bkB" eventType="touchUpInside" id="mNF-Vz-2YH"/>
                                     <segue destination="Y7j-L2-zTE" kind="show" id="2BO-Ug-2UN"/>
                                 </connections>
                             </button>
@@ -1598,7 +1599,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Gke-zZ-xQm"/>
         <segue reference="D63-H8-jW7"/>
-        <segue reference="jOe-Me-wlk"/>
+        <segue reference="2BO-Ug-2UN"/>
         <segue reference="aQE-dw-P6d"/>
     </inferredMetricsTieBreakers>
     <resources>

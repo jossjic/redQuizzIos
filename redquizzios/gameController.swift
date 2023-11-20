@@ -24,14 +24,21 @@ class gameController: UIViewController {//outlets
     var puntos = 0
     var vidasUser = 0
     
+    var buttonPressed = false
+    
     var puntuacion = 0
+    
+    var endGameCond = false
     
     var currentQuestionIndex = 0
     var timer: Timer?
+    var timerrGoodEnding: Timer?
     
     var currentQuestion = Question(categoria: "", correcta: "", incorrecta1: "", incorrecta2: "", incorrecta3: "", pregunta: "", puntos: 0)
     
+    var firstTime = true
     var progressAnimator = UIViewPropertyAnimator()
+    
     
     
     override func viewDidLoad() {
@@ -53,20 +60,67 @@ class gameController: UIViewController {//outlets
 
         func startQuestionTimer() {
             // Configurar y comenzar el temporizador
-            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(showNextQuestion), userInfo: nil, repeats: true)
-            
-            // Mostrar la primera pregunta inmediatamente al iniciar la vista
+            userViewModel.fetchData {
+                self.vidasUser = self.userViewModel.fetchedUser.vidas
+                if self.vidasUser <= 0{
+                    self.endGame()
+                } else {
+                    self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.showNextQuestion), userInfo: nil, repeats: true)
+                    
+                    // Mostrar la primera pregunta inmediatamente al iniciar la vista
+
+                        self.showNextQuestion()
+  
+                    
+                }            }
            
-            showNextQuestion()
             
         }
+    @objc func goodEnding(){
+        let alertController = UIAlertController(title: "Felicidades :)", message: "Tu puntaje total fue de: " + String(self.puntuacion), preferredStyle: .alert)
+        userViewModel.updateScore(score: self.puntuacion, type: "general")
+        
+        // Agregar acciones (botones) a la alerta
+        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+            // Código a ejecutar cuando se presiona el botón OK
+            print("Botón OK presionado")
+            let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
+                self.present(profileController, animated: true, completion: nil)        }
+        alertController.addAction(okAction)
+        
+        // Mostrar la alerta
+        self.present(alertController, animated: true, completion: nil)    }
+    func endGame(){
+        
+        if self.vidasUser > 0{
+            self.timerrGoodEnding =  Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.goodEnding), userInfo: nil, repeats: false)        }
+        else {
+            
+            let alertController = UIAlertController(title: "Te quedaste sin vidas", message: "Espera un tiempo para volver a jugar :)", preferredStyle: .alert)
+            
+            // Agregar acciones (botones) a la alerta
+            let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                // Código a ejecutar cuando se presiona el botón OK
+                print("Botón OK presionado")
+            let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
+                self.present(profileController, animated: true, completion: nil)
+                
+            }
+            alertController.addAction(okAction)
+            
+            // Mostrar la alerta
+            self.present(alertController, animated: true, completion: nil)
+            progressAnimator.stopAnimation(true)
+            progressAnimator.finishAnimation(at: .current)
+        }
+        
+    }
         
    
         
 
         @objc func showNextQuestion() {
-            var switchB = false
-            var switchLF = false
+            var switchBool = false
             // fetching and update lifes
             self.userViewModel.fetchData {
                 let fUser = self.userViewModel.fetchedUser
@@ -75,65 +129,44 @@ class gameController: UIViewController {//outlets
                 
                 if self.currentQuestionIndex >= self.allQuestions.count || self.vidasUser <= 0 {
                     print("Vidas:", self.vidasUser)
-                    // Detener el temporizador si no hay más preguntas
                     self.timer?.invalidate()
-                    switchB = true
-                    if self.vidasUser <= 0{
-                        
-                    } else {
-                        let alertController = UIAlertController(title: "Bien Hecho!", message: "Tu puntaje obtenido fue: "+String(self.puntuacion), preferredStyle: .alert)
-                        self.userViewModel.updateScore(score: self.puntuacion, type: "general")
-                        
-                        // Agregar acciones (botones) a la alerta
-                        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
-                            // Código a ejecutar cuando se presiona el botón OK
-                            print("Botón OK presionado")
-                        }
-                        alertController.addAction(okAction)
-                        
-                        // Mostrar la alerta
-                        self.present(alertController, animated: true, completion: nil)
-                                          }
+                    self.endGame()
+                    switchBool = true
                     
+                }
+            }
+            
+            if self.currentQuestionIndex >= self.allQuestions.count || switchBool {
+                return
+            } else {
+                print(allQuestions.count, self.currentQuestionIndex)
+                // Obtener la pregunta actual
+                let pregunta = allQuestions[currentQuestionIndex]
+                
+                // Cargar y mostrar la pregunta
+               
+                if !self.buttonPressed  && !self.firstTime {
+                    print("TimeOut")
+                    self.timeOut()
+                    return
                     
-                             }
-            
-            // Verificar si quedan más preguntas
-            
+                }
+                updateLocalData(preguntaI: pregunta)                
+                self.firstTime = false
+                loadQuestion(preguntaI: pregunta)
+                print(puntuacion)
+                
+                
+                // Incrementar el índice de la pregunta actual
+                currentQuestionIndex += 1
+                
+                //Progress bar
+                animateProgressBar()
+                self.buttonPressed = false
+                //Lifes Update
+            }
+
            
-            }
-            if switchB{
-                if switchLF{
-                    let alertController = UIAlertController(title: "Te quedaste sin vidas", message: "Espera un tiempo para volver a jugar :)", preferredStyle: .alert)
-                    
-                    // Agregar acciones (botones) a la alerta
-                    let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
-                        // Código a ejecutar cuando se presiona el botón OK
-                        print("Botón OK presionado")
-                    }
-                    alertController.addAction(okAction)
-                    
-                    // Mostrar la alerta
-                    self.present(alertController, animated: true, completion: nil)                } else{
-                return switchLF
-            }
-
-            // Obtener la pregunta actual
-            let pregunta = allQuestions[currentQuestionIndex]
-
-            // Cargar y mostrar la pregunta
-            updateLocalData(preguntaI: pregunta)
-            loadQuestion(preguntaI: pregunta)
-            print(puntuacion)
-            
-
-            // Incrementar el índice de la pregunta actual
-            currentQuestionIndex += 1
-            
-            //Progress bar
-            animateProgressBar()
-            
-            //Lifes Update
             
             
         }
@@ -189,6 +222,8 @@ class gameController: UIViewController {//outlets
         }else {
             categoriaLbl.backgroundColor = UIColor(red: 0.788, green: 0.710, blue: 1.000, alpha: 1.0)
         }
+        
+        
     }
     
     func updateLocalData(preguntaI: Question){
@@ -220,18 +255,65 @@ class gameController: UIViewController {//outlets
         
     }
     
+    func timeOut(){
+        timer?.invalidate()
+        if btn1.titleLabel?.text == correcta {
+            btn1.backgroundColor = UIColor.green
+            btn2.backgroundColor = UIColor.red
+            btn3.backgroundColor = UIColor.red
+            btn4.backgroundColor = UIColor.red
+        } else if btn2.titleLabel?.text == correcta {
+            btn1.backgroundColor = UIColor.red
+            btn2.backgroundColor = UIColor.green
+            btn3.backgroundColor = UIColor.red
+            btn4.backgroundColor = UIColor.red
+        } else if btn3.titleLabel?.text == correcta {
+            btn1.backgroundColor = UIColor.red
+            btn2.backgroundColor = UIColor.red
+            btn3.backgroundColor = UIColor.green
+            btn4.backgroundColor = UIColor.red
+        } else if btn4.titleLabel?.text == correcta {
+            btn1.backgroundColor = UIColor.red
+            btn2.backgroundColor = UIColor.red
+            btn3.backgroundColor = UIColor.red
+            btn4.backgroundColor = UIColor.green
+        }
+        
+        puntuacion -= puntos
+        if self.vidasUser>1{
+            self.userViewModel.updateLives(newLives: vidasUser - 1)
+            vidas.text = "x " + String(self.vidasUser - 1)
+        } else {
+            self.vidasUser = 0
+            vidas.text = "x 0"
+            self.userViewModel.updateLives(newLives: vidasUser)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+            self.startQuestionTimer()
+        }
+    }
+    
     
     @IBAction func btn1Tap(_ sender: Any) {
         btn1.isEnabled = false
         btn2.isEnabled = false
         btn3.isEnabled = false
         btn4.isEnabled = false
+        
+        self.buttonPressed = true
        
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             self.startQuestionTimer()
+        }
+        
+        if timerrGoodEnding != nil {
+            if timerrGoodEnding!.isValid{
+                timerrGoodEnding?.invalidate()
+                self.goodEnding()
+            }
         }
         
         btn1.setTitleColor(UIColor.black, for: .disabled)
@@ -249,13 +331,20 @@ class gameController: UIViewController {//outlets
         btn3.isEnabled = false
         btn4.isEnabled = false
         
+        self.buttonPressed = true
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             self.startQuestionTimer()
         }
         
+        if timerrGoodEnding != nil {
+            if timerrGoodEnding!.isValid{
+                timerrGoodEnding?.invalidate()
+                self.goodEnding()
+            }
+        }
         btn2.setTitleColor(UIColor.black, for: .disabled)
         if btn2.titleLabel!.text == correcta {
             resCorrecta(button: btn2)
@@ -270,13 +359,20 @@ class gameController: UIViewController {//outlets
         btn3.isEnabled = false
         btn4.isEnabled = false
         
+        self.buttonPressed = true
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             self.startQuestionTimer()
         }
         
+        if timerrGoodEnding != nil {
+            if timerrGoodEnding!.isValid{
+                timerrGoodEnding?.invalidate()
+                self.goodEnding()
+            }
+        }
         btn3.setTitleColor(UIColor.black, for: .disabled)
         if btn3.titleLabel!.text == correcta {
             resCorrecta(button: btn3)
@@ -291,13 +387,20 @@ class gameController: UIViewController {//outlets
         btn3.isEnabled = false
         btn4.isEnabled = false
         
+        self.buttonPressed = true
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             self.startQuestionTimer()
         }
         
+        if timerrGoodEnding != nil {
+            if timerrGoodEnding!.isValid{
+                timerrGoodEnding?.invalidate()
+                self.goodEnding()
+            }
+        }
         btn4.setTitleColor(UIColor.black, for: .disabled)
         if btn4.titleLabel!.text == correcta {
             resCorrecta(button: btn4)
@@ -305,4 +408,9 @@ class gameController: UIViewController {//outlets
             resIncorrecta(button: btn4)
         }
     }
+    
+    @IBAction func volverBtn(_ sender: Any) {
+        self.currentQuestionIndex = 11
+    }
+    
 }
