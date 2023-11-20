@@ -62,7 +62,7 @@ class UserViewModel {
         }
     }
     
-    private func updateDataScore(collection: String, score: Int){
+    private func updateDataScore(collection: String, score: Int) {
         var acumuladoAux = 0
         var puntajeGAux = 0
 
@@ -71,84 +71,62 @@ class UserViewModel {
             return
         }
         let userRef = db.collection(collection).document(currentUser.uid)
-        
-            if collection != "rqUsers"{
-                userRef.getDocument { (document, error) in
-                    if let error = error {
-                        print("Error al obtener el documento: \(error)")
-                    } else if let document = document, document.exists {
-                        // El documento existe, puedes acceder a sus datos
-                        let data = document.data()
-                        
-                        // Obtener el valor de un campo específico
-                        if let acumulado = data?["acumulado"] as? Int {
-                            print("acumulado: \(acumulado)")
-                            acumuladoAux = acumulado
-                        } else {
-                            print("El campo 'acumulado' no está presente o tiene un formato incorrecto.")
-                        }
-                    } else {
-                        print("El documento no existe")
-                    }
+
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error al obtener el documento: \(error)")
+            } else if let document = document, document.exists {
+                let data = document.data()
+
+                if let acumulado = data?["acumulado"] as? Int {
+                    print("acumulado: \(acumulado)")
+                    acumuladoAux = acumulado
                 }
-                userRef.updateData(["acumulado": score + acumuladoAux]) { error in
-                    if let error = error {
-                        print("Error al actualizar el acumulado: \(error.localizedDescription)")
+
+                if let puntajeG = data?["puntaje"] as? Int {
+                    print("puntaje: \(puntajeG)")
+                    puntajeGAux = puntajeG
+                }
+
+                // Actualizar la base de datos con la suma del puntaje actual y el nuevo puntaje
+                if collection != "rqUsers" {
+                    userRef.updateData(["acumulado": score + acumuladoAux]) { error in
+                        if let error = error {
+                            print("Error al actualizar el acumulado: \(error.localizedDescription)")
+                        }
+                    }
+                } else {
+                    userRef.updateData(["puntaje": score + puntajeGAux]) { error in
+                        if let error = error {
+                            print("Error al actualizar el puntaje: \(error.localizedDescription)")
+                        } else {
+                            // Puedes realizar acciones adicionales después de la actualización, si es necesario
+                        }
                     }
                 }
             } else {
-                userRef.getDocument { (document, error) in
-                    if let error = error {
-                        print("Error al obtener el documento: \(error)")
-                    } else if let document = document, document.exists {
-                        // El documento existe, puedes acceder a sus datos
-                        let data = document.data()
-                        
-                        // Obtener el valor de un campo específico
-                        if let puntajeG = data?["puntaje"] as? Int {
-                            print("puntaje: \(puntajeG)")
-                            puntajeGAux = puntajeG
-                        } else {
-                            print("El campo 'puntaje' no está presente o tiene un formato incorrecto.")
-                        }
-                    } else {
-                        print("El documento no existe")
-                    }
-                }
-                userRef.updateData(["puntaje": score + puntajeGAux]) { error in
-                    if let error = error {
-                        print("Error al actualizar el acumulado: \(error.localizedDescription)")
-                    } else {
-                        self.fetchedUser.puntaje = score                  }
-                }        }
-        }
-        
-        func updateScore(score: Int, type: String){
-            
-            switch type {
-            case "general":
-                updateDataScore(collection: "rqUsers", score: score)
-                
-            case "anatomia":
-                updateDataScore(collection: "rqAnatomia", score: score)
-                
-            case "signosVitales":
-                updateDataScore(collection: "rqSignosVitales", score: score)
-                
-            case "curacion":
-                updateDataScore(collection: "rqCuracion", score: score)
-                
-            case "sintomas":
-                updateDataScore(collection: "rqSintomas", score: score)
-                
-            case "bonus":
-                updateDataScore(collection: "rqSintomas", score: score)
-                
-            default:
-                print("tipo no permitido en updateScore()")
+                print("El documento no existe")
             }
-            
-            
         }
+    }
+
+    func updateScore(score: Int, type: String) {
+        switch type {
+        case "general":
+            updateDataScore(collection: "rqUsers", score: score)
+        case "Anatomía":
+            updateDataScore(collection: "rqAnatomia", score: score)
+        case "Signos Vitales":
+            updateDataScore(collection: "rqSignosVitales", score: score)
+        case "Curación":
+            updateDataScore(collection: "rqCuracion", score: score)
+        case "Síntomas":
+            updateDataScore(collection: "rqSintomas", score: score)
+        case "Bonus":
+            updateDataScore(collection: "rqBonus", score: score)
+        default:
+            print("Tipo no permitido en updateScore()")
+        }
+    }
     }
 

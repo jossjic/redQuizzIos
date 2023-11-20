@@ -24,7 +24,6 @@ class gameController: UIViewController {//outlets
     var puntos = 0
     var vidasUser = 0
     
-    var buttonPressed = false
     
     var puntuacion = 0
     
@@ -38,6 +37,15 @@ class gameController: UIViewController {//outlets
     
     var firstTime = true
     var progressAnimator = UIViewPropertyAnimator()
+    var timeOutBool = false
+    
+    var time = 10
+    
+    var buttonPressed = false
+    
+    var ended = false
+    
+
     
     
     
@@ -65,18 +73,30 @@ class gameController: UIViewController {//outlets
                 if self.vidasUser <= 0{
                     self.endGame()
                 } else {
-                    self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.showNextQuestion), userInfo: nil, repeats: true)
+                    self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
                     
                     // Mostrar la primera pregunta inmediatamente al iniciar la vista
-
                         self.showNextQuestion()
+
+                        
   
                     
                 }            }
            
             
         }
-    @objc func goodEnding(){
+    
+    @objc func updateTime() {
+        time -= 1
+        if time <= 0{
+            self.timeOut()
+            print("timeout")
+        }
+    }
+    
+    func goodEnding(){
+        self.ended = true        
+        timer?.invalidate()
         let alertController = UIAlertController(title: "Felicidades :)", message: "Tu puntaje total fue de: " + String(self.puntuacion), preferredStyle: .alert)
         userViewModel.updateScore(score: self.puntuacion, type: "general")
         
@@ -85,15 +105,31 @@ class gameController: UIViewController {//outlets
             // Código a ejecutar cuando se presiona el botón OK
             print("Botón OK presionado")
             let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
-                self.present(profileController, animated: true, completion: nil)        }
+            self.present(profileController, animated: true, completion: nil)        }
         alertController.addAction(okAction)
         
         // Mostrar la alerta
-        self.present(alertController, animated: true, completion: nil)    }
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
     func endGame(){
         
         if self.vidasUser > 0{
-            self.timerrGoodEnding =  Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.goodEnding), userInfo: nil, repeats: false)        }
+            if self.buttonPressed{
+                    self.goodEnding()
+                self.ended = true
+                    
+
+            } else if !self.ended {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+                        self.timeOutAux()
+                        self.goodEnding()
+                        self.ended = true
+                    }
+                }
+            }
+            
         else {
             
             let alertController = UIAlertController(title: "Te quedaste sin vidas", message: "Espera un tiempo para volver a jugar :)", preferredStyle: .alert)
@@ -112,6 +148,7 @@ class gameController: UIViewController {//outlets
             self.present(alertController, animated: true, completion: nil)
             progressAnimator.stopAnimation(true)
             progressAnimator.finishAnimation(at: .current)
+            self.ended = true
         }
         
     }
@@ -119,15 +156,16 @@ class gameController: UIViewController {//outlets
    
         
 
-        @objc func showNextQuestion() {
+         func showNextQuestion() {
             var switchBool = false
+             
             // fetching and update lifes
             self.userViewModel.fetchData {
                 let fUser = self.userViewModel.fetchedUser
                 self.vidasUser = fUser.vidas
                 self.vidas.text = "x " + String(self.vidasUser)
                 
-                if self.currentQuestionIndex >= self.allQuestions.count || self.vidasUser <= 0 {
+                if  self.currentQuestionIndex >= self.allQuestions.count || self.vidasUser <= 0 {
                     print("Vidas:", self.vidasUser)
                     self.timer?.invalidate()
                     self.endGame()
@@ -138,20 +176,14 @@ class gameController: UIViewController {//outlets
             
             if self.currentQuestionIndex >= self.allQuestions.count || switchBool {
                 return
-            } else {
+            }
                 print(allQuestions.count, self.currentQuestionIndex)
                 // Obtener la pregunta actual
                 let pregunta = allQuestions[currentQuestionIndex]
+
                 
-                // Cargar y mostrar la pregunta
-               
-                if !self.buttonPressed  && !self.firstTime {
-                    print("TimeOut")
-                    self.timeOut()
-                    return
-                    
-                }
-                updateLocalData(preguntaI: pregunta)                
+                //Lifes Update
+                updateLocalData(preguntaI: pregunta)
                 self.firstTime = false
                 loadQuestion(preguntaI: pregunta)
                 print(puntuacion)
@@ -162,14 +194,22 @@ class gameController: UIViewController {//outlets
                 
                 //Progress bar
                 animateProgressBar()
-                self.buttonPressed = false
-                //Lifes Update
-            }
-
-           
+             
+                       
             
             
         }
+    
+    func updateScoreFB(signo: Bool){
+       if signo {
+            self.userViewModel.updateScore(score: self.puntos, type: self.categoria)
+       } else {
+           self.userViewModel.updateScore(score: self.puntos * -1, type: self.categoria)      
+       }
+        
+            
+
+    }
     
     func animateProgressBar(){
         print("animation!")
@@ -222,7 +262,8 @@ class gameController: UIViewController {//outlets
         }else {
             categoriaLbl.backgroundColor = UIColor(red: 0.788, green: 0.710, blue: 1.000, alpha: 1.0)
         }
-        
+        self.buttonPressed = false
+
         
     }
     
@@ -239,6 +280,7 @@ class gameController: UIViewController {//outlets
     func resCorrecta(button:UIButton){
         button.backgroundColor = UIColor.green
         puntuacion += puntos
+        updateScoreFB(signo: true)
     }
     
     func resIncorrecta(button:UIButton){
@@ -252,44 +294,58 @@ class gameController: UIViewController {//outlets
             vidas.text = "x 0"
             self.userViewModel.updateLives(newLives: vidasUser)
         }
+        updateScoreFB(signo: false)
         
     }
     
     func timeOut(){
-        timer?.invalidate()
-        if btn1.titleLabel?.text == correcta {
-            btn1.backgroundColor = UIColor.green
-            btn2.backgroundColor = UIColor.red
-            btn3.backgroundColor = UIColor.red
-            btn4.backgroundColor = UIColor.red
-        } else if btn2.titleLabel?.text == correcta {
-            btn1.backgroundColor = UIColor.red
-            btn2.backgroundColor = UIColor.green
-            btn3.backgroundColor = UIColor.red
-            btn4.backgroundColor = UIColor.red
-        } else if btn3.titleLabel?.text == correcta {
-            btn1.backgroundColor = UIColor.red
-            btn2.backgroundColor = UIColor.red
-            btn3.backgroundColor = UIColor.green
-            btn4.backgroundColor = UIColor.red
-        } else if btn4.titleLabel?.text == correcta {
-            btn1.backgroundColor = UIColor.red
-            btn2.backgroundColor = UIColor.red
-            btn3.backgroundColor = UIColor.red
-            btn4.backgroundColor = UIColor.green
-        }
         
-        puntuacion -= puntos
-        if self.vidasUser>1{
-            self.userViewModel.updateLives(newLives: vidasUser - 1)
-            vidas.text = "x " + String(self.vidasUser - 1)
-        } else {
-            self.vidasUser = 0
-            vidas.text = "x 0"
-            self.userViewModel.updateLives(newLives: vidasUser)
+        if !self.ended {
+            timeOutAux()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                self.time = 10
+                self.showNextQuestion()
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.startQuestionTimer()
+    }
+    
+    func timeOutAux(){
+        if !self.ended {
+            if btn1.titleLabel?.text == correcta {
+                btn1.backgroundColor = UIColor.green
+                btn2.backgroundColor = UIColor.red
+                btn3.backgroundColor = UIColor.red
+                btn4.backgroundColor = UIColor.red
+            } else if btn2.titleLabel?.text == correcta {
+                btn1.backgroundColor = UIColor.red
+                btn2.backgroundColor = UIColor.green
+                btn3.backgroundColor = UIColor.red
+                btn4.backgroundColor = UIColor.red
+            } else if btn3.titleLabel?.text == correcta {
+                btn1.backgroundColor = UIColor.red
+                btn2.backgroundColor = UIColor.red
+                btn3.backgroundColor = UIColor.green
+                btn4.backgroundColor = UIColor.red
+            } else if btn4.titleLabel?.text == correcta {
+                btn1.backgroundColor = UIColor.red
+                btn2.backgroundColor = UIColor.red
+                btn3.backgroundColor = UIColor.red
+                btn4.backgroundColor = UIColor.green
+            }
+            
+            puntuacion -= puntos
+            updateScoreFB(signo: false)
+            if self.vidasUser>1{
+                self.userViewModel.updateLives(newLives: vidasUser - 1)
+                vidas.text = "x " + String(self.vidasUser - 1)
+            } else {
+                self.vidasUser = 0
+                vidas.text = "x 0"
+                self.userViewModel.updateLives(newLives: vidasUser)
+            }
+            DispatchQueue.main.async {
+                self.view.layoutIfNeeded()
+            }
         }
     }
     
@@ -300,20 +356,19 @@ class gameController: UIViewController {//outlets
         btn3.isEnabled = false
         btn4.isEnabled = false
         
-        self.buttonPressed = true
        
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.startQuestionTimer()
-        }
-        
-        if timerrGoodEnding != nil {
-            if timerrGoodEnding!.isValid{
-                timerrGoodEnding?.invalidate()
+            self.time = 10
+            self.buttonPressed = true
+            if self.currentQuestionIndex < self.allQuestions.count{
+                self.startQuestionTimer()
+            } else {
                 self.goodEnding()
             }
+               
         }
         
         btn1.setTitleColor(UIColor.black, for: .disabled)
@@ -331,20 +386,19 @@ class gameController: UIViewController {//outlets
         btn3.isEnabled = false
         btn4.isEnabled = false
         
-        self.buttonPressed = true
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.startQuestionTimer()
-        }
-        
-        if timerrGoodEnding != nil {
-            if timerrGoodEnding!.isValid{
-                timerrGoodEnding?.invalidate()
+            self.time = 10
+            self.buttonPressed = true
+            if self.currentQuestionIndex < self.allQuestions.count{
+                self.startQuestionTimer()
+            } else {
                 self.goodEnding()
             }
         }
+        
         btn2.setTitleColor(UIColor.black, for: .disabled)
         if btn2.titleLabel!.text == correcta {
             resCorrecta(button: btn2)
@@ -359,20 +413,19 @@ class gameController: UIViewController {//outlets
         btn3.isEnabled = false
         btn4.isEnabled = false
         
-        self.buttonPressed = true
+
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.startQuestionTimer()
-        }
-        
-        if timerrGoodEnding != nil {
-            if timerrGoodEnding!.isValid{
-                timerrGoodEnding?.invalidate()
+            self.time = 10
+            self.buttonPressed = true
+            if self.currentQuestionIndex < self.allQuestions.count{
+                self.startQuestionTimer()
+            } else {
                 self.goodEnding()
-            }
-        }
+            }        }
+
         btn3.setTitleColor(UIColor.black, for: .disabled)
         if btn3.titleLabel!.text == correcta {
             resCorrecta(button: btn3)
@@ -386,21 +439,22 @@ class gameController: UIViewController {//outlets
         btn2.isEnabled = false
         btn3.isEnabled = false
         btn4.isEnabled = false
-        
-        self.buttonPressed = true
+
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.startQuestionTimer()
-        }
-        
-        if timerrGoodEnding != nil {
-            if timerrGoodEnding!.isValid{
-                timerrGoodEnding?.invalidate()
+            self.time = 10
+            self.buttonPressed = true
+            if self.currentQuestionIndex < self.allQuestions.count{
+                self.startQuestionTimer()
+            } else {
                 self.goodEnding()
             }
+            
         }
+        
+        
         btn4.setTitleColor(UIColor.black, for: .disabled)
         if btn4.titleLabel!.text == correcta {
             resCorrecta(button: btn4)
