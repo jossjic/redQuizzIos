@@ -5,7 +5,7 @@ import Firebase
 class UserViewModel {
     private var db = Firestore.firestore()
     var uid = ""
-    var fetchedUser = User(nombre: "", apellidos: "", email: "", password: "", fechaNacimiento: "", genero: "", indicePregunta: 0, puntaje: 0, vidas: 5)
+    var fetchedUser = User(nombre: "", apellidos: "", email: "", fechaNacimiento: "", genero: "", indicePregunta: 0, puntaje: 0, vidas: 5)
     var puntajeCollection = 0
     
     // Completion handler to notify when data fetching is complete
@@ -29,10 +29,9 @@ class UserViewModel {
                    let fechaNacimiento = data?["fechaNacimiento"] as? String,
                    let genero = data?["genero"] as? String,
                    let indicePregunta = data?["indicePregunta"] as? Int,
-                   let password = data?["password"] as? String,
                    let puntaje = data?["puntaje"] as? Int,
                    let vidas = data?["vidas"] as? Int {
-                    self.fetchedUser = User(nombre: nombre, apellidos: apellidos, email: email, password: password, fechaNacimiento: fechaNacimiento, genero: genero, indicePregunta: indicePregunta, puntaje: puntaje, vidas: vidas)
+                    self.fetchedUser = User(nombre: nombre, apellidos: apellidos, email: email, fechaNacimiento: fechaNacimiento, genero: genero, indicePregunta: indicePregunta, puntaje: puntaje, vidas: vidas)
                     print("Fetch de usuario listo")
                     completion()
                 } else {

@@ -52,7 +52,12 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         let password = registerPass.text!
         let repeatPassword = registerRepeatPass.text!
         let gender = generos[genderPicker.selectedRow(inComponent: 0)]
-        let birthday = birthdayPicker.date
+        let fechaNacimiento = "sjahbdhjas"
+        let tipo = "usuario"
+        let vidas = 5
+        let acumulado = 0
+        let puntaje = 0
+        
         
         
         
@@ -70,14 +75,21 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                 
                 if let userId = result?.user.uid {
                     let userData: [String: Any] = [
-                        "name": name,
+                        "nombre": name,
+                        "apellidos": apellidos,
                         "email": mail,
-                        "gender": gender,
-                        "birthday": birthday
+                        "genero": gender,
+                        "fechaNacimiento": fechaNacimiento,
+                        "tipo": tipo,
+                        "vidas": vidas,
+                        "puntaje": puntaje,
+                        "acumulado": acumulado
+                        
+                        
                     ]
                     
                     let db = Firestore.firestore()
-                    db.collection("users").document(userId).setData(userData) { error in
+                    db.collection("rqUsers").document(userId).setData(userData) { error in
                         if let error = error {
                             print("Error al guardar los datos del usuario en Firestore: \(error.localizedDescription)")
                         } else {
