@@ -9,6 +9,15 @@ class scoreController: UIViewController {
     @IBOutlet weak var stackS: UIStackView!
     @IBOutlet weak var stackA: UIStackView!
     @IBOutlet weak var stackB: UIStackView!
+    
+    
+    @IBOutlet weak var bLbl: UILabel!
+    @IBOutlet weak var aLbl: UILabel!
+    @IBOutlet weak var sLbl: UILabel!
+    @IBOutlet weak var cLbl: UILabel!
+    @IBOutlet weak var sgLbl: UILabel!
+    
+    let userViewModel = UserViewModel()
     var progress: CGFloat = 0.5 // Ajusta este valor según tus necesidades (de 0 a 1)
 
     override func viewDidLoad() {
@@ -23,8 +32,23 @@ class scoreController: UIViewController {
                 configureStackView(stackS, color: UIColor(red: 0.788, green: 0.847, blue: 1.000, alpha: 1.0)) // Azul pastel claro
                 configureStackView(stackA, color: UIColor(red: 1.000, green: 1.000, blue: 0.710, alpha: 1.0)) // Amarillo pastel claro
                 configureStackView(stackB, color: UIColor(red: 0.788, green: 0.710, blue: 1.000, alpha: 1.0)) // Morado pastel claro
-            
-            
+        
+            self.userViewModel.fetchCat(collection: "rqBonus"){
+                self.bLbl.text = String(self.userViewModel.puntajeCollection)
+                self.userViewModel.fetchCat(collection: "rqAnatomia"){
+                    self.aLbl.text = String(self.userViewModel.puntajeCollection)
+                    self.userViewModel.fetchCat(collection: "rqSintomas"){
+                        self.sLbl.text = String(self.userViewModel.puntajeCollection)
+                        self.userViewModel.fetchCat(collection: "rqCuracion"){
+                            self.cLbl.text = String(self.userViewModel.puntajeCollection)
+                            self.userViewModel.fetchCat(collection: "rqSignosVitales"){
+                                self.sgLbl.text = String(self.userViewModel.puntajeCollection)
+                            }
+                        }
+                        
+                    }
+                }
+            }
     }
     
     func configureStackView(_ stackView: UIStackView, color: UIColor) {

@@ -6,6 +6,7 @@ class UserViewModel {
     private var db = Firestore.firestore()
     var uid = ""
     var fetchedUser = User(nombre: "", apellidos: "", email: "", password: "", fechaNacimiento: "", genero: "", indicePregunta: 0, puntaje: 0, vidas: 5)
+    var puntajeCollection = 0
     
     // Completion handler to notify when data fetching is complete
     typealias CompletionHandler = () -> Void
@@ -128,5 +129,36 @@ class UserViewModel {
             print("Tipo no permitido en updateScore()")
         }
     }
+    
+    func fetchCat(collection: String, completion: @escaping CompletionHandler){
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            print("No hay usuario autenticado.")
+            return
+        }
+        let userRef = db.collection(collection).document(currentUser.uid)
+        
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error al obtener el documento: \(error)")
+            } else if let document = document, document.exists {
+                let data = document.data()
+                
+                if let acumulado = data?["acumulado"] as? Int {
+                    print("acumulado: \(acumulado)")
+                    self.puntajeCollection = acumulado
+                    completion()
+                }
+            }
+            else {
+                print("El documento no existe")
+            }
+        }
+        
+        
+        
+    }
+    
+    
     }
 

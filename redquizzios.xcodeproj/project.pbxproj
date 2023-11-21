@@ -41,6 +41,11 @@
 		83FD8BFD2B069B5300F53577 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 83FD8BFC2B069B5300F53577 /* FirebasePerformance */; };
 		B94D159B2B0AB9E7000A9C2E /* userViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D159A2B0AB9E7000A9C2E /* userViewModel.swift */; };
 		B94D159D2B0AC24F000A9C2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D159C2B0AC24F000A9C2E /* User.swift */; };
+		B9D1F6962B0C25870026C31A /* training-program-incorrect1-88736.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9D1F6912B0C25860026C31A /* training-program-incorrect1-88736.mp3 */; };
+		B9D1F6972B0C25870026C31A /* end.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9D1F6922B0C25860026C31A /* end.mp3 */; };
+		B9D1F6982B0C25870026C31A /* correct-choice-43861.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9D1F6932B0C25860026C31A /* correct-choice-43861.mp3 */; };
+		B9D1F6992B0C25870026C31A /* notification-1-126509.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9D1F6942B0C25870026C31A /* notification-1-126509.mp3 */; };
+		B9D1F69A2B0C25870026C31A /* negative_beeps-6008.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9D1F6952B0C25870026C31A /* negative_beeps-6008.mp3 */; };
 		FB0E24902AFD563E003422F5 /* statsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E248F2AFD563E003422F5 /* statsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +74,11 @@
 		83FD8BAE2B068A4100F53577 /* gameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameController.swift; sourceTree = "<group>"; };
 		B94D159A2B0AB9E7000A9C2E /* userViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userViewModel.swift; sourceTree = "<group>"; };
 		B94D159C2B0AC24F000A9C2E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B9D1F6912B0C25860026C31A /* training-program-incorrect1-88736.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "training-program-incorrect1-88736.mp3"; sourceTree = "<group>"; };
+		B9D1F6922B0C25860026C31A /* end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = end.mp3; sourceTree = "<group>"; };
+		B9D1F6932B0C25860026C31A /* correct-choice-43861.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "correct-choice-43861.mp3"; sourceTree = "<group>"; };
+		B9D1F6942B0C25870026C31A /* notification-1-126509.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "notification-1-126509.mp3"; sourceTree = "<group>"; };
+		B9D1F6952B0C25870026C31A /* negative_beeps-6008.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "negative_beeps-6008.mp3"; sourceTree = "<group>"; };
 		FB0E248F2AFD563E003422F5 /* statsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +145,11 @@
 				B94D159A2B0AB9E7000A9C2E /* userViewModel.swift */,
 				83D4C0982AE1ADC900A8C167 /* Main.storyboard */,
 				83D4C09B2AE1ADCB00A8C167 /* Assets.xcassets */,
+				B9D1F6922B0C25860026C31A /* end.mp3 */,
+				B9D1F6932B0C25860026C31A /* correct-choice-43861.mp3 */,
+				B9D1F6952B0C25870026C31A /* negative_beeps-6008.mp3 */,
+				B9D1F6942B0C25870026C31A /* notification-1-126509.mp3 */,
+				B9D1F6912B0C25860026C31A /* training-program-incorrect1-88736.mp3 */,
 				83D4C09D2AE1ADCB00A8C167 /* LaunchScreen.storyboard */,
 				83D4C0A02AE1ADCB00A8C167 /* Info.plist */,
 				835F00AF2B07FCB200CDD3DB /* Question.swift */,
@@ -225,10 +240,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9D1F6992B0C25870026C31A /* notification-1-126509.mp3 in Resources */,
 				83D4C09F2AE1ADCB00A8C167 /* LaunchScreen.storyboard in Resources */,
 				835F00B42B080CA700CDD3DB /* GoogleService-Info.plist in Resources */,
 				83D4C09C2AE1ADCB00A8C167 /* Assets.xcassets in Resources */,
+				B9D1F6962B0C25870026C31A /* training-program-incorrect1-88736.mp3 in Resources */,
+				B9D1F6982B0C25870026C31A /* correct-choice-43861.mp3 in Resources */,
+				B9D1F6972B0C25870026C31A /* end.mp3 in Resources */,
 				83D4C09A2AE1ADC900A8C167 /* Main.storyboard in Resources */,
+				B9D1F69A2B0C25870026C31A /* negative_beeps-6008.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

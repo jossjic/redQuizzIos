@@ -8,12 +8,26 @@
 import UIKit
 
 class profileController: UIViewController {
-    @IBOutlet weak var playBtn: UIButton!
-    @IBOutlet weak var avatarBtn: UIButton!
     @IBOutlet weak var profileImg: UIImageView!
-    @IBOutlet weak var scoreBtn: UIButton!
+    
+    
+    @IBOutlet weak var name: UILabel!
+    
+    @IBOutlet weak var vidas: UILabel!
+    
+    @IBOutlet weak var time: UILabel!
+   let userViewModel = UserViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userViewModel.fetchData {
+            let userI = self.userViewModel.fetchedUser
+            self.name.text = userI.nombre + " " + userI.apellidos
+            self.vidas.text = String(userI.vidas) + " Vidas"
+            print(userI)
+        }
+       
 
 
         

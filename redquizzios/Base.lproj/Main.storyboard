@@ -384,10 +384,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="iz1-Hu-9Fd"/>
                     <connections>
-                        <outlet property="avatarBtn" destination="Puk-ja-aMv" id="wcS-Ci-4Ne"/>
-                        <outlet property="playBtn" destination="FRA-ry-Ok9" id="DE8-N4-ZAX"/>
+                        <outlet property="name" destination="7lp-Do-XuF" id="71J-MI-bvd"/>
                         <outlet property="profileImg" destination="fu8-Tr-k9c" id="1sI-aL-wVq"/>
-                        <outlet property="scoreBtn" destination="42r-wF-A9V" id="Qv3-II-qRO"/>
+                        <outlet property="time" destination="OYC-0h-6ok" id="eHJ-Ul-dEE"/>
+                        <outlet property="vidas" destination="4PE-YT-QiL" id="LZf-Nf-8FD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ab6-Ec-tKX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1090,6 +1090,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="84w-Kk-LPD"/>
                     <connections>
+                        <outlet property="birth" destination="5G3-CI-kAx" id="OVR-RI-dcb"/>
+                        <outlet property="email" destination="gPI-zQ-iyv" id="kV4-tQ-tCx"/>
+                        <outlet property="gender" destination="mue-mh-JuH" id="7U3-4s-V83"/>
+                        <outlet property="name" destination="xyg-jf-iBQ" id="C75-HP-nUd"/>
                         <outlet property="profileImg" destination="qHE-5z-WTa" id="PZx-07-gUu"/>
                     </connections>
                 </viewController>
@@ -1290,7 +1294,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="7GU-Xa-GLF"/>
                     <connections>
+                        <outlet property="aLbl" destination="N3m-VH-5jP" id="CK3-nM-gIN"/>
+                        <outlet property="bLbl" destination="Nc7-AL-hup" id="pMA-XR-Cbf"/>
+                        <outlet property="cLbl" destination="QZR-H4-vtY" id="FhD-b9-30r"/>
                         <outlet property="progressView" destination="6vz-aa-WXT" id="L6a-QP-O1Y"/>
+                        <outlet property="sLbl" destination="XKW-FR-6wH" id="Rce-0u-Na5"/>
+                        <outlet property="sgLbl" destination="Lev-jp-HWU" id="29y-vd-gzH"/>
                         <outlet property="stackA" destination="e63-dl-C43" id="hNe-eJ-CET"/>
                         <outlet property="stackB" destination="1my-eU-Kp9" id="QIX-1X-Ggm"/>
                         <outlet property="stackC" destination="1sL-mD-kNu" id="gki-Jf-o4W"/>
@@ -1594,7 +1603,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Gke-zZ-xQm"/>
         <segue reference="D63-H8-jW7"/>
-        <segue reference="jOe-Me-wlk"/>
+        <segue reference="7LO-RE-7hc"/>
         <segue reference="aQE-dw-P6d"/>
     </inferredMetricsTieBreakers>
     <resources>
