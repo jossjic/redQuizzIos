@@ -9,6 +9,7 @@ import FirebaseFirestore
 class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource{
     
     
+
     
     
     @IBOutlet weak var registerName: UITextField!
@@ -17,6 +18,8 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     @IBOutlet weak var registerRepeatPass: UITextField!
     @IBOutlet weak var birthdayPicker: UIDatePicker!
     @IBOutlet weak var genderPicker: UIPickerView!
+    
+    @IBOutlet weak var registerLastName: UITextField!
     
     let generos = ["Masculino", "Femenino"]
     
@@ -48,16 +51,18 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     
     @IBAction func registerBtn(_ sender: Any) {
         let name = registerName.text!
+        let apellidos = registerLastName.text!
         let mail = registerMail.text!
         let password = registerPass.text!
         let repeatPassword = registerRepeatPass.text!
         let gender = generos[genderPicker.selectedRow(inComponent: 0)]
-        let fechaNacimiento = "sjahbdhjas"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let fechaNacimiento = dateFormatter.string(from: birthdayPicker.date)
         let tipo = "usuario"
         let vidas = 5
         let acumulado = 0
         let puntaje = 0
-        let apellidos = "fyguqefr"
         
         
         
