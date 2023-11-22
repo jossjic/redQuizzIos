@@ -41,50 +41,55 @@
                                 <rect key="frame" x="43" y="186.33333333333337" width="344" height="373"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5uv-yN-zmJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="344" height="57.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="48.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Apellidos" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E0y-5h-9YJ">
+                                        <rect key="frame" x="0.0" y="54.333333333333314" width="344" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo Institucional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaD-yn-TJY">
-                                        <rect key="frame" x="0.0" y="63.333333333333314" width="344" height="57"/>
+                                        <rect key="frame" x="0.0" y="108.33333333333334" width="344" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-4E-MYs">
-                                        <rect key="frame" x="0.0" y="126.33333333333334" width="344" height="57"/>
+                                        <rect key="frame" x="0.0" y="162.33333333333334" width="344" height="48.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmar Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIH-Hj-Bbb">
-                                        <rect key="frame" x="0.0" y="189.33333333333334" width="344" height="57.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="216.66666666666666" width="344" height="47.999999999999972"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-cI-s4x">
-                                        <rect key="frame" x="0.0" y="252.66666666666663" width="344" height="57"/>
+                                        <rect key="frame" x="0.0" y="270.66666666666663" width="344" height="48"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha de Nacimiento:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vue-r4-4eS">
-                                                <rect key="frame" x="0.0" y="19.666666666666686" width="172" height="18"/>
+                                                <rect key="frame" x="0.0" y="15" width="172" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="jL7-FW-Esh">
-                                                <rect key="frame" x="172" y="3.6666666666666856" width="172" height="50"/>
+                                                <rect key="frame" x="172" y="0.0" width="172" height="48"/>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xj6-Rz-DOG">
-                                        <rect key="frame" x="0.0" y="315.66666666666663" width="344" height="57.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="324.66666666666663" width="344" height="48.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genero:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huI-JZ-ahk">
-                                                <rect key="frame" x="0.0" y="18.333333333333371" width="172" height="20.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="13.999999999999998" width="172" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rb9-XE-WLa">
-                                                <rect key="frame" x="172" y="0.0" width="172" height="57.333333333333336"/>
+                                                <rect key="frame" x="172" y="0.0" width="172" height="48.333333333333336"/>
                                             </pickerView>
                                         </subviews>
                                     </stackView>
@@ -130,6 +135,7 @@
                     <connections>
                         <outlet property="birthdayPicker" destination="jL7-FW-Esh" id="ZSd-gH-kxY"/>
                         <outlet property="genderPicker" destination="Rb9-XE-WLa" id="SLb-kn-bpw"/>
+                        <outlet property="registerLastName" destination="E0y-5h-9YJ" id="TNa-am-LAR"/>
                         <outlet property="registerMail" destination="eaD-yn-TJY" id="RBG-ru-3aF"/>
                         <outlet property="registerName" destination="5uv-yN-zmJ" id="QY5-HX-fOy"/>
                         <outlet property="registerPass" destination="3eO-4E-MYs" id="eH2-l9-AW4"/>
@@ -1723,13 +1729,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pmd-WW-3Rh"/>
         <segue reference="IMh-bh-im4"/>
         <segue reference="pJx-rn-UPv"/>
         <segue reference="5ev-0v-B4L"/>
         <segue reference="Gke-zZ-xQm"/>
         <segue reference="2BO-Ug-2UN"/>
-        <segue reference="JEO-XN-g4F"/>
+        <segue reference="aQE-dw-P6d"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2160" height="3840"/>

@@ -31,8 +31,6 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         genderPicker.dataSource = self
         
 
-
-        
         
     }
     
@@ -65,6 +63,13 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         let vidas = 5
         let acumulado = 0
         let puntaje = 0
+        let conteoC = 0
+        let conteoT = 0
+        let recompensa1 = false
+        let recompensa2 = false
+        let recompensa3 = false
+        let recompensa4 = false
+        let recompensa5 = false
         
         
         
@@ -91,8 +96,15 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                         "vidas": vidas,
                         "puntaje": puntaje,
                         "acumulado": acumulado
-                        
-                        
+                    ]
+                    let _: [String: Any] = [
+                        "conteoC": conteoC,
+                        "conteoT": conteoT,
+                        "recompensa1": recompensa1,
+                        "recompensa2": recompensa2,
+                        "recompensa3": recompensa3,
+                        "recompensa4": recompensa4,
+                        "recompensa5": recompensa5
                     ]
                     
                     let db = Firestore.firestore()
@@ -101,6 +113,62 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                             print("Error al guardar los datos del usuario en Firestore: \(error.localizedDescription)")
                         } else {
                             print("Datos del usuario guardados en Firestore correctamente")
+                            let rqAnatomiaData: [String: Any] = ["userId": userId,"acumulado": acumulado]
+                            db.collection("rqAnatomia").document(userId).setData(rqAnatomiaData) { error in
+                                if let error = error {
+                                    print("Error al guardar los datos en la colección rqAnatomia en Firestore: \(error.localizedDescription)")
+                                } else {
+                                    print("Datos guardados en la colección rqAnatomia en Firestore correctamente")
+                                }
+                            }
+                            let rqBonusData: [String: Any] = ["userId": userId,"acumulado": acumulado]
+                            db.collection("rqBonus").document(userId).setData(rqBonusData) { error in
+                                if let error = error {
+                                    print("Error al guardar los datos en la colección rqBonus en Firestore: \(error.localizedDescription)")
+                                } else {
+                                    print("Datos guardados en la colección rqBonus en Firestore correctamente")
+                                }
+                            }
+                            let rqCuracionData: [String: Any] = ["userId": userId,"acumulado": acumulado]
+                            db.collection("rqCuracion").document(userId).setData(rqCuracionData) { error in
+                                if let error = error {
+                                    print("Error al guardar los datos en la colección rqCuracion en Firestore: \(error.localizedDescription)")
+                                } else {
+                                    print("Datos guardados en la colección rqCuracion en Firestore correctamente")
+                                }
+                            }
+                            let rqSignosVitalesData: [String: Any] = ["userId": userId,"acumulado": acumulado]
+                            db.collection("rqSignosVitales").document(userId).setData(rqSignosVitalesData) { error in
+                                if let error = error {
+                                    print("Error al guardar los datos en la colección rqSignosVitales en Firestore: \(error.localizedDescription)")
+                                } else {
+                                    print("Datos guardados en la colección rqSignosVitales en Firestore correctamente")
+                                }
+                            }
+                            let rqSintomasData: [String: Any] = ["userId": userId,"acumulado": acumulado]
+                            db.collection("rqSintomas").document(userId).setData(rqSintomasData) { error in
+                                if let error = error {
+                                    print("Error al guardar los datos en la colección rqSintomas en Firestore: \(error.localizedDescription)")
+                                } else {
+                                    print("Datos guardados en la colección rqSintomas en Firestore correctamente")
+                                }
+                            }
+                            let rqConteoData: [String: Any] = ["userId": userId,"conteoC": conteoC, "conteoT": conteoT]
+                            db.collection("rqConteo").document(userId).setData(rqConteoData) { error in
+                                if let error = error {
+                                    print("Error al guardar los datos en la colección rqConteo en Firestore: \(error.localizedDescription)")
+                                } else {
+                                    print("Datos guardados en la colección rqConteo en Firestore correctamente")
+                                }
+                            }
+                            let rqRecompensasData: [String: Any] = ["userId": userId,"recompensa1": recompensa1, "recompensa2": recompensa2, "recompensa3": recompensa3, "recompensa4": recompensa4, "recompensa5": recompensa5]
+                            db.collection("rqRecompensas").document(userId).setData(rqRecompensasData) { error in
+                                if let error = error {
+                                    print("Error al guardar los datos en la colección rqRecompensas en Firestore: \(error.localizedDescription)")
+                                } else {
+                                    print("Datos guardados en la colección rqRecompensas en Firestore correctamente")
+                                }
+                            }
                         }
                     }
                 }
