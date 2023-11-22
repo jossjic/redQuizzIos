@@ -9,9 +9,10 @@ struct User {
     var indicePregunta: Int
     var puntaje: Int
     var vidas: Int
+    let tipo: String
     
     // Add an initializer if needed
-    init(nombre: String, apellidos: String, email: String, fechaNacimiento: String, genero: String, indicePregunta: Int, puntaje: Int, vidas: Int) {
+    init(nombre: String, apellidos: String, email: String, fechaNacimiento: String, genero: String, indicePregunta: Int, puntaje: Int, vidas: Int, tipo: String) {
         self.nombre = nombre
         self.apellidos = apellidos
         self.email = email
@@ -20,5 +21,6 @@ struct User {
         self.indicePregunta = indicePregunta
         self.puntaje = puntaje
         self.vidas = vidas
+        self.tipo = tipo
     }
 }

@@ -7,6 +7,8 @@ class loginController: UIViewController {
     @IBOutlet weak var warningLbl: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var pass: UITextField!
+    
+    let userViewModel = UserViewModel()
     let emailPattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
     
     override func viewDidLoad() {
@@ -35,14 +37,25 @@ class loginController: UIViewController {
             
             if let error = error {
                 self.displayWarning(message: "Correo y/o contraseña incorrectos.")
-                print("Error al iniciar sesión: \(error.localizedDescription)")
+                print("Error al iniciar sesiónA: \(error.localizedDescription)")
                 return
             }
             
             print("Inicio de sesión exitoso.")
             // Aquí puedes realizar acciones adicionales después del inicio de sesión exitoso
             // Por ejemplo, navegar a la siguiente vista
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            userViewModel.fetchData {
+                let userType = self.userViewModel.tipoUsu
+                print(userType)
+                if userType == "usuario" {
+                    self.performSegue(withIdentifier: "loginSegueUser", sender: self)
+                } else if userType == "administrador" {
+                    self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
+                } else {
+                    print("tipo de usuario incorrecto")
+                }
+            }
+            
         }
     }
     

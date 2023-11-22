@@ -1,5 +1,7 @@
 
 import UIKit
+import AVFoundation
+
 
 class gameController: UIViewController {//outlets
     @IBOutlet weak var questionLbl: UILabel!
@@ -10,6 +12,10 @@ class gameController: UIViewController {//outlets
     @IBOutlet weak var barTimer: UIProgressView!
     @IBOutlet weak var categoriaLbl: UILabel!
     @IBOutlet weak var vidas: UILabel!
+    
+    var audioPlayerCorrect: AVAudioPlayer?
+    var audioPlayerInCorrect: AVAudioPlayer?
+    var audioPlayerEnd: AVAudioPlayer?
     
     
     let gameViewModel = GameViewModel()
@@ -51,6 +57,9 @@ class gameController: UIViewController {//outlets
     
     override func viewDidLoad() {
             super.viewDidLoad()
+            cargarAudioCorrect()
+        cargarAudioIncorrect()
+        cargarAudioEnd()
             gameViewModel.fetchData {
                 print("dataFetched")
                 
@@ -110,6 +119,12 @@ class gameController: UIViewController {//outlets
         
         // Mostrar la alerta
         self.present(alertController, animated: true, completion: nil)
+            if let audioPlayer = audioPlayerEnd, audioPlayerEnd?.isPlaying == false {
+                audioPlayer.play()
+
+            }
+
+        
     }
     
     
@@ -146,6 +161,7 @@ class gameController: UIViewController {//outlets
             
             // Mostrar la alerta
             self.present(alertController, animated: true, completion: nil)
+            
             progressAnimator.stopAnimation(true)
             progressAnimator.finishAnimation(at: .current)
             self.ended = true
@@ -161,6 +177,7 @@ class gameController: UIViewController {//outlets
              
             // fetching and update lifes
             self.userViewModel.fetchData {
+                self.userViewModel.updateCT(cOt: false)
                 let fUser = self.userViewModel.fetchedUser
                 self.vidasUser = fUser.vidas
                 self.vidas.text = "x " + String(self.vidasUser)
@@ -200,12 +217,8 @@ class gameController: UIViewController {//outlets
             
         }
     
-    func updateScoreFB(signo: Bool){
-       if signo {
-            self.userViewModel.updateScore(score: self.puntos, type: self.categoria)
-       } else {
-           self.userViewModel.updateScore(score: self.puntos * -1, type: self.categoria)      
-       }
+    func updateScoreFB(){
+            self.userViewModel.updateScore(score: 1, type: self.categoria)
         
             
 
@@ -278,14 +291,23 @@ class gameController: UIViewController {//outlets
     }
     
     func resCorrecta(button:UIButton){
+        if let audioPlayer = audioPlayerCorrect, audioPlayerCorrect?.isPlaying == false {
+                audioPlayer.play()
+            }
+        
+        userViewModel.updateCT(cOt: true)
         button.backgroundColor = UIColor.green
         puntuacion += puntos
-        updateScoreFB(signo: true)
+        updateScoreFB()
+        
+        
     }
     
     func resIncorrecta(button:UIButton){
+        if let audioPlayer = audioPlayerInCorrect, audioPlayerInCorrect?.isPlaying == false {
+                audioPlayer.play()
+            }
         button.backgroundColor = UIColor.red
-        puntuacion -= puntos
         if self.vidasUser>1{
             self.userViewModel.updateLives(newLives: vidasUser - 1)
             vidas.text = "x " + String(self.vidasUser - 1)
@@ -294,17 +316,49 @@ class gameController: UIViewController {//outlets
             vidas.text = "x 0"
             self.userViewModel.updateLives(newLives: vidasUser)
         }
-        updateScoreFB(signo: false)
         
     }
+    
+    func cargarAudioCorrect() {
+        if let path = Bundle.main.path(forResource: "success", ofType: "mp3") {
+            do {
+                self.audioPlayerCorrect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            } catch {
+                print("Error al cargar el archivo de audio")
+            }
+        }
+    }
+    func cargarAudioIncorrect() {
+        if let path = Bundle.main.path(forResource: "negative", ofType: "mp3") {
+            do {
+                self.audioPlayerInCorrect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            } catch {
+                print("Error al cargar el archivo de audio")
+            }
+        }
+    }
+    
+    func cargarAudioEnd() {
+        if let path = Bundle.main.path(forResource: "end", ofType: "mp3") {
+            do {
+                self.audioPlayerEnd = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            } catch {
+                print("Error al cargar el archivo de audio")
+            }
+        }
+    }
+
+    
+   
     
     func timeOut(){
         
         if !self.ended {
             timeOutAux()
+            timer?.invalidate()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                 self.time = 10
-                self.showNextQuestion()
+                self.startQuestionTimer()
             }
         }
     }
@@ -333,8 +387,7 @@ class gameController: UIViewController {//outlets
                 btn4.backgroundColor = UIColor.green
             }
             
-            puntuacion -= puntos
-            updateScoreFB(signo: false)
+
             if self.vidasUser>1{
                 self.userViewModel.updateLives(newLives: vidasUser - 1)
                 vidas.text = "x " + String(self.vidasUser - 1)
@@ -464,7 +517,15 @@ class gameController: UIViewController {//outlets
     }
     
     @IBAction func volverBtn(_ sender: Any) {
-        self.currentQuestionIndex = 11
+        timer?.invalidate()
+        time = 10
+        progressAnimator.stopAnimation(true)
+        progressAnimator.finishAnimation(at: .current)
+        btn1.isEnabled = false
+        btn2.isEnabled = false
+        btn3.isEnabled = false
+        btn4.isEnabled = false
+
     }
     
 }

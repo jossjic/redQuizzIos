@@ -57,7 +57,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         let vidas = 5
         let acumulado = 0
         let puntaje = 0
-        
+        let apellidos = "fyguqefr"
         
         
         

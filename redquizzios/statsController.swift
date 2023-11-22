@@ -1,5 +1,6 @@
 
 import UIKit
+import Firebase
 
 class statsController: UIViewController {
 
@@ -27,6 +28,17 @@ class statsController: UIViewController {
        
    
     }
+    
+    @IBAction func logOut(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            // Cierre de sesión exitoso
+            performSegue(withIdentifier: "logOutSegue2", sender: self)
+        } catch let signOutError as NSError {
+            print("Error al cerrar sesión: \(signOutError)")
+        }
+    }
+    
 
 
 }

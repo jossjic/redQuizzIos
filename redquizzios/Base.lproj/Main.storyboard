@@ -240,12 +240,13 @@
                         <outlet property="email" destination="Mwt-FZ-9GH" id="cWf-VL-Tc9"/>
                         <outlet property="pass" destination="vU5-0O-MCM" id="TRJ-l7-3WM"/>
                         <outlet property="warningLbl" destination="V1W-8w-Cfa" id="iOz-YL-XLh"/>
-                        <segue destination="Y7j-L2-zTE" kind="showDetail" identifier="loginSegue" id="jOe-Me-wlk"/>
+                        <segue destination="Y7j-L2-zTE" kind="showDetail" identifier="loginSegueUser" id="jOe-Me-wlk"/>
+                        <segue destination="ETM-CW-3hB" kind="show" identifier="loginSegueAdmin" id="hjn-JV-gxn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="845.58139534883719" y="-8.3690987124463518"/>
+            <point key="canvasLocation" x="772" y="63"/>
         </scene>
         <!--Profile Controller-->
         <scene sceneID="URg-Nb-I7l">
@@ -267,7 +268,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Jugar" cornerStyle="capsule"/>
                                         <connections>
-                                            <segue destination="dxt-iN-bkB" kind="show" id="dF1-nf-CJf"/>
+                                            <action selector="playBtn:" destination="Y7j-L2-zTE" eventType="touchUpInside" id="GAd-9B-6hh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puk-ja-aMv">
@@ -285,7 +286,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Mi Puntaje" cornerStyle="capsule"/>
                                         <connections>
-                                            <segue destination="MhR-Vi-Nby" kind="show" id="7uZ-Q8-JuV"/>
+                                            <action selector="scoreBtn:" destination="Y7j-L2-zTE" eventType="touchUpInside" id="4eY-rh-mR9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -340,21 +341,24 @@
                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Cerrar Sesión"/>
+                                        <connections>
+                                            <action selector="logOut:" destination="Y7j-L2-zTE" eventType="touchUpInside" id="cMR-B3-ZEm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-profile-sq-300x300" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-Tr-k9c">
-                                <rect key="frame" x="107" y="142.66666666666666" width="214" height="213.99999999999997"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="fu8-Tr-k9c" secondAttribute="height" multiplier="1:1" id="9S6-Le-HjR"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="José Juan Irene Cervantes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lp-Do-XuF">
                                 <rect key="frame" x="21.333333333333343" y="398.33333333333331" width="385.33333333333326" height="27.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-profile-sq-300x300" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-Tr-k9c">
+                                <rect key="frame" x="107" y="142.66666666666666" width="214" height="213.99999999999997"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fu8-Tr-k9c" secondAttribute="height" multiplier="1:1" id="9S6-Le-HjR"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="y6u-Cb-Vjz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -388,6 +392,9 @@
                         <outlet property="profileImg" destination="fu8-Tr-k9c" id="1sI-aL-wVq"/>
                         <outlet property="time" destination="OYC-0h-6ok" id="eHJ-Ul-dEE"/>
                         <outlet property="vidas" destination="4PE-YT-QiL" id="LZf-Nf-8FD"/>
+                        <segue destination="dxt-iN-bkB" kind="show" identifier="playSegue" id="RTi-Y1-39B"/>
+                        <segue destination="MhR-Vi-Nby" kind="show" identifier="scoreSegue" id="4vq-cL-bhg"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logOutSegue1" id="rMq-Wv-umS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ab6-Ec-tKX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -442,6 +449,9 @@
                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Cerrar Sesión"/>
+                                        <connections>
+                                            <action selector="logOut:" destination="ETM-CW-3hB" eventType="touchUpInside" id="D3X-85-M8b"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -481,14 +491,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="rd7-WZ-qh8"/>
                     <connections>
-                        <outlet property="avatarBtn" destination="oAq-uD-TRZ" id="9EQ-sj-IXg"/>
-                        <outlet property="playBtn" destination="qtU-zM-6di" id="YZG-YK-lDF"/>
-                        <outlet property="profileImg" destination="cnY-fv-i99" id="0t9-ex-aZR"/>
+                        <outlet property="profileImg" destination="cnY-fv-i99" id="5b6-hm-N46"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logOutSegueAdm" id="JEO-XN-g4F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egQ-AO-kez" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1672" y="733"/>
+            <point key="canvasLocation" x="1573" y="825"/>
         </scene>
         <!--Adm Upload Controller-->
         <scene sceneID="XVE-Bq-yrK">
@@ -518,7 +527,7 @@
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8p0-YP-thv">
                                         <rect key="frame" x="0.0" y="49" width="385.33333333333331" height="39.666666666666657"/>
                                     </pickerView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rating:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lkm-Jz-jEp">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Puntaje:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lkm-Jz-jEp">
                                         <rect key="frame" x="0.0" y="97.666666666666686" width="385.33333333333331" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -573,6 +582,9 @@
                                         <color key="tintColor" red="0.91960495710000001" green="0.28371536730000002" blue="0.24311304089999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Subir" cornerStyle="capsule"/>
+                                        <connections>
+                                            <action selector="updload:" destination="BEF-G5-3Br" eventType="touchUpInside" id="otq-Vh-i5O"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUS-cJ-aYJ">
                                         <rect key="frame" x="0.0" y="77.666666666666629" width="342.66666666666669" height="59.666666666666657"/>
@@ -582,9 +594,19 @@
                                         <buttonConfiguration key="configuration" style="tinted" title="Volver" cornerStyle="capsule">
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="ETM-CW-3hB" kind="show" id="Ny8-cV-77X"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH0-iG-Txk">
+                                <rect key="frame" x="42.666666666666657" y="586.33333333333337" width="342.66666666666674" height="0.0"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s1N-dC-qEh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -592,6 +614,7 @@
                             <constraint firstItem="hN6-N8-V8e" firstAttribute="height" secondItem="u4P-Xx-VDM" secondAttribute="height" multiplier="0.15" id="25B-Uq-jx9"/>
                             <constraint firstItem="hN6-N8-V8e" firstAttribute="centerY" secondItem="u4P-Xx-VDM" secondAttribute="centerY" multiplier="0.6" id="3Vr-IX-uec"/>
                             <constraint firstItem="BoX-UA-rFC" firstAttribute="centerX" secondItem="u4P-Xx-VDM" secondAttribute="centerX" id="8ya-Lk-Skf"/>
+                            <constraint firstItem="dH0-iG-Txk" firstAttribute="centerY" secondItem="u4P-Xx-VDM" secondAttribute="centerY" multiplier="1.28" id="CdH-ZV-2qV"/>
                             <constraint firstItem="hN6-N8-V8e" firstAttribute="centerX" secondItem="u4P-Xx-VDM" secondAttribute="centerX" id="J8q-aG-eAb"/>
                             <constraint firstItem="5WL-nz-G48" firstAttribute="centerX" secondItem="u4P-Xx-VDM" secondAttribute="centerX" id="LYe-4g-ggg"/>
                             <constraint firstItem="HCT-oe-pEs" firstAttribute="centerX" secondItem="u4P-Xx-VDM" secondAttribute="centerX" id="ORD-Ze-4ur"/>
@@ -599,20 +622,32 @@
                             <constraint firstItem="Wlm-3Q-bgC" firstAttribute="width" secondItem="u4P-Xx-VDM" secondAttribute="width" multiplier="0.9" id="QDS-be-iGv"/>
                             <constraint firstItem="5WL-nz-G48" firstAttribute="centerY" secondItem="u4P-Xx-VDM" secondAttribute="centerY" multiplier="1.55" id="SoO-L1-i3H"/>
                             <constraint firstItem="BoX-UA-rFC" firstAttribute="height" secondItem="u4P-Xx-VDM" secondAttribute="height" id="Sxv-gU-oNV"/>
+                            <constraint firstItem="dH0-iG-Txk" firstAttribute="width" secondItem="u4P-Xx-VDM" secondAttribute="width" multiplier="0.8" id="YFB-vL-z6e"/>
                             <constraint firstItem="HCT-oe-pEs" firstAttribute="centerY" secondItem="u4P-Xx-VDM" secondAttribute="centerY" multiplier="0.23" id="b21-YN-DKR"/>
                             <constraint firstItem="hN6-N8-V8e" firstAttribute="width" secondItem="u4P-Xx-VDM" secondAttribute="width" multiplier="0.9" id="bfG-QZ-BFX"/>
                             <constraint firstItem="5WL-nz-G48" firstAttribute="width" secondItem="u4P-Xx-VDM" secondAttribute="width" multiplier="0.8" id="kQ1-V9-Loe"/>
                             <constraint firstItem="BoX-UA-rFC" firstAttribute="centerY" secondItem="u4P-Xx-VDM" secondAttribute="centerY" id="khK-XK-p6T"/>
                             <constraint firstItem="BoX-UA-rFC" firstAttribute="width" secondItem="u4P-Xx-VDM" secondAttribute="width" id="mjO-lh-A8N"/>
+                            <constraint firstItem="dH0-iG-Txk" firstAttribute="centerX" secondItem="u4P-Xx-VDM" secondAttribute="centerX" id="rF9-fb-W2M"/>
                             <constraint firstItem="5WL-nz-G48" firstAttribute="height" secondItem="u4P-Xx-VDM" secondAttribute="height" multiplier="0.15" id="tFT-DC-01R"/>
                             <constraint firstItem="Wlm-3Q-bgC" firstAttribute="centerY" secondItem="u4P-Xx-VDM" secondAttribute="centerY" id="vMT-Qs-Kei"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sjb-IE-b9o"/>
+                    <connections>
+                        <outlet property="categoriaPicker" destination="8p0-YP-thv" id="DmO-Be-7e8"/>
+                        <outlet property="correctaText" destination="Efs-la-Pes" id="Mrc-2J-Hte"/>
+                        <outlet property="incorrecta1Text" destination="7OP-le-Yrf" id="wod-Ld-B09"/>
+                        <outlet property="incorrecta2Text" destination="Ydd-st-48M" id="hQT-Ie-VyM"/>
+                        <outlet property="incorrecta3Text" destination="zsW-AJ-kLo" id="6dG-zk-Ufw"/>
+                        <outlet property="msgLbl" destination="dH0-iG-Txk" id="ELf-bu-IKv"/>
+                        <outlet property="preguntaText" destination="Du6-mE-gES" id="vep-FW-Rf3"/>
+                        <outlet property="puntajeText" destination="Lkm-Jz-jEp" id="GTR-DD-XAs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="474-Aj-fZo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2518" y="732"/>
+            <point key="canvasLocation" x="2694" y="778"/>
         </scene>
         <!--Adm Edit Controller-->
         <scene sceneID="OdP-Ps-5Q3">
@@ -781,6 +816,9 @@
                                     </attributedString>
                                     <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="BEF-G5-3Br" kind="show" id="5ev-0v-B4L"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="j6M-KA-rIs">
                                 <rect key="frame" x="54.666666666666657" y="183.33333333333331" width="318.66666666666674" height="137.33333333333331"/>
@@ -802,6 +840,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="th3-6c-Y4B">
                                 <rect key="frame" x="21.333333333333343" y="320.66666666666669" width="385.33333333333326" height="549.66666666666652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="veC-eI-DO5">
+                                        <rect key="frame" x="0.0" y="50" width="385.33333333333326" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="veC-eI-DO5" id="AmX-7t-Yne">
+                                            <rect key="frame" x="0.0" y="0.0" width="385.33333333333326" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PEe-t8-KIz"/>
@@ -829,6 +877,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="R2h-5N-T8q"/>
+                    <connections>
+                        <outlet property="categoriaPicker" destination="C3m-YE-nja" id="4ee-iN-xE4"/>
+                        <outlet property="questionsTable" destination="th3-6c-Y4B" id="eeH-MO-rBn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTX-hP-pZY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1007,6 +1059,9 @@
                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Cerrar Sesión"/>
+                                        <connections>
+                                            <action selector="logOut:" destination="0nn-Eg-GA6" eventType="touchUpInside" id="ZDW-o9-zMK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -1095,11 +1150,12 @@
                         <outlet property="gender" destination="mue-mh-JuH" id="7U3-4s-V83"/>
                         <outlet property="name" destination="xyg-jf-iBQ" id="C75-HP-nUd"/>
                         <outlet property="profileImg" destination="qHE-5z-WTa" id="PZx-07-gUu"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logOutSegue2" id="S7f-Qd-AK9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1H-rA-V8v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2518" y="-9"/>
+            <point key="canvasLocation" x="2518" y="-10"/>
         </scene>
         <!--Score Controller-->
         <scene sceneID="qXq-36-aqV">
@@ -1297,6 +1353,8 @@
                         <outlet property="aLbl" destination="N3m-VH-5jP" id="CK3-nM-gIN"/>
                         <outlet property="bLbl" destination="Nc7-AL-hup" id="pMA-XR-Cbf"/>
                         <outlet property="cLbl" destination="QZR-H4-vtY" id="FhD-b9-30r"/>
+                        <outlet property="conteoCLbl" destination="MD8-rc-fgk" id="vLG-3V-c8p"/>
+                        <outlet property="conteoTLbl" destination="N08-AA-1O9" id="liW-04-rx2"/>
                         <outlet property="progressView" destination="6vz-aa-WXT" id="L6a-QP-O1Y"/>
                         <outlet property="sLbl" destination="XKW-FR-6wH" id="Rce-0u-Na5"/>
                         <outlet property="sgLbl" destination="Lev-jp-HWU" id="29y-vd-gzH"/>
@@ -1601,10 +1659,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Gke-zZ-xQm"/>
         <segue reference="D63-H8-jW7"/>
-        <segue reference="7LO-RE-7hc"/>
-        <segue reference="aQE-dw-P6d"/>
+        <segue reference="5ev-0v-B4L"/>
+        <segue reference="Gke-zZ-xQm"/>
+        <segue reference="2BO-Ug-2UN"/>
+        <segue reference="JEO-XN-g4F"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2160" height="3840"/>

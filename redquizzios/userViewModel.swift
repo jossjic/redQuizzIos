@@ -5,8 +5,13 @@ import Firebase
 class UserViewModel {
     private var db = Firestore.firestore()
     var uid = ""
-    var fetchedUser = User(nombre: "", apellidos: "", email: "", fechaNacimiento: "", genero: "", indicePregunta: 0, puntaje: 0, vidas: 5)
+    var fetchedUser = User(nombre: "", apellidos: "", email: "", fechaNacimiento: "", genero: "", indicePregunta: 0, puntaje: 0, vidas: 5, tipo: "")
+    var fetchedAdmin = Admin(email: "")
     var puntajeCollection = 0
+    var conteoC = 0
+    var conteoT = 0
+    var tipoUsu = ""
+    
     
     // Completion handler to notify when data fetching is complete
     typealias CompletionHandler = () -> Void
@@ -18,34 +23,76 @@ class UserViewModel {
         }
         
         let userRef = db.collection("rqUsers").document(self.uid)
-        userRef.getDocument{ (document, error) in
-            if let error = error {
-                print("Error al obtener al usuario")
-            } else if let document = document, document.exists{
-                let data = document.data()
-                if let nombre = data?["nombre"] as? String,
-                   let apellidos = data?["apellidos"] as? String,
-                   let email = data?["email"] as? String,
-                   let fechaNacimiento = data?["fechaNacimiento"] as? String,
-                   let genero = data?["genero"] as? String,
-                   let indicePregunta = data?["indicePregunta"] as? Int,
-                   let puntaje = data?["puntaje"] as? Int,
-                   let vidas = data?["vidas"] as? Int {
-                    self.fetchedUser = User(nombre: nombre, apellidos: apellidos, email: email, fechaNacimiento: fechaNacimiento, genero: genero, indicePregunta: indicePregunta, puntaje: puntaje, vidas: vidas)
-                    print("Fetch de usuario listo")
-                    completion()
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // El documento existe, puedes acceder a los datos
+                if let tipoUser = document.data()?["tipo"] as? String {
+                    print("Tipo del usuario: \(tipoUser)")
+                    self.tipoUsu = tipoUser
+                    if self.tipoUsu == "usuario" {
+                        userRef.getDocument{ (document, error) in
+                            if let error = error {
+                                print("Error al obtener al usuario")
+                            } else if let document = document, document.exists{
+                                let data = document.data()
+                                if let nombre = data?["nombre"] as? String,
+                                   let apellidos = data?["apellidos"] as? String,
+                                   let email = data?["email"] as? String,
+                                   let fechaNacimiento = data?["fechaNacimiento"] as? String,
+                                   let genero = data?["genero"] as? String,
+                                   let indicePregunta = data?["indicePregunta"] as? Int,
+                                   let puntaje = data?["puntaje"] as? Int,
+                                   let tipo = data?["tipo"] as? String,
+                                   let vidas = data?["vidas"] as? Int {
+                                    self.fetchedUser = User(nombre: nombre, apellidos: apellidos, email: email, fechaNacimiento: fechaNacimiento, genero: genero, indicePregunta: indicePregunta, puntaje: puntaje, vidas: vidas, tipo: tipo)
+                                    print("Fetch de usuario listo")
+                                    completion()
+                                } else {
+                                    print("Alguno de los campos no está presente o tiene un formato incorrecto.")
+                                }
+                            } else {
+                                print("El docuumento no existe")
+                            }
+                            
+                        }
+                    } else if self.tipoUsu == "administrador" {
+                        userRef.getDocument{ (document, error) in
+                            if let error = error {
+                                print("Error al obtener al usuario")
+                            } else if let document = document, document.exists{
+                                let data = document.data()
+                                if let email = data?["email"] as? String{
+                                    self.fetchedAdmin = Admin(email: email)
+                                    print("Fetch de usuario listo")
+                                    completion()
+                                } else {
+                                    print("Alguno de los campos no está presente o tiene un formato incorrecto.")
+                                }
+                            } else {
+                                print("El docuumento no existe")
+                            }
+                            
+                        }
+                    } else {
+                        print("Tipo de usuario incorrecto")
+                    }
                 } else {
-                    print("Alguno de los campos no está presente o tiene un formato incorrecto.")
+                    print("No se encontró el campo 'nombre' en el documento.")
                 }
             } else {
-                print("El docuumento no existe")
+                print("El documento no existe o hubo un error: \(error?.localizedDescription ?? "Unknown error")")
             }
-            
         }
         
         
         
+        
+        
+        
+        
     }
+    
+    
     func updateLives(newLives: Int) {
         guard let currentUser = Auth.auth().currentUser else {
             print("No hay usuario autenticado.")
@@ -60,6 +107,71 @@ class UserViewModel {
                 self.fetchedUser.vidas = newLives
             }
         }
+    }
+    
+    func fetchCT(completion: @escaping CompletionHandler){
+        guard let currentUser = Auth.auth().currentUser else {
+            print("No hay usuario autenticado.")
+            return
+        }
+        
+        let userRef = db.collection("rqConteo").document(currentUser.uid)
+        
+                userRef.getDocument{ (document, error) in
+            if error != nil {
+                print("Error al obtener al usuario")
+            } else if let document = document, document.exists{
+                let data = document.data()
+                if data != nil{
+                    let conteoCAux = data?["conteoC"] as? Int ?? 0
+                    let conteoTAux = data?["conteoT"] as? Int ?? 0
+                    print("Fetch de conteo listo")
+                    self.conteoC = conteoCAux
+                    self.conteoT = conteoTAux
+                    completion()
+                
+                    
+            } else {
+                print("Alguno de los campos no está presente o tiene un formato incorrecto.")
+            }
+        } else {
+            print("El docuumento no existe")
+        }
+        
+    }    }
+    
+    func updateCT(cOt: Bool) {
+        guard let currentUser = Auth.auth().currentUser else {
+            print("No hay usuario autenticado.")
+            return
+        }
+        
+        let userRef = db.collection("rqConteo").document(currentUser.uid)
+        self.fetchCT {
+            if cOt {
+                userRef.updateData(["conteoC": self.conteoC + 1]) { error in
+                    if let error = error {
+                        print("Error al actualizar las vidas: \(error.localizedDescription)")
+                    } else {
+                        print("ConteoC Updated")
+                    }
+                }
+            } else {
+                userRef.updateData(["conteoT": self.conteoT + 1]) { error in
+                    if let error = error {
+                        print("Error al actualizar las vidas: \(error.localizedDescription)")
+                    } else {
+                        print("ConteoT Updated")
+                    }
+                }
+            }
+        }
+        
+       
+        
+        
+        
+        
     }
     
     private func updateDataScore(collection: String, score: Int) {
@@ -157,6 +269,8 @@ class UserViewModel {
         
         
     }
+    
+    
     
     
     }
