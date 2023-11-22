@@ -13,7 +13,6 @@ class loginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkStoredSession()
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
@@ -44,11 +43,6 @@ class loginController: UIViewController {
             
             print("Inicio de sesión exitoso.")
             
-            if let user = user {
-                           // Guardar la información de sesión en UserDefaults
-                           UserDefaults.standard.set(user.user.uid, forKey: "userID")
-                           UserDefaults.standard.set(email, forKey: "userEmail")
-                       }
             // Aquí puedes realizar acciones adicionales después del inicio de sesión exitoso
             // Por ejemplo, navegar a la siguiente vista
             userViewModel.fetchData {
@@ -66,24 +60,6 @@ class loginController: UIViewController {
         }
     }
     
-    func checkStoredSession() {
-        // Verificar si hay una sesión almacenada en UserDefaults
-        if let userID = UserDefaults.standard.string(forKey: "userID"), let userEmail = UserDefaults.standard.string(forKey: "userEmail") {
-            // Restaurar la sesión
-            print("Usuario almacenado en sesión: \(userEmail) con ID: \(userID)")
-            // Redirigir a la vista correspondiente según el tipo de usuario
-            userViewModel.fetchData {
-                let userType = self.userViewModel.tipoUsu
-                if userType == "usuario" {
-                    self.performSegue(withIdentifier: "loginSegueUser", sender: self)
-                } else if userType == "administrador" {
-                    self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
-                } else {
-                    print("Tipo de usuario incorrecto")
-                }
-            }
-        }
-    }
     
     func matchRegex(pattern: String, input: String) -> Bool {
         do {
