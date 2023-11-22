@@ -45,6 +45,7 @@ class admEditController: UIViewController, UIPickerViewDataSource, UIPickerViewD
                     self.categoriaPicker.selectRow(categoryIndex, inComponent: 0, animated: false)
                 }
             }
+
         }
     
 override func viewDidLayoutSubviews() {

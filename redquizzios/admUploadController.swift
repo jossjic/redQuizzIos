@@ -24,6 +24,7 @@ class admUploadController: UIViewController ,UIPickerViewDelegate, UIPickerViewD
         super.viewDidLoad()
         categoriaPicker.delegate = self
         categoriaPicker.dataSource = self
+
     }
     
 override func viewDidLayoutSubviews() {

@@ -30,6 +30,8 @@ class scoreController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         
 
        

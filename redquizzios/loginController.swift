@@ -13,6 +13,21 @@ class loginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        if let uid = defaults.value(forKey: "uid") as? String{
+            userViewModel.fetchData {
+                let userType = self.userViewModel.tipoUsu
+                print(userType)
+                if userType == "usuario" {
+                    self.performSegue(withIdentifier: "loginSegueUser", sender: self)
+                } else if userType == "administrador" {
+                    self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
+                } else {
+                    print("tipo de usuario incorrecto")
+                }
+            }
+        }
+
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
@@ -31,33 +46,41 @@ class loginController: UIViewController {
             displayWarning(message: "Correo electrónico inválido.")
             return
         }
-        
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
-            guard let self = self else { return }
             
-            if let error = error {
-                self.displayWarning(message: "Correo y/o contraseña incorrectos.")
-                print("Error al iniciar sesiónA: \(error.localizedDescription)")
-                return
-            }
-            
-            print("Inicio de sesión exitoso.")
-            
-            // Aquí puedes realizar acciones adicionales después del inicio de sesión exitoso
-            // Por ejemplo, navegar a la siguiente vista
-            userViewModel.fetchData {
-                let userType = self.userViewModel.tipoUsu
-                print(userType)
-                if userType == "usuario" {
-                    self.performSegue(withIdentifier: "loginSegueUser", sender: self)
-                } else if userType == "administrador" {
-                    self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
-                } else {
-                    print("tipo de usuario incorrecto")
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    self.displayWarning(message: "Correo y/o contraseña incorrectos.")
+                    print("Error al iniciar sesiónA: \(error.localizedDescription)")
+                    return
                 }
+                
+                print("Inicio de sesión exitoso.")
+                if let currentUser = Auth.auth().currentUser{
+                    let defaults = UserDefaults.standard
+                    defaults.set(currentUser.uid, forKey: "uid")
+                    defaults.synchronize()
+                }
+                
+                
+                // Aquí puedes realizar acciones adicionales después del inicio de sesión exitoso
+                // Por ejemplo, navegar a la siguiente vista
+                userViewModel.fetchData {
+                    let userType = self.userViewModel.tipoUsu
+                    print(userType)
+                    if userType == "usuario" {
+                        self.performSegue(withIdentifier: "loginSegueUser", sender: self)
+                    } else if userType == "administrador" {
+                        self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
+                    } else {
+                        print("tipo de usuario incorrecto")
+                    }
+                }
+                
             }
-            
-        }
+        
+        //
     }
     
     

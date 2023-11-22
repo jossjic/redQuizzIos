@@ -20,7 +20,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKI-yH-eXW">
                         <rect key="frame" x="288.66666666666669" y="7.6666666666666679" width="77" height="41.666666666666657"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="filled" title="Editar"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Editar">
+                            <color key="baseBackgroundColor" systemColor="linkColor"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="editQuestion:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bvu-XG-EdG"/>
                         </connections>
@@ -43,7 +45,9 @@ para  curar una herida tipo A?</string>
                         <rect key="frame" x="288.66666666666669" y="57.333333333333329" width="77" height="41.333333333333329"/>
                         <color key="tintColor" systemColor="systemRedColor"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="filled" title="🗑️"/>
+                        <buttonConfiguration key="configuration" style="filled" title="🗑️">
+                            <color key="baseBackgroundColor" red="0.9196664095" green="0.28362026810000002" blue="0.24315798280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="deleteQuestion:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uTQ-IF-yXT"/>
                         </connections>
@@ -75,6 +79,9 @@ para  curar una herida tipo A?</string>
         </tableViewCell>
     </objects>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

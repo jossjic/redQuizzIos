@@ -6,6 +6,7 @@ class editAvatarController: UIViewController {
 //outlets
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
     
 override func viewDidLayoutSubviews() {

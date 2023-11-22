@@ -30,6 +30,8 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         genderPicker.delegate = self
         genderPicker.dataSource = self
         
+
+
         
         
     }

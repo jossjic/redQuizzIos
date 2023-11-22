@@ -5,12 +5,15 @@ import Firebase
 class UserViewModel {
     private var db = Firestore.firestore()
     var uid = ""
+    let defaults = UserDefaults.standard
+    
     var fetchedUser = User(nombre: "", apellidos: "", email: "", fechaNacimiento: "", genero: "", indicePregunta: 0, puntaje: 0, vidas: 5, tipo: "")
     var fetchedAdmin = Admin(email: "")
     var puntajeCollection = 0
     var conteoC = 0
     var conteoT = 0
     var tipoUsu = ""
+   
     
     
     // Completion handler to notify when data fetching is complete
@@ -20,9 +23,18 @@ class UserViewModel {
         print("Fetching Data...")
         if let currentUser = Auth.auth().currentUser{
             self.uid = currentUser.uid
+        } else {
+            let defaults = UserDefaults.standard
+            if let uid = defaults.value(forKey: "uid") as? String{
+                self.uid = uid
+            } else {
+                print("Error al autenticar al usuario")
+                return
+            }
         }
         
         let userRef = db.collection("rqUsers").document(self.uid)
+        
         userRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 // El documento existe, puedes acceder a los datos
@@ -45,7 +57,9 @@ class UserViewModel {
                                    let tipo = data?["tipo"] as? String,
                                    let vidas = data?["vidas"] as? Int {
                                     self.fetchedUser = User(nombre: nombre, apellidos: apellidos, email: email, fechaNacimiento: fechaNacimiento, genero: genero, indicePregunta: indicePregunta, puntaje: puntaje, vidas: vidas, tipo: tipo)
+                                    
                                     print("Fetch de usuario listo")
+                                    
                                     completion()
                                 } else {
                                     print("Alguno de los campos no está presente o tiene un formato incorrecto.")
@@ -101,7 +115,7 @@ class UserViewModel {
         }
         
         let userRef = db.collection("rqUsers").document(currentUser.uid)
-        userRef.updateData(["vidas": newLives]) { error in
+        userRef.updateData(["vidas": (newLives>=5) ? 5 : newLives]) { error in
             if let error = error {
                 print("Error al actualizar las vidas: \(error.localizedDescription)")
             } else {

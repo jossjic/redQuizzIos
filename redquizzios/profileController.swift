@@ -34,8 +34,17 @@ class profileController: UIViewController {
             
             print(userI)
             self.startTimer()
+            if userI.genero == "masculino" {
+                self.profileImg.image = UIImage(named: "placeHombre")
+            } else if userI.genero == "femenino" {
+                self.profileImg.image = UIImage(named: "placeMujer")
+            } else {
+                print("genero no identificado")
+            }
+            
 
         }
+        
        
 
 
@@ -60,7 +69,12 @@ class profileController: UIViewController {
                 
                 // Asignar el tiempo formateado al texto, asegurándote de que se ejecute en el hilo principal
                 DispatchQueue.main.async {
-                    self.time.text = tiempoFormateado
+                    if self.vidasUsu < 5{
+                        self.time.text = tiempoFormateado
+                    } else {
+                        self.time.text = "Máx Vidas"
+                    }
+                    
                 }
             }
         }
@@ -69,11 +83,14 @@ class profileController: UIViewController {
     @objc func giveLife() {
            // Incrementa las vidas y actualiza la interfaz de usuario
            vidasUsu += 1
-           vidas.text = "\(vidasUsu) Vidas"
-        print("vida añadida")
+        if vidasUsu <= 5 {
+            vidas.text = "\(vidasUsu) Vidas"
+         print("vida añadida")
+            
+            // También puedes almacenar el nuevo número de vidas en Firebase si es necesario
+         userViewModel.updateLives(newLives: vidasUsu)
+        }
            
-           // También puedes almacenar el nuevo número de vidas en Firebase si es necesario
-        userViewModel.updateLives(newLives: vidasUsu)
        }
     
     override func viewDidLayoutSubviews() {
@@ -122,13 +139,21 @@ class profileController: UIViewController {
     }
     
     @IBAction func logOut(_ sender: Any) {
+        
         do {
+            let defaults = UserDefaults.standard
+            if let uid = defaults.value(forKey: "uid") as? String{
+                UserDefaults.standard.removeObject(forKey: "uid")
+                UserDefaults.standard.synchronize()
+            }
             try Auth.auth().signOut()
             // Cierre de sesión exitoso
             performSegue(withIdentifier: "logOutSegue1", sender: self)
         } catch let signOutError as NSError {
             print("Error al cerrar sesión: \(signOutError)")
         }
+        
+        
     }
     
     func startTimer() {

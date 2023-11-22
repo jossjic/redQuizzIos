@@ -21,7 +21,7 @@ class admCrudController: UIViewController, UITableViewDataSource, UIPickerViewDe
     let gameViewModel = GameViewModel()
     var viewControllerSegue: UIViewController?
     override func viewDidLoad() {
-        super.viewDidLoad()
+
         
         categoriaPicker.delegate = self
         categoriaPicker.dataSource = self
@@ -41,6 +41,8 @@ class admCrudController: UIViewController, UITableViewDataSource, UIPickerViewDe
         
         
     }
+    
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
