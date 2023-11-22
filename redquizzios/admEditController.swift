@@ -54,10 +54,25 @@ override func viewDidLayoutSubviews() {
 //actions
     
     @IBAction func updateBtn(_ sender: Any) {
+        self.msgLbl.text = ""
         let categoria = categorias[categoriaPicker.selectedRow(inComponent: 0)]
-        gameViewModel.updateQuestion(id: questionID, pregunta: preguntaLbl.text ?? "", categoria: categoria, correcta: correctaLbl.text ?? "", incorrecta1: incorrecta1Lbl.text ?? "", incorrecta2: incorrecta2Lbl.text ?? "", incorrecta3: incorrecta3Lbl.text ?? "", puntos: Int(puntosLbl.text!) ?? 0){
+        
+            guard let pregunta = preguntaLbl.text, !pregunta.isEmpty,
+                  let correcta = correctaLbl.text, !correcta.isEmpty,
+                  let incorrecta1 = incorrecta1Lbl.text, !incorrecta1.isEmpty,
+                  let incorrecta2 = incorrecta2Lbl.text, !incorrecta2.isEmpty,
+                  let incorrecta3 = incorrecta3Lbl.text, !incorrecta3.isEmpty,
+                  let puntajeText = puntosLbl.text, !puntajeText.isEmpty
+                  
+            else {
+                self.msgLbl.textColor = UIColor.red
+                self.msgLbl.text = "Por favor, completa todos los campos."
+                return
+            }
+        gameViewModel.updateQuestion(id: questionID, pregunta: pregunta, categoria: categoria, correcta: correcta, incorrecta1: incorrecta1, incorrecta2: incorrecta2, incorrecta3: incorrecta3, puntos: Int(puntajeText) ?? 0){
            
             print("Pregunta actualizada")
+            self.msgLbl.textColor = UIColor.green
             self.msgLbl.text = "Pregunta Actualizada Correctamente (\(self.count))"
             self.count += 1
         }

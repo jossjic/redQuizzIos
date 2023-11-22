@@ -45,7 +45,7 @@ class gameController: UIViewController {//outlets
     var progressAnimator = UIViewPropertyAnimator()
     var timeOutBool = false
     
-    var time = 10
+    var time = 15
     
     var buttonPressed = false
     
@@ -137,7 +137,7 @@ class gameController: UIViewController {//outlets
                     
 
             } else if !self.ended {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 15){
                         self.timeOutAux()
                         self.goodEnding()
                         self.ended = true
@@ -228,7 +228,7 @@ class gameController: UIViewController {//outlets
         print("animation!")
         barTimer.progress = 0.0
         self.view.layoutIfNeeded()
-        progressAnimator = UIViewPropertyAnimator(duration: 10, curve: .linear){
+        progressAnimator = UIViewPropertyAnimator(duration: 15, curve: .linear){
             self.barTimer.setProgress(1.0, animated: true)
         }
         progressAnimator.startAnimation()
@@ -316,6 +316,22 @@ class gameController: UIViewController {//outlets
             vidas.text = "x 0"
             self.userViewModel.updateLives(newLives: vidasUser)
         }
+        if !self.ended {
+            if btn1.titleLabel?.text == correcta {
+                btn1.backgroundColor = UIColor.green
+                btn1.setTitleColor(UIColor.black, for: .disabled)
+            } else if btn2.titleLabel?.text == correcta {
+                btn2.backgroundColor = UIColor.green
+                btn2.setTitleColor(UIColor.black, for: .disabled)
+            } else if btn3.titleLabel?.text == correcta {
+                btn3.backgroundColor = UIColor.green
+                btn3.setTitleColor(UIColor.black, for: .disabled)
+            } else if btn4.titleLabel?.text == correcta {
+                
+                btn4.backgroundColor = UIColor.green
+                btn4.setTitleColor(UIColor.black, for: .disabled)
+            }
+        }
         
     }
     
@@ -354,16 +370,20 @@ class gameController: UIViewController {//outlets
     func timeOut(){
         
         if !self.ended {
+            if let audioPlayer = audioPlayerInCorrect, audioPlayerInCorrect?.isPlaying == false {
+                    audioPlayer.play()
+                }
             timeOutAux()
             timer?.invalidate()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                self.time = 10
+                self.time = 15
                 self.startQuestionTimer()
             }
         }
     }
     
     func timeOutAux(){
+        
         if !self.ended {
             if btn1.titleLabel?.text == correcta {
                 btn1.backgroundColor = UIColor.green
@@ -414,7 +434,7 @@ class gameController: UIViewController {//outlets
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.time = 10
+            self.time = 15
             self.buttonPressed = true
             if self.currentQuestionIndex < self.allQuestions.count{
                 self.startQuestionTimer()
@@ -443,7 +463,7 @@ class gameController: UIViewController {//outlets
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.time = 10
+            self.time = 15
             self.buttonPressed = true
             if self.currentQuestionIndex < self.allQuestions.count{
                 self.startQuestionTimer()
@@ -471,7 +491,7 @@ class gameController: UIViewController {//outlets
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.time = 10
+            self.time = 15
             self.buttonPressed = true
             if self.currentQuestionIndex < self.allQuestions.count{
                 self.startQuestionTimer()
@@ -497,7 +517,7 @@ class gameController: UIViewController {//outlets
         progressAnimator.finishAnimation(at: .current)
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.time = 10
+            self.time = 15
             self.buttonPressed = true
             if self.currentQuestionIndex < self.allQuestions.count{
                 self.startQuestionTimer()
@@ -518,7 +538,7 @@ class gameController: UIViewController {//outlets
     
     @IBAction func volverBtn(_ sender: Any) {
         timer?.invalidate()
-        time = 10
+        time = 15
         progressAnimator.stopAnimation(true)
         progressAnimator.finishAnimation(at: .current)
         btn1.isEnabled = false

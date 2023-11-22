@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8359A55A2B0E693000CB4995 /* end.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8359A5592B0E693000CB4995 /* end.mp3 */; };
 		835F00B02B07FCB200CDD3DB /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835F00AF2B07FCB200CDD3DB /* Question.swift */; };
 		835F00B42B080CA700CDD3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835F00B32B080CA700CDD3DB /* GoogleService-Info.plist */; };
 		837B88572B06DCB1009E3B4A /* gameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B88562B06DCB1009E3B4A /* gameViewModel.swift */; };
@@ -46,11 +47,11 @@
 		83FD8BFD2B069B5300F53577 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 83FD8BFC2B069B5300F53577 /* FirebasePerformance */; };
 		B94D159B2B0AB9E7000A9C2E /* userViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D159A2B0AB9E7000A9C2E /* userViewModel.swift */; };
 		B94D159D2B0AC24F000A9C2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D159C2B0AC24F000A9C2E /* User.swift */; };
-		B9D1F6972B0C25870026C31A /* end.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9D1F6922B0C25860026C31A /* end.mp3 */; };
 		FB0E24902AFD563E003422F5 /* statsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E248F2AFD563E003422F5 /* statsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8359A5592B0E693000CB4995 /* end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = end.mp3; path = ../../../Downloads/end.mp3; sourceTree = "<group>"; };
 		835F00AF2B07FCB200CDD3DB /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		835F00B32B080CA700CDD3DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		837B88562B06DCB1009E3B4A /* gameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameViewModel.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		83FD8BAE2B068A4100F53577 /* gameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameController.swift; sourceTree = "<group>"; };
 		B94D159A2B0AB9E7000A9C2E /* userViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userViewModel.swift; sourceTree = "<group>"; };
 		B94D159C2B0AC24F000A9C2E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		B9D1F6922B0C25860026C31A /* end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = end.mp3; sourceTree = "<group>"; };
 		FB0E248F2AFD563E003422F5 /* statsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,7 +151,7 @@
 				B94D159A2B0AB9E7000A9C2E /* userViewModel.swift */,
 				83D4C0982AE1ADC900A8C167 /* Main.storyboard */,
 				83D4C09B2AE1ADCB00A8C167 /* Assets.xcassets */,
-				B9D1F6922B0C25860026C31A /* end.mp3 */,
+				8359A5592B0E693000CB4995 /* end.mp3 */,
 				83B5F51D2B0D66E70012FF38 /* success.mp3 */,
 				83B5F51B2B0D66BD0012FF38 /* negative.mp3 */,
 				83D4C09D2AE1ADCB00A8C167 /* LaunchScreen.storyboard */,
@@ -243,13 +243,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8359A55A2B0E693000CB4995 /* end.mp3 in Resources */,
 				83B5F51C2B0D66BD0012FF38 /* negative.mp3 in Resources */,
 				83B5F5242B0DAE270012FF38 /* preguntaUTableViewCell.xib in Resources */,
 				83D4C09F2AE1ADCB00A8C167 /* LaunchScreen.storyboard in Resources */,
 				835F00B42B080CA700CDD3DB /* GoogleService-Info.plist in Resources */,
 				83D4C09C2AE1ADCB00A8C167 /* Assets.xcassets in Resources */,
 				83B5F51E2B0D66E70012FF38 /* success.mp3 in Resources */,
-				B9D1F6972B0C25870026C31A /* end.mp3 in Resources */,
 				83D4C09A2AE1ADC900A8C167 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -92,6 +92,7 @@ class UserViewModel {
         
     }
     
+
     
     func updateLives(newLives: Int) {
         guard let currentUser = Auth.auth().currentUser else {

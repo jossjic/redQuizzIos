@@ -16,6 +16,8 @@ class admCrudController: UIViewController, UITableViewDataSource, UIPickerViewDe
     
     let categorias = ["Todas", "Signos Vitales", "Curación", "Síntomas", "Anatomía", "Bonus"]
     
+    var selectedCategory = "Todas"
+    
     let gameViewModel = GameViewModel()
     var viewControllerSegue: UIViewController?
     override func viewDidLoad() {
@@ -51,6 +53,26 @@ class admCrudController: UIViewController, UITableViewDataSource, UIPickerViewDe
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return categorias[row]
     }
+    
+    func filterQuestionsByCategory(_ category: String) {
+        selectedCategory = category
+        if category != "Todas"{
+            questions = gameViewModel.questions.filter { $0.categoria == selectedCategory }
+            
+        } else {
+            questions = gameViewModel.questions
+        }
+        
+        questionsTable.reloadData()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedCategory = categorias[row]
+        gameViewModel.fetchData {
+            self.filterQuestionsByCategory(selectedCategory)
+        }
+    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count

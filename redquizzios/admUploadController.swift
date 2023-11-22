@@ -46,13 +46,20 @@ override func viewDidLayoutSubviews() {
     
     @IBAction func updload(_ sender: Any) {
         self.msgLbl.text = ""
-        let pregunta = preguntaText.text!
         let categoria = categorias[categoriaPicker.selectedRow(inComponent: 0)]
-        let correcta = correctaText.text!
-        let incorrecta1 = incorrecta1Text.text!
-        let incorrecta2 = incorrecta2Text.text!
-        let incorrecta3 = incorrecta3Text.text!
-        let puntajeText = puntajeText.text!
+        
+            guard let pregunta = preguntaText.text, !pregunta.isEmpty,
+                  let correcta = correctaText.text, !correcta.isEmpty,
+                  let incorrecta1 = incorrecta1Text.text, !incorrecta1.isEmpty,
+                  let incorrecta2 = incorrecta2Text.text, !incorrecta2.isEmpty,
+                  let incorrecta3 = incorrecta3Text.text, !incorrecta3.isEmpty,
+                  let puntajeText = puntajeText.text, !puntajeText.isEmpty
+                  
+            else {
+                self.msgLbl.textColor = UIColor.red
+                self.msgLbl.text = "Por favor, completa todos los campos."
+                return
+            }
         
         gameViewModel.createQuestion(pregunta: pregunta, categoria: categoria, correcta: correcta, incorrecta1: incorrecta1, incorrecta2: incorrecta2, incorrecta3: incorrecta3, puntos: Int(puntajeText) ?? 5){
             self.preguntaText.text = ""
@@ -61,6 +68,7 @@ override func viewDidLayoutSubviews() {
             self.incorrecta2Text.text = ""
             self.incorrecta3Text.text = ""
             self.puntajeText.text = ""
+            self.msgLbl.textColor = UIColor.green
             self.msgLbl.text = "Pregunta agregada correctamente (\(self.count)"
             self.count += 1
 
