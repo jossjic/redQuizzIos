@@ -39,7 +39,7 @@ class gameController: UIViewController {//outlets
     var timer: Timer?
     var timerrGoodEnding: Timer?
     
-    var currentQuestion = Question(categoria: "", correcta: "", incorrecta1: "", incorrecta2: "", incorrecta3: "", pregunta: "", puntos: 0)
+    var currentQuestion = Question(categoria: "", correcta: "", incorrecta1: "", incorrecta2: "", incorrecta3: "", pregunta: "", puntos: 0, id: "")
     
     var firstTime = true
     var progressAnimator = UIViewPropertyAnimator()

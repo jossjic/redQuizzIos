@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="preguntaCelda" rowHeight="104" id="KGk-i7-Jjw" customClass="preguntaUTableViewCell" customModule="redquizzios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="104"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKI-yH-eXW">
+                        <rect key="frame" x="288.66666666666669" y="7.6666666666666679" width="77" height="41.666666666666657"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Editar"/>
+                        <connections>
+                            <action selector="editQuestion:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bvu-XG-EdG"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoF-Ta-OOP">
+                        <rect key="frame" x="9.6666666666666572" y="15.666666666666668" width="269.33333333333337" height="41.666666666666657"/>
+                        <string key="text">¿Cuántos curitas se necesitan 
+para  curar una herida tipo A?</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="categoria" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjI-Ku-E1x">
+                        <rect key="frame" x="105.66666666666669" y="65.333333333333329" width="77.333333333333314" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lO5-z2-9wd">
+                        <rect key="frame" x="288.66666666666669" y="57.333333333333329" width="77" height="41.333333333333329"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="🗑️"/>
+                        <connections>
+                            <action selector="deleteQuestion:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uTQ-IF-yXT"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DoF-Ta-OOP" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.7" id="6IP-jP-417"/>
+                    <constraint firstItem="OjI-Ku-E1x" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="0.75" id="6gP-Nr-d6D"/>
+                    <constraint firstItem="DoF-Ta-OOP" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="AFt-bt-I9U"/>
+                    <constraint firstItem="oKI-yH-eXW" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1.7" id="Amp-UT-L3u"/>
+                    <constraint firstItem="DoF-Ta-OOP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="0.75" id="Lad-Yl-ZEr"/>
+                    <constraint firstItem="lO5-z2-9wd" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.2" id="OCG-uE-8p6"/>
+                    <constraint firstItem="OjI-Ku-E1x" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="1.45" id="Rnf-OX-TTt"/>
+                    <constraint firstItem="oKI-yH-eXW" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="UvN-4c-VvY"/>
+                    <constraint firstItem="oKI-yH-eXW" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.2" id="YWz-Ag-Xle"/>
+                    <constraint firstItem="lO5-z2-9wd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1.7" id="ZPb-i9-bIy"/>
+                    <constraint firstItem="lO5-z2-9wd" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="aHh-aC-5So"/>
+                    <constraint firstItem="oKI-yH-eXW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="0.55" id="oAk-Dt-kap"/>
+                    <constraint firstItem="lO5-z2-9wd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="1.5" id="pJD-ic-Vih"/>
+                    <constraint firstItem="DoF-Ta-OOP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="0.7" id="q8i-kT-kg1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="categoriaLbl" destination="OjI-Ku-E1x" id="A7c-cq-aj4"/>
+                <outlet property="questionLbl" destination="DoF-Ta-OOP" id="Own-ap-mqw"/>
+            </connections>
+            <point key="canvasLocation" x="86.25954198473282" y="40.140845070422536"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

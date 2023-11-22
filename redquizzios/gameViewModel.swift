@@ -32,8 +32,9 @@ class GameViewModel {
                 let incorrecta3 = data["incorrecta3"] as? String ?? ""
                 let pregunta = data["pregunta"] as? String ?? ""
                 let puntos = data["puntos"] as? Int ?? 0
+                let id = queryDocumentSnapshot.documentID
 
-                return Question(categoria: categoria, correcta: correcta, incorrecta1: incorrecta1, incorrecta2: incorrecta2, incorrecta3: incorrecta3, pregunta: pregunta, puntos: puntos)
+                return Question(categoria: categoria, correcta: correcta, incorrecta1: incorrecta1, incorrecta2: incorrecta2, incorrecta3: incorrecta3, pregunta: pregunta, puntos: puntos, id: id)
             }
 
             // Call the completion handler when data fetching is complete
@@ -61,4 +62,59 @@ class GameViewModel {
           }
         }
     }
+    
+    func deleteQuestion(id: String, completion: @escaping CompletionHandler){
+        let collection = db.collection("preguntas")
+            let documentReference = collection.document(id)
+            
+            documentReference.delete { error in
+                if let error = error {
+                    print("Error deleting document: \(error.localizedDescription)")
+                } else {
+                    print("Document successfully deleted")
+                    self.questions.removeAll { $0.id == id }
+                }
+                
+                // Call the completion handler regardless of success or failure
+                completion()
+            }
+    }
+    
+    func updateQuestion(id: String, pregunta: String, categoria: String, correcta: String, incorrecta1: String, incorrecta2: String, incorrecta3: String, puntos: Int, completion: @escaping CompletionHandler) {
+        let documentReference = db.collection("preguntas").document(id)
+        
+        documentReference.setData([
+            "pregunta": pregunta,
+            "categoria": categoria,
+            "correcta": correcta,
+            "incorrecta1": incorrecta1,
+            "incorrecta2": incorrecta2,
+            "incorrecta3": incorrecta3,
+            "puntos": puntos
+        ], merge: true) { error in
+            if let error = error {
+                print("Error updating document: \(error.localizedDescription)")
+            } else {
+                print("Document successfully updated")
+                
+                // Update the local questions array with the updated question
+                if let updatedQuestionIndex = self.questions.firstIndex(where: { $0.id == id }) {
+                    self.questions[updatedQuestionIndex] = Question(
+                        categoria: categoria,
+                        correcta: correcta,
+                        incorrecta1: incorrecta1,
+                        incorrecta2: incorrecta2,
+                        incorrecta3: incorrecta3,
+                        pregunta: pregunta,
+                        puntos: puntos,
+                        id: id
+                    )
+                }
+            }
+            
+            // Call the completion handler regardless of success or failure
+            completion()
+        }
+    }
+
 }

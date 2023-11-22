@@ -16,9 +16,10 @@ class admUploadController: UIViewController ,UIPickerViewDelegate, UIPickerViewD
     
     let categorias = ["Signos Vitales", "Curación", "Síntomas", "Anatomía", "Bonus"]
     
+    var count = 0
+    
     let gameViewModel = GameViewModel()
     
-    var msgSwitch = false
     override func viewDidLoad() {
         super.viewDidLoad()
         categoriaPicker.delegate = self
@@ -60,13 +61,9 @@ override func viewDidLayoutSubviews() {
             self.incorrecta2Text.text = ""
             self.incorrecta3Text.text = ""
             self.puntajeText.text = ""
-            self.msgLbl.text = "Pregunta agregada correctamente"
-            self.msgSwitch = !self.msgSwitch
-            if self.msgSwitch{
-                self.msgLbl.textColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
-            } else {
-                self.msgLbl.textColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 5.0)
-            }
+            self.msgLbl.text = "Pregunta agregada correctamente (\(self.count)"
+            self.count += 1
+
             
         }
         
