@@ -218,7 +218,24 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                                 }
                                 
                             }
-                            let alertController = UIAlertController(title: "Registro Completado", message: "El usuario fue registrado correctamente", preferredStyle: .alert)
+                            
+                            if let user = Auth.auth().currentUser {
+                                if !user.isEmailVerified {
+                                    user.sendEmailVerification { (error) in
+                                        if let error = error {
+                                            print("Error al enviar el correo de verificación: \(error.localizedDescription)")
+                                        } else {
+                                            print("Correo de verificación enviado correctamente")
+                                            // Puedes mostrar un mensaje al usuario indicando que se ha enviado un correo de verificación
+                                        }
+                                    }
+                                } else {
+                                    // El correo electrónico ya está verificado
+                                    print("El correo electrónico ya está verificado")
+                                }
+                            }
+
+                            let alertController = UIAlertController(title: "Registro Completado", message: "El usuario fue registrado correctamente, te enviamos un correo a (\(mail)), verifica tu correo e inicia sesión", preferredStyle: .alert)
                             
                             // Agregar acciones (botones) a la alerta
                             let okAction = UIAlertAction(title: "Iniciar Sesión", style: .default) { _ in

@@ -69,13 +69,32 @@ class loginController: UIViewController {
                 userViewModel.fetchData {
                     let userType = self.userViewModel.tipo
                     print(userType)
-                    if userType == "usuario" {
-                        self.performSegue(withIdentifier: "loginSegueUser", sender: self)
-                    } else if userType == "administrador" {
-                        self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
-                    } else {
-                        print("tipo de usuario incorrecto")
+                    if let user = Auth.auth().currentUser {
+                        if !user.isEmailVerified {
+                            let alertController = UIAlertController(title: "Correo sin verificar", message: "Por favor, revisa el correo que te mandamos para verificar tu usuario", preferredStyle: .alert)
+                            
+                            // Agregar acciones (botones) a la alerta
+                            let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                                // Código a ejecutar cuando se presiona el botón OK
+                                print("Botón OK presionado")
+                            }
+                            alertController.addAction(okAction)
+                            
+                            // Mostrar la alerta
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
+                            // El correo electrónico ya está verificado
+                            if userType == "usuario" {
+                                self.performSegue(withIdentifier: "loginSegueUser", sender: self)
+                            } else if userType == "administrador" {
+                                self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
+                            } else {
+                                print("tipo de usuario incorrecto")
+                            }
+                        }
                     }
+
+                    
                 }
                 
             }

@@ -147,6 +147,8 @@ class profileController: UIViewController {
                 UserDefaults.standard.removeObject(forKey: "uid")
                 UserDefaults.standard.synchronize()
             }
+            timer?.invalidate()
+            timerFollow?.invalidate()
             try Auth.auth().signOut()
             // Cierre de sesión exitoso
             performSegue(withIdentifier: "logOutSegue1", sender: self)
