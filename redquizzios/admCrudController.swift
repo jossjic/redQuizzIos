@@ -134,7 +134,7 @@ class admCrudController: UIViewController, UITableViewDataSource, UIPickerViewDe
         alertController.addAction(cancelAction)
         
         let deleteAction = UIAlertAction(title: "Eliminar", style: .destructive) { [weak self] _ in
-            guard let self = self else { return }
+            guard self != nil else { return }
             
             // Lógica para eliminar la pregunta
             completion(true)

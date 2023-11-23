@@ -217,6 +217,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOc-zO-wnw"/>
+                                    <segue destination="Y7j-L2-zTE" kind="presentation" identifier="loginSegueUser" id="1Sw-1d-Mhr"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_cruz_svg" translatesAutoresizingMaskIntoConstraints="NO" id="jCz-ro-uAy">
@@ -1732,9 +1733,9 @@
         <segue reference="IMh-bh-im4"/>
         <segue reference="pJx-rn-UPv"/>
         <segue reference="5ev-0v-B4L"/>
-        <segue reference="Gke-zZ-xQm"/>
-        <segue reference="2BO-Ug-2UN"/>
-        <segue reference="aQE-dw-P6d"/>
+        <segue reference="hjn-JV-gxn"/>
+        <segue reference="jOe-Me-wlk"/>
+        <segue reference="rMq-Wv-umS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2160" height="3840"/>

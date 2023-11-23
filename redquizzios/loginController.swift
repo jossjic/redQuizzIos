@@ -14,9 +14,9 @@ class loginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
-        if let uid = defaults.value(forKey: "uid") as? String{
+        if defaults.value(forKey: "uid") is String{
             userViewModel.fetchData {
-                let userType = self.userViewModel.tipoUsu
+                let userType = self.userViewModel.tipo
                 print(userType)
                 if userType == "usuario" {
                     self.performSegue(withIdentifier: "loginSegueUser", sender: self)
@@ -67,7 +67,7 @@ class loginController: UIViewController {
                 // Aquí puedes realizar acciones adicionales después del inicio de sesión exitoso
                 // Por ejemplo, navegar a la siguiente vista
                 userViewModel.fetchData {
-                    let userType = self.userViewModel.tipoUsu
+                    let userType = self.userViewModel.tipo
                     print(userType)
                     if userType == "usuario" {
                         self.performSegue(withIdentifier: "loginSegueUser", sender: self)

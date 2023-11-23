@@ -12,7 +12,7 @@ class UserViewModel {
     var puntajeCollection = 0
     var conteoC = 0
     var conteoT = 0
-    var tipoUsu = ""
+    var tipo = ""
    
     
     
@@ -38,12 +38,12 @@ class UserViewModel {
         userRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 // El documento existe, puedes acceder a los datos
-                if let tipoUser = document.data()?["tipo"] as? String {
-                    print("Tipo del usuario: \(tipoUser)")
-                    self.tipoUsu = tipoUser
-                    if self.tipoUsu == "usuario" {
+                if let tipo = document.data()?["tipo"] as? String {
+                    print("Tipo del usuario: \(tipo)")
+                    self.tipo = tipo
+                    if self.tipo == "usuario" {
                         userRef.getDocument{ (document, error) in
-                            if let error = error {
+                            if error != nil {
                                 print("Error al obtener al usuario")
                             } else if let document = document, document.exists{
                                 let data = document.data()
@@ -69,9 +69,9 @@ class UserViewModel {
                             }
                             
                         }
-                    } else if self.tipoUsu == "administrador" {
+                    } else if self.tipo == "administrador" {
                         userRef.getDocument{ (document, error) in
-                            if let error = error {
+                            if error != nil {
                                 print("Error al obtener al usuario")
                             } else if let document = document, document.exists{
                                 let data = document.data()

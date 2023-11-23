@@ -142,7 +142,7 @@ class profileController: UIViewController {
         
         do {
             let defaults = UserDefaults.standard
-            if let uid = defaults.value(forKey: "uid") as? String{
+            if defaults.value(forKey: "uid") is String{
                 UserDefaults.standard.removeObject(forKey: "uid")
                 UserDefaults.standard.synchronize()
             }
