@@ -7,7 +7,7 @@ class UserViewModel {
     var uid = ""
     let defaults = UserDefaults.standard
     
-    var fetchedUser = User(nombre: "", apellidos: "", email: "", fechaNacimiento: "", genero: "", indicePregunta: 0, puntaje: 0, vidas: 5, tipo: "")
+    var fetchedUser = User(nombre: "", apellidos: "", email: "", fechaNacimiento: "", genero: "", puntaje: 0, vidas: 5, tipo: "")
     var fetchedAdmin = Admin(email: "")
     var puntajeCollection = 0
     var conteoC = 0
@@ -52,11 +52,10 @@ class UserViewModel {
                                    let email = data?["email"] as? String,
                                    let fechaNacimiento = data?["fechaNacimiento"] as? String,
                                    let genero = data?["genero"] as? String,
-                                   let indicePregunta = data?["indicePregunta"] as? Int,
                                    let puntaje = data?["puntaje"] as? Int,
                                    let tipo = data?["tipo"] as? String,
                                    let vidas = data?["vidas"] as? Int {
-                                    self.fetchedUser = User(nombre: nombre, apellidos: apellidos, email: email, fechaNacimiento: fechaNacimiento, genero: genero, indicePregunta: indicePregunta, puntaje: puntaje, vidas: vidas, tipo: tipo)
+                                    self.fetchedUser = User(nombre: nombre, apellidos: apellidos, email: email, fechaNacimiento: fechaNacimiento, genero: genero, puntaje: puntaje, vidas: vidas, tipo: tipo)
                                     
                                     print("Fetch de usuario listo")
                                     
@@ -77,7 +76,8 @@ class UserViewModel {
                                 let data = document.data()
                                 if let email = data?["email"] as? String{
                                     self.fetchedAdmin = Admin(email: email)
-                                    print("Fetch de usuario listo")
+                                    print("Fetch de Adminlisto")
+                                    print("Correo: \(self.fetchedAdmin.email)")
                                     completion()
                                 } else {
                                     print("Alguno de los campos no está presente o tiene un formato incorrecto.")

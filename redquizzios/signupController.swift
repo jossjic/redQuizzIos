@@ -19,7 +19,13 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     @IBOutlet weak var birthdayPicker: UIDatePicker!
     @IBOutlet weak var genderPicker: UIPickerView!
     
+    @IBOutlet weak var msgLbl: UILabel!
     @IBOutlet weak var registerLastName: UITextField!
+    
+    var escapeF = false
+    
+    let emailPattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+    let passwordPattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$"
     
     let generos = ["Masculino", "Femenino"]
     
@@ -46,15 +52,57 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         return generos[row]
     }
     
+    func checkIfUserExists(email: String, completion: @escaping (Bool) -> Void) {
+        Auth.auth().fetchSignInMethods(forEmail: email) { (methods, error) in
+            if let error = error {
+                print("Error al verificar el correo electrónico: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+
+            // Si methods es nil, el correo electrónico no está asociado con ninguna cuenta
+            if let signInMethods = methods {
+                if signInMethods.isEmpty {
+                    // El correo electrónico no está registrado
+                    completion(false)
+                } else {
+                    // El correo electrónico ya está registrado
+                    completion(true)
+                }
+            }
+        }
+    }
     
     
     
     @IBAction func registerBtn(_ sender: Any) {
-        let name = registerName.text!
-        let apellidos = registerLastName.text!
-        let mail = registerMail.text!
-        let password = registerPass.text!
-        let repeatPassword = registerRepeatPass.text!
+        
+        guard let name = registerName.text, let apellidos = registerLastName.text, let mail = registerMail.text, let password = registerPass.text, let repeatPassword = registerRepeatPass.text
+        else {
+            displayWarning(message: "Por favor, completa todos los campos.")
+            return
+        }
+        
+        if mail.isEmpty || password.isEmpty || repeatPassword.isEmpty || apellidos.isEmpty || name.isEmpty {
+            displayWarning(message: "Por favor, completa todos los campos.")
+            return
+        }
+        
+        if !matchRegex(pattern: emailPattern, input: mail) {
+            displayWarning(message: "Correo electrónico inválido.")
+            return
+        }
+        
+        if !matchRegex(pattern: passwordPattern, input: password) {
+            displayWarning(message: "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.")
+            return
+        }
+        
+        if password != repeatPassword {
+            displayWarning(message: "Las contraseñas no coinciden.")
+            return
+        }
+        
         let gender = generos[genderPicker.selectedRow(inComponent: 0)]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -72,16 +120,16 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         let recompensa5 = false
         
         
-        
-        if password != repeatPassword {
-            print("Las contraseñas no coinciden")
-            return
-        }
-        
-        Auth.auth().createUser(withEmail: mail, password: password){
-            (result, error) in
-            if error != nil  {
-                print("Error al registrar el usuario")
+        Auth.auth().createUser(withEmail: mail, password: password) { (result, error) in
+            if let error = error as NSError? {
+                if error.code == AuthErrorCode.emailAlreadyInUse.rawValue {
+                    // El correo electrónico ya está registrado
+                    self.displayWarning(message: "El correo electrónico ya está en uso.")
+                } else {
+                    // Otro tipo de error
+                    print("Error al registrar el usuario: \(error.localizedDescription)")
+                }
+                self.escapeF = true
             } else {
                 print("Usuario registrado con éxito")
                 
@@ -168,16 +216,46 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                                 } else {
                                     print("Datos guardados en la colección rqRecompensas en Firestore correctamente")
                                 }
+                                
                             }
+                            let alertController = UIAlertController(title: "Registro Completado", message: "El usuario fue registrado correctamente", preferredStyle: .alert)
+                            
+                            // Agregar acciones (botones) a la alerta
+                            let okAction = UIAlertAction(title: "Iniciar Sesión", style: .default) { _ in
+                                // Código a ejecutar cuando se presiona el botón OK
+                                print("Botón OK presionado")
+                                self.performSegue(withIdentifier: "postSignUp", sender: self)
+                            }
+                            alertController.addAction(okAction)
+                            
+                            // Mostrar la alerta
+                            self.present(alertController, animated: true, completion: nil)
                         }
                     }
                 }
             }
         }
+           
+        
+
+        
+    }
+    
+    func displayWarning(message: String) {
+        msgLbl.textColor = UIColor.red
+        msgLbl.text = message
+    }
+    
+    func matchRegex(pattern: String, input: String) -> Bool {
+        do {
+            let regex = try NSRegularExpression(pattern: pattern, options: [])
+            let range = NSRange(location: 0, length: input.utf16.count)
+            return regex.firstMatch(in: input, options: [], range: range) != nil
+        } catch {
+            print("Error al compilar la expresión regular: \(error.localizedDescription)")
+            return false
+        }
     }
     
     
-    @IBAction func loginBtn(_ sender: Any) {
-        performSegue(withIdentifier: "loginSegue", sender: self)
-    }
 }

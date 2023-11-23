@@ -7,9 +7,17 @@ class admProfileController: UIViewController {
     
     @IBOutlet weak var profileImg: UIImageView!
     
+    @IBOutlet weak var mail: UILabel!
+    let userViewModel = UserViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.profileImg.image = UIImage(named: "placeHombre")
+        userViewModel.fetchData {
+            self.mail.text = self.userViewModel.fetchedAdmin.email
+        }
+        
+        print("Admin Home")
 
     }
     

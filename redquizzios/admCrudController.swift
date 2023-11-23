@@ -18,6 +18,8 @@ class admCrudController: UIViewController, UITableViewDataSource, UIPickerViewDe
     
     var selectedCategory = "Todas"
     
+    
+    
     let gameViewModel = GameViewModel()
     var viewControllerSegue: UIViewController?
     override func viewDidLoad() {

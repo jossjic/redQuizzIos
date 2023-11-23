@@ -66,6 +66,10 @@ class gameController: UIViewController {//outlets
             self.allQuestions = self.gameViewModel.questions
             self.allQuestions.shuffle()
             self.startQuestionTimer()
+            self.configureButton(for: self.btn1)
+            self.configureButton(for: self.btn2)
+            self.configureButton(for: self.btn3)
+            self.configureButton(for: self.btn4)
             
             
         }
@@ -170,8 +174,8 @@ class gameController: UIViewController {//outlets
         
         
         func showNextQuestion() {
+
             var switchBool = false
-            
             // fetching and update lifes
             self.userViewModel.fetchData {
                 self.userViewModel.updateCT(cOt: false)
@@ -232,6 +236,13 @@ class gameController: UIViewController {//outlets
             
             
         }
+    
+    func configureButton(for button: UIButton) {
+        button.layer.cornerRadius = 8.0 // Ajusta según sea necesario
+        button.layer.masksToBounds = true
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.textAlignment = .center
+    }
         
         func loadQuestion(preguntaI: Question) {
             var respuestas = [preguntaI.correcta, preguntaI.incorrecta1, preguntaI.incorrecta2, preguntaI.incorrecta3].shuffled()
@@ -250,6 +261,7 @@ class gameController: UIViewController {//outlets
             btn2.backgroundColor = #colorLiteral(red: 0.9137254902, green: 0.9137254902, blue: 0.9215686275, alpha: 1)
             btn3.backgroundColor = #colorLiteral(red: 0.9137254902, green: 0.9137254902, blue: 0.9215686275, alpha: 1)
             btn4.backgroundColor = #colorLiteral(red: 0.9137254902, green: 0.9137254902, blue: 0.9215686275, alpha: 1)
+            
             
             btn1.setTitleColor(UIColor.lightGray, for: .disabled)
             btn2.setTitleColor(UIColor.lightGray, for: .disabled)
@@ -387,6 +399,7 @@ class gameController: UIViewController {//outlets
                     btn2.backgroundColor = UIColor.red
                     btn3.backgroundColor = UIColor.red
                     btn4.backgroundColor = UIColor.red
+                    
                 } else if btn2.titleLabel?.text == correcta {
                     btn1.backgroundColor = UIColor.red
                     btn2.backgroundColor = UIColor.green

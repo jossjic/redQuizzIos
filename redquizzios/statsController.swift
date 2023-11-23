@@ -20,9 +20,9 @@ class statsController: UIViewController {
             self.birth.text = userI.fechaNacimiento
             self.email.text = userI.email
             self.gender.text = userI.genero
-            if userI.genero == "masculino" {
+            if userI.genero == "Masculino" {
                 self.profileImg.image = UIImage(named: "placeHombre")
-            } else if userI.genero == "femenino" {
+            } else if userI.genero == "Femenino" {
                 self.profileImg.image = UIImage(named: "placeMujer")
             } else {
                 print("genero no identificado")

@@ -26,6 +26,7 @@ class profileController: UIViewController {
     var timerFollow: Timer?
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("User Home")
         userViewModel.fetchData {
             let userI = self.userViewModel.fetchedUser
             self.name.text = userI.nombre + " " + userI.apellidos
@@ -34,9 +35,9 @@ class profileController: UIViewController {
             
             print(userI)
             self.startTimer()
-            if userI.genero == "masculino" {
+            if userI.genero == "Masculino" {
                 self.profileImg.image = UIImage(named: "placeHombre")
-            } else if userI.genero == "femenino" {
+            } else if userI.genero == "Femenino" {
                 self.profileImg.image = UIImage(named: "placeMujer")
             } else {
                 print("genero no identificado")
