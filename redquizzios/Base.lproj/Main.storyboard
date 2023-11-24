@@ -197,17 +197,26 @@
                                 <rect key="frame" x="21.666666666666657" y="186.33333333333331" width="387" height="186.33333333333331"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo Institucional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mwt-FZ-9GH">
-                                        <rect key="frame" x="0.0" y="0.0" width="387" height="55.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="387" height="39.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vU5-0O-MCM">
-                                        <rect key="frame" x="0.0" y="65.666666666666657" width="387" height="55.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="49.333333333333314" width="387" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QC6-CT-EEW">
+                                        <rect key="frame" x="0.0" y="98.333333333333343" width="387" height="39"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="¿Has perdido tu contraseña?"/>
+                                        <connections>
+                                            <segue destination="5CG-7a-HXp" kind="show" id="Uea-aM-gKg"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1W-8w-Cfa">
-                                        <rect key="frame" x="0.0" y="130.99999999999997" width="387" height="55.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="147.33333333333334" width="387" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1735,14 +1744,136 @@
             </objects>
             <point key="canvasLocation" x="2407" y="-416"/>
         </scene>
+        <!--Restore Pass Controller-->
+        <scene sceneID="zdZ-tw-xMf">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="5CG-7a-HXp" customClass="restorePassController" customModule="redquizzios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WQb-74-z7Y">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="S6U-xq-LJN">
+                                <rect key="frame" x="43" y="689.66666666666663" width="344" height="112"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dh-oT-LWN">
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="48.333333333333336"/>
+                                        <color key="tintColor" red="0.91983169320000002" green="0.28364139799999999" blue="0.24311435219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Restaurar Contraseña" cornerStyle="capsule">
+                                            <color key="baseBackgroundColor" red="0.9196664095" green="0.28362026810000002" blue="0.24315798280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="restoreBtn:" destination="5CG-7a-HXp" eventType="touchUpInside" id="qa3-2L-z4p"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9Q-8A-6rg">
+                                        <rect key="frame" x="0.0" y="63.333333333333371" width="344" height="48.666666666666657"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Volver" cornerStyle="capsule">
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                            <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="CUb-w4-7IA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7dh-oT-LWN" firstAttribute="width" secondItem="S6U-xq-LJN" secondAttribute="width" id="8uk-fe-ZDG"/>
+                                    <constraint firstItem="f9Q-8A-6rg" firstAttribute="width" secondItem="S6U-xq-LJN" secondAttribute="width" id="hkp-YV-xeW"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurar Contraseña" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGH-Za-lnc">
+                                <rect key="frame" x="20" y="92.333333333333329" width="255" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sigue estos sencillos pasos para reestablecer tu cuenta:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Tb-1S-9qj">
+                                <rect key="frame" x="20" y="154.66666666666666" width="387" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tfP-rn-Fwt">
+                                <rect key="frame" x="20" y="209.66666666666666" width="344" height="279.66666666666674"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Introduce la dirección de correo electrónico con la que diste de alta tu cuenta" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htz-oE-O7S">
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="93.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Espera hasta recibir la información de recuperación en tu bandeja de entrada." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkn-Y5-yVA">
+                                        <rect key="frame" x="0.0" y="93.333333333333343" width="344" height="93"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Sigue las instrucciones y vuelve a acceder a tu cuenta de RedQuiz." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1u0-wA-Z4h">
+                                        <rect key="frame" x="0.0" y="186.33333333333334" width="344" height="93.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo Institucional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HfQ-e8-4wT">
+                                <rect key="frame" x="43" y="526.66666666666663" width="344" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVa-sA-Ccs">
+                                <rect key="frame" x="215" y="623.66666666666663" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" red="0.9196664095" green="0.28362026810000002" blue="0.24315798280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bjT-sZ-2h4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S6U-xq-LJN" firstAttribute="width" secondItem="WQb-74-z7Y" secondAttribute="width" multiplier="0.8" id="5uW-se-W2o"/>
+                            <constraint firstItem="HfQ-e8-4wT" firstAttribute="width" secondItem="WQb-74-z7Y" secondAttribute="width" multiplier="0.8" id="5vI-K8-iZc"/>
+                            <constraint firstItem="6Tb-1S-9qj" firstAttribute="centerY" secondItem="WQb-74-z7Y" secondAttribute="centerY" multiplier="0.35" id="7SY-0F-Off"/>
+                            <constraint firstItem="tfP-rn-Fwt" firstAttribute="width" secondItem="WQb-74-z7Y" secondAttribute="width" multiplier="0.8" id="8IY-rF-avA"/>
+                            <constraint firstItem="HfQ-e8-4wT" firstAttribute="centerY" secondItem="WQb-74-z7Y" secondAttribute="centerY" multiplier="1.2" id="B3k-Ob-DWE"/>
+                            <constraint firstItem="tfP-rn-Fwt" firstAttribute="leading" secondItem="bjT-sZ-2h4" secondAttribute="leading" constant="20" id="EE7-T1-8hB"/>
+                            <constraint firstItem="6Tb-1S-9qj" firstAttribute="width" secondItem="WQb-74-z7Y" secondAttribute="width" multiplier="0.9" id="Fyp-cB-X9V"/>
+                            <constraint firstItem="HfQ-e8-4wT" firstAttribute="centerX" secondItem="WQb-74-z7Y" secondAttribute="centerX" id="ITN-iD-wCX"/>
+                            <constraint firstItem="HfQ-e8-4wT" firstAttribute="height" secondItem="WQb-74-z7Y" secondAttribute="height" multiplier="0.07" id="Ktj-i7-8tq"/>
+                            <constraint firstItem="tfP-rn-Fwt" firstAttribute="centerY" secondItem="WQb-74-z7Y" secondAttribute="centerY" multiplier="0.75" id="Nln-DF-zGf"/>
+                            <constraint firstItem="BGH-Za-lnc" firstAttribute="leading" secondItem="bjT-sZ-2h4" secondAttribute="leading" constant="20" id="NwK-9x-2Qs"/>
+                            <constraint firstItem="tfP-rn-Fwt" firstAttribute="height" secondItem="WQb-74-z7Y" secondAttribute="height" multiplier="0.3" id="PhA-bN-fdq"/>
+                            <constraint firstItem="6Tb-1S-9qj" firstAttribute="leading" secondItem="bjT-sZ-2h4" secondAttribute="leading" constant="20" id="Vk4-o8-0fj"/>
+                            <constraint firstItem="wVa-sA-Ccs" firstAttribute="centerX" secondItem="WQb-74-z7Y" secondAttribute="centerX" id="ZGV-Nv-Jq0"/>
+                            <constraint firstItem="wVa-sA-Ccs" firstAttribute="top" secondItem="HfQ-e8-4wT" secondAttribute="bottom" constant="32" id="aU2-nt-Hjq"/>
+                            <constraint firstItem="S6U-xq-LJN" firstAttribute="centerY" secondItem="WQb-74-z7Y" secondAttribute="centerY" multiplier="1.6" id="eXz-PH-Rbg"/>
+                            <constraint firstItem="BGH-Za-lnc" firstAttribute="centerY" secondItem="WQb-74-z7Y" secondAttribute="centerY" multiplier="0.23" id="iJe-gx-fQg"/>
+                            <constraint firstItem="S6U-xq-LJN" firstAttribute="centerX" secondItem="WQb-74-z7Y" secondAttribute="centerX" id="nXG-SH-ADe"/>
+                            <constraint firstItem="S6U-xq-LJN" firstAttribute="height" secondItem="WQb-74-z7Y" secondAttribute="height" multiplier="0.12" id="vL0-J4-3Zd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uSf-Vg-imK"/>
+                    <connections>
+                        <outlet property="correoText" destination="HfQ-e8-4wT" id="cTL-P6-mw5"/>
+                        <outlet property="warningMsg" destination="wVa-sA-Ccs" id="F98-Hh-dPz"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="restoreSegue" id="JtT-3Q-Z6i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wgt-bm-1ih" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="625" y="846"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="D63-H8-jW7"/>
         <segue reference="7PO-tz-hTo"/>
         <segue reference="QtE-Xi-iqi"/>
         <segue reference="hjn-JV-gxn"/>
-        <segue reference="2BO-Ug-2UN"/>
-        <segue reference="rMq-Wv-umS"/>
+        <segue reference="jOe-Me-wlk"/>
+        <segue reference="JtT-3Q-Z6i"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2160" height="3840"/>
@@ -1757,25 +1888,25 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

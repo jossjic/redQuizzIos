@@ -11,13 +11,13 @@
 		835F00B42B080CA700CDD3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835F00B32B080CA700CDD3DB /* GoogleService-Info.plist */; };
 		837B88572B06DCB1009E3B4A /* gameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B88562B06DCB1009E3B4A /* gameViewModel.swift */; };
 		837C79672B05635A009410B5 /* signupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C79662B056359009410B5 /* signupController.swift */; };
-		837C79692B0563E6009410B5 /* defaultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C79682B0563E6009410B5 /* defaultController.swift */; };
 		837C796B2B056865009410B5 /* avatarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C796A2B056865009410B5 /* avatarController.swift */; };
 		83B5F51C2B0D66BD0012FF38 /* negative.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 83B5F51B2B0D66BD0012FF38 /* negative.mp3 */; };
 		83B5F51E2B0D66E70012FF38 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 83B5F51D2B0D66E70012FF38 /* success.mp3 */; };
 		83B5F5202B0D72AD0012FF38 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B5F51F2B0D72AD0012FF38 /* Admin.swift */; };
 		83B5F5232B0DAE270012FF38 /* preguntaUTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B5F5212B0DAE270012FF38 /* preguntaUTableViewCell.swift */; };
 		83B5F5242B0DAE270012FF38 /* preguntaUTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B5F5222B0DAE270012FF38 /* preguntaUTableViewCell.xib */; };
+		83C3CA172B11108A00A53136 /* restorePassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C3CA162B11108A00A53136 /* restorePassController.swift */; };
 		83D4C0932AE1ADC900A8C167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D4C0922AE1ADC900A8C167 /* AppDelegate.swift */; };
 		83D4C0952AE1ADC900A8C167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D4C0942AE1ADC900A8C167 /* SceneDelegate.swift */; };
 		83D4C0972AE1ADC900A8C167 /* loginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D4C0962AE1ADC900A8C167 /* loginController.swift */; };
@@ -55,13 +55,13 @@
 		835F00B32B080CA700CDD3DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		837B88562B06DCB1009E3B4A /* gameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameViewModel.swift; sourceTree = "<group>"; };
 		837C79662B056359009410B5 /* signupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupController.swift; sourceTree = "<group>"; };
-		837C79682B0563E6009410B5 /* defaultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultController.swift; sourceTree = "<group>"; };
 		837C796A2B056865009410B5 /* avatarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = avatarController.swift; sourceTree = "<group>"; };
 		83B5F51B2B0D66BD0012FF38 /* negative.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = negative.mp3; sourceTree = "<group>"; };
 		83B5F51D2B0D66E70012FF38 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		83B5F51F2B0D72AD0012FF38 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		83B5F5212B0DAE270012FF38 /* preguntaUTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preguntaUTableViewCell.swift; sourceTree = "<group>"; };
 		83B5F5222B0DAE270012FF38 /* preguntaUTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = preguntaUTableViewCell.xib; sourceTree = "<group>"; };
+		83C3CA162B11108A00A53136 /* restorePassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restorePassController.swift; sourceTree = "<group>"; };
 		83D4C08F2AE1ADC900A8C167 /* redquizzios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = redquizzios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D4C0922AE1ADC900A8C167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83D4C0942AE1ADC900A8C167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,7 +110,6 @@
 		83D4C0862AE1ADC900A8C167 = {
 			isa = PBXGroup;
 			children = (
-				837C79682B0563E6009410B5 /* defaultController.swift */,
 				83D4C0912AE1ADC900A8C167 /* redquizzios */,
 				83D4C0902AE1ADC900A8C167 /* Products */,
 				83FD8BE52B069B5300F53577 /* Frameworks */,
@@ -131,6 +130,7 @@
 				83FD8BAE2B068A4100F53577 /* gameController.swift */,
 				83FD8BAA2B06887800F53577 /* admCrudController.swift */,
 				83FD8BA62B06884A00F53577 /* admUploadController.swift */,
+				83C3CA162B11108A00A53136 /* restorePassController.swift */,
 				83FD8BA42B06882100F53577 /* admProfileController.swift */,
 				83FD8BA82B06886100F53577 /* admEditController.swift */,
 				837C796A2B056865009410B5 /* avatarController.swift */,
@@ -266,10 +266,10 @@
 				83FD8BAF2B068A4100F53577 /* gameController.swift in Sources */,
 				83B5F5202B0D72AD0012FF38 /* Admin.swift in Sources */,
 				835F00B02B07FCB200CDD3DB /* Question.swift in Sources */,
+				83C3CA172B11108A00A53136 /* restorePassController.swift in Sources */,
 				83D4C0972AE1ADC900A8C167 /* loginController.swift in Sources */,
 				83D4C0932AE1ADC900A8C167 /* AppDelegate.swift in Sources */,
 				837C79672B05635A009410B5 /* signupController.swift in Sources */,
-				837C79692B0563E6009410B5 /* defaultController.swift in Sources */,
 				83B5F5232B0DAE270012FF38 /* preguntaUTableViewCell.swift in Sources */,
 				83EEA9FF2AFEC57F00417E1E /* scoreController.swift in Sources */,
 				83D4C0952AE1ADC900A8C167 /* SceneDelegate.swift in Sources */,
