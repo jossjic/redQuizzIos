@@ -114,7 +114,7 @@ class scoreController: UIViewController {
     func drawProgressCircle() {
         // Asegúrate de que bounds.midX y bounds.midY correspondan al centro real del progressView
         let center = CGPoint(x: progressView.bounds.width / 2.0 - 5.5, y: progressView.bounds.height / 2.0)
-        let radius = (min(progressView.bounds.width, progressView.bounds.height) / 2.0)-10
+        let radius = (min(progressView.bounds.width, progressView.bounds.height) / 2.0)
         let startAngle = -CGFloat.pi / 2
         let endAngle = startAngle + 2 * CGFloat.pi * progress
 
