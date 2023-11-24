@@ -62,7 +62,7 @@ class restorePassController: UIViewController {
                 } else {
                     // El correo de restablecimiento de contraseña se envió con éxito
                     print("Correo de restablecimiento de contraseña enviado a \(email)")
-                    let alertController = UIAlertController(title: "Correo Enviado", message: "Correo de recuperación enviado a (\(email)), verifica tu correo y sigue los pasos", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Correo Enviado", message: "Si está registrado, enviamos un correo a (\(email)), verifica tu correo y sigue los pasos", preferredStyle: .alert)
                     
                     // Agregar acciones (botones) a la alerta
                     let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
