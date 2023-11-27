@@ -70,7 +70,7 @@ override func viewDidLayoutSubviews() {
             self.incorrecta3Text.text = ""
             self.puntajeText.text = ""
             self.msgLbl.textColor = UIColor.green
-            self.msgLbl.text = "Pregunta agregada correctamente (\(self.count)"
+            self.msgLbl.text = "Pregunta agregada correctamente (\(self.count))"
             self.count += 1
 
             

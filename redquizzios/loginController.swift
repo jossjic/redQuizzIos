@@ -72,6 +72,17 @@ class loginController: UIViewController {
                     if let user = Auth.auth().currentUser {
                         if !user.isEmailVerified {
                             let alertController = UIAlertController(title: "Correo sin verificar", message: "Por favor, revisa el correo que te mandamos para verificar tu usuario", preferredStyle: .alert)
+                            if let user = Auth.auth().currentUser {
+                                    user.sendEmailVerification { (error) in
+                                        if let error = error {
+                                            print("Error al enviar el correo de verificación: \(error.localizedDescription)")
+                                        } else {
+                                            print("Correo de verificación enviado correctamente")
+                                            // Puedes mostrar un mensaje al usuario indicando que se ha enviado un correo de verificación
+                                        }
+                                    }
+                        
+                            }
                             
                             // Agregar acciones (botones) a la alerta
                             let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
