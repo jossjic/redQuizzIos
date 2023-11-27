@@ -118,6 +118,8 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         let recompensa3 = false
         let recompensa4 = false
         let recompensa5 = false
+        let prendaI = 1
+        let prendaS = 1
         
         
         Auth.auth().createUser(withEmail: mail, password: password) { (result, error) in
@@ -143,7 +145,9 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                         "tipo": tipo,
                         "vidas": vidas,
                         "puntaje": puntaje,
-                        "acumulado": acumulado
+                        "acumulado": acumulado,
+                        "prendaI": prendaI,
+                        "prendaS": prendaS
                     ]
                     let _: [String: Any] = [
                         "conteoC": conteoC,
