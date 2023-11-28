@@ -55,11 +55,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-4E-MYs">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tl2-YW-QGp">
                                         <rect key="frame" x="0.0" y="162.33333333333334" width="344" height="48.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
-                                    </textField>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jEV-L3-9vl">
+                                                <rect key="frame" x="0.0" y="0.0" width="264" height="48.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnU-da-4CM">
+                                                <rect key="frame" x="272" y="0.0" width="72" height="48.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="eye"/>
+                                                <connections>
+                                                    <action selector="eye:" destination="8fd-hs-Jbj" eventType="touchUpInside" id="LhG-IT-tGx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmar Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIH-Hj-Bbb">
                                         <rect key="frame" x="0.0" y="216.66666666666666" width="344" height="47.999999999999972"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -86,6 +99,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="tl2-YW-QGp" firstAttribute="width" secondItem="eIZ-On-g0d" secondAttribute="width" id="UzU-em-S37"/>
+                                </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_cruz_svg_sf" translatesAutoresizingMaskIntoConstraints="NO" id="RFM-Jz-2NN">
                                 <rect key="frame" x="86" y="640" width="258" height="258"/>
@@ -143,12 +159,13 @@
                     <navigationItem key="navigationItem" id="xgj-kF-fkL"/>
                     <connections>
                         <outlet property="birthdayPicker" destination="jL7-FW-Esh" id="ZSd-gH-kxY"/>
+                        <outlet property="eyeBtn" destination="TnU-da-4CM" id="UDy-oV-z6S"/>
                         <outlet property="genderPicker" destination="Rb9-XE-WLa" id="SLb-kn-bpw"/>
                         <outlet property="msgLbl" destination="SgJ-XW-dGK" id="GY6-Zb-FpH"/>
                         <outlet property="registerLastName" destination="E0y-5h-9YJ" id="TNa-am-LAR"/>
                         <outlet property="registerMail" destination="eaD-yn-TJY" id="RBG-ru-3aF"/>
                         <outlet property="registerName" destination="5uv-yN-zmJ" id="QY5-HX-fOy"/>
-                        <outlet property="registerPass" destination="3eO-4E-MYs" id="eH2-l9-AW4"/>
+                        <outlet property="registerPass" destination="jEV-L3-9vl" id="5tI-Gk-o4p"/>
                         <outlet property="registerRepeatPass" destination="tIH-Hj-Bbb" id="O9o-HC-bej"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="postSignUp" id="rVz-2Z-Uye"/>
                     </connections>
@@ -1953,15 +1970,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="G96-Kg-1Q8"/>
         <segue reference="D63-H8-jW7"/>
         <segue reference="7PO-tz-hTo"/>
         <segue reference="gUe-vU-prU"/>
         <segue reference="aYu-uc-cgk"/>
-        <segue reference="JEO-XN-g4F"/>
+        <segue reference="hgN-LU-bp6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2160" height="3840"/>
+        <image name="eye" width="48" height="48"/>
         <image name="female_body" width="1080" height="1400"/>
         <image name="header" width="2160" height="3840"/>
         <image name="heart" width="500" height="500"/>

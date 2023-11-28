@@ -11,6 +11,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     
 
     
+    @IBOutlet weak var eyeBtn: UIButton!
     
     @IBOutlet weak var registerName: UITextField!
     @IBOutlet weak var registerMail: UITextField!
@@ -32,6 +33,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        eyeBtn.setTitle("", for: .normal)
         agregarGestorDeTapParaOcultarTeclado()
         genderPicker.delegate = self
         genderPicker.dataSource = self
@@ -282,5 +284,10 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    @IBAction func eye(_ sender: Any) {
+        self.registerPass.isSecureTextEntry.toggle()
+                let imageName = registerPass.isSecureTextEntry ? "eye" : "eye_closed"
+                self.eyeBtn.setImage(UIImage(named: imageName), for:.normal)
+    }
     
 }
