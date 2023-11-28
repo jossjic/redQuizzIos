@@ -4,16 +4,14 @@ import UIKit
 class admUploadController: UIViewController ,UIPickerViewDelegate, UIPickerViewDataSource{
     
 //outlets
-    
-    @IBOutlet weak var preguntaText: UITextField!
-    @IBOutlet weak var categoriaPicker: UIPickerView!
-    @IBOutlet weak var puntajeText: UITextField!
-    @IBOutlet weak var correctaText: UITextField!
-    @IBOutlet weak var incorrecta1Text: UITextField!
-    @IBOutlet weak var incorrecta2Text: UITextField!
-    @IBOutlet weak var incorrecta3Text: UITextField!
     @IBOutlet weak var msgLbl: UILabel!
-    
+    @IBOutlet weak var categoriaPicker: UIPickerView!
+    @IBOutlet weak var incorrecta3Text: UITextField!
+    @IBOutlet weak var incorrecta2Text: UITextField!
+    @IBOutlet weak var incorrecta1Text: UITextField!
+    @IBOutlet weak var correctaText: UITextField!
+    @IBOutlet weak var puntajeText: UITextField!
+    @IBOutlet weak var preguntaText: UITextField!
     let categorias = ["Signos Vitales", "Curación", "Síntomas", "Anatomía", "Bonus"]
     
     var count = 0
@@ -45,7 +43,8 @@ override func viewDidLayoutSubviews() {
     }
 //actions
     
-    @IBAction func updload(_ sender: Any) {
+    @IBAction func upload(_ sender: Any) {
+    
         self.msgLbl.text = ""
         let categoria = categorias[categoriaPicker.selectedRow(inComponent: 0)]
         
