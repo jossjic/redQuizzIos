@@ -547,16 +547,45 @@ class gameController: UIViewController {//outlets
         }
         
         @IBAction func volverBtn(_ sender: Any) {
-            timer?.invalidate()
-            time = 15
-            progressAnimator.stopAnimation(true)
-            progressAnimator.finishAnimation(at: .current)
-            btn1.isEnabled = false
-            btn2.isEnabled = false
-            btn3.isEnabled = false
-            btn4.isEnabled = false
+            let alertController = UIAlertController(title: "Salir del Juego", message: "¿Desea salir del juego?", preferredStyle: .alert)
+
+                // Agregar acciones (botones) a la alerta
+                let cancelAction = UIAlertAction(title: "No", style: .cancel) { _ in
+                    // Handle the cancel action if needed
+                }
+                alertController.addAction(cancelAction)
+
+                let deleteAction = UIAlertAction(title: "Sí", style: .destructive) { [weak self] _ in
+                    // Use self?. instead of self. to avoid strong reference cycle
+                    self?.stopAndReleaseAudioPlayers()
+
+                    self?.timer?.invalidate()
+                    self?.time = 15
+                    self?.progressAnimator.stopAnimation(true)
+                    self?.progressAnimator.finishAnimation(at: .current)
+                    self?.btn1.isEnabled = false
+                    self?.btn2.isEnabled = false
+                    self?.btn3.isEnabled = false
+                    self?.btn4.isEnabled = false
+                    self?.performSegue(withIdentifier: "goBack", sender: self)
+                }
+                alertController.addAction(deleteAction)
+            present(alertController, animated: true, completion: nil)
+
+            
             
         }
+    
+    func stopAndReleaseAudioPlayers() {
+        audioPlayerCorrect?.stop()
+        audioPlayerCorrect = nil
+
+        audioPlayerInCorrect?.stop()
+        audioPlayerInCorrect = nil
+
+        audioPlayerEnd?.stop()
+        audioPlayerEnd = nil
+    }
         
     }
 

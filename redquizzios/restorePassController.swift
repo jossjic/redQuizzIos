@@ -3,6 +3,10 @@ import UIKit
 import Firebase
 
 class restorePassController: UIViewController {
+    deinit {
+        // Liberar notificaciones
+        NotificationCenter.default.removeObserver(self)
+    }
     
     let emailPattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
 //outlets
@@ -11,6 +15,7 @@ class restorePassController: UIViewController {
     @IBOutlet weak var correoText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        agregarGestorDeTapParaOcultarTeclado()
     }
     
 //actions

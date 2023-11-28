@@ -3,15 +3,22 @@ import UIKit
 
 class admUploadController: UIViewController ,UIPickerViewDelegate, UIPickerViewDataSource{
     
-//outlets
-    @IBOutlet weak var msgLbl: UILabel!
-    @IBOutlet weak var categoriaPicker: UIPickerView!
-    @IBOutlet weak var incorrecta3Text: UITextField!
-    @IBOutlet weak var incorrecta2Text: UITextField!
-    @IBOutlet weak var incorrecta1Text: UITextField!
-    @IBOutlet weak var correctaText: UITextField!
-    @IBOutlet weak var puntajeText: UITextField!
+    deinit {
+        // Liberar notificaciones
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    
+    
     @IBOutlet weak var preguntaText: UITextField!
+    
+    @IBOutlet weak var msgLbl: UILabel!
+    @IBOutlet weak var puntajeText: UITextField!
+    @IBOutlet weak var correctaText: UITextField!
+    @IBOutlet weak var incorrecta1Text: UITextField!
+    @IBOutlet weak var incorrecta2Text: UITextField!
+    @IBOutlet weak var incorrecta3Text: UITextField!
+    @IBOutlet weak var categoriaPicker: UIPickerView!
     let categorias = ["Signos Vitales", "Curación", "Síntomas", "Anatomía", "Bonus"]
     
     var count = 0
@@ -20,6 +27,7 @@ class admUploadController: UIViewController ,UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        agregarGestorDeTapParaOcultarTeclado()
         categoriaPicker.delegate = self
         categoriaPicker.dataSource = self
 
@@ -38,8 +46,14 @@ override func viewDidLayoutSubviews() {
         return categorias.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categorias[row]
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let title = categorias[row]
+        let color = UIColor.white // Cambia aquí al color que desees, por ejemplo UIColor.white para texto blanco
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: color
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
     }
 //actions
     
@@ -77,5 +91,7 @@ override func viewDidLayoutSubviews() {
         
         
     }
+    
+    
     
 }

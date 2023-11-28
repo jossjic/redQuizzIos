@@ -26,21 +26,33 @@ class admProfileController: UIViewController {
         profileImg.round()
         }
     @IBAction func logOut(_ sender: Any) {
-        
-        do {
-            let defaults = UserDefaults.standard
-            if defaults.value(forKey: "uid") is String{
-                UserDefaults.standard.removeObject(forKey: "uid")
-                UserDefaults.standard.synchronize()
-            }
-            try Auth.auth().signOut()
-            // Cierre de sesión exitoso
-            performSegue(withIdentifier: "logOutSegueAdm", sender: self)
-        } catch let signOutError as NSError {
-            print("Error al cerrar sesión: \(signOutError)")
-        }
-        
-        
+        let alertController = UIAlertController(title: "Cerrar Sesión", message: "¿Desea cerrar sesión?", preferredStyle: .alert)
+
+           // Agregar acciones (botones) a la alerta
+           let cancelAction = UIAlertAction(title: "No", style: .cancel) { _ in
+               // Handle the cancel action if needed
+           }
+           alertController.addAction(cancelAction)
+
+           let deleteAction = UIAlertAction(title: "Sí", style: .destructive) { [weak self] _ in
+               let defaults = UserDefaults.standard
+               if defaults.value(forKey: "uid") is String {
+                   UserDefaults.standard.removeObject(forKey: "uid")
+                   UserDefaults.standard.synchronize()
+               }
+
+               do {
+                   try Auth.auth().signOut()
+                   // Cierre de sesión exitoso
+                   self?.performSegue(withIdentifier: "logOutSegueAdm", sender: self)
+               } catch let signOutError as NSError {
+                   print("Error al cerrar sesión: \(signOutError)")
+                   // Handle the sign-out error if needed
+               }
+           }
+           alertController.addAction(deleteAction)
+
+           present(alertController, animated: true, completion: nil)
     }
     
     

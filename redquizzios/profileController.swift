@@ -140,23 +140,36 @@ class profileController: UIViewController {
     }
     
     @IBAction func logOut(_ sender: Any) {
-        
-        do {
-            let defaults = UserDefaults.standard
-            if defaults.value(forKey: "uid") is String{
-                UserDefaults.standard.removeObject(forKey: "uid")
-                UserDefaults.standard.synchronize()
-            }
-            timer?.invalidate()
-            timerFollow?.invalidate()
-            try Auth.auth().signOut()
-            // Cierre de sesión exitoso
-            performSegue(withIdentifier: "logOutSegue1", sender: self)
-        } catch let signOutError as NSError {
-            print("Error al cerrar sesión: \(signOutError)")
-        }
-        
-        
+        let alertController = UIAlertController(title: "Cerrar Sesión", message: "¿Desea cerrar sesión?", preferredStyle: .alert)
+
+           // Agregar acciones (botones) a la alerta
+           let cancelAction = UIAlertAction(title: "No", style: .cancel) { _ in
+               // Handle the cancel action if needed
+           }
+           alertController.addAction(cancelAction)
+
+           let deleteAction = UIAlertAction(title: "Sí", style: .destructive) { [weak self] _ in
+               let defaults = UserDefaults.standard
+               if defaults.value(forKey: "uid") is String {
+                   UserDefaults.standard.removeObject(forKey: "uid")
+                   UserDefaults.standard.synchronize()
+               }
+
+               self?.timer?.invalidate()
+               self?.timerFollow?.invalidate()
+
+               do {
+                   try Auth.auth().signOut()
+                   // Cierre de sesión exitoso
+                   self?.performSegue(withIdentifier: "logOutSegue1", sender: self)
+               } catch let signOutError as NSError {
+                   print("Error al cerrar sesión: \(signOutError)")
+                   // Handle the sign-out error if needed
+               }
+           }
+           alertController.addAction(deleteAction)
+
+           present(alertController, animated: true, completion: nil)
     }
     
     func startTimer() {

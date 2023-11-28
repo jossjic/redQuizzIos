@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83026DA62B1662C000F992EB /* tempavatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83026DA52B1662C000F992EB /* tempavatar.swift */; };
 		835F00B02B07FCB200CDD3DB /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835F00AF2B07FCB200CDD3DB /* Question.swift */; };
 		835F00B42B080CA700CDD3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835F00B32B080CA700CDD3DB /* GoogleService-Info.plist */; };
 		837B88572B06DCB1009E3B4A /* gameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B88562B06DCB1009E3B4A /* gameViewModel.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83026DA52B1662C000F992EB /* tempavatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempavatar.swift; sourceTree = "<group>"; };
 		835F00AF2B07FCB200CDD3DB /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		835F00B32B080CA700CDD3DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		837B88562B06DCB1009E3B4A /* gameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameViewModel.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				83FD8BAA2B06887800F53577 /* admCrudController.swift */,
 				83FD8BA62B06884A00F53577 /* admUploadController.swift */,
 				83C3CA162B11108A00A53136 /* restorePassController.swift */,
+				83026DA52B1662C000F992EB /* tempavatar.swift */,
 				83FD8BA42B06882100F53577 /* admProfileController.swift */,
 				83FD8BA82B06886100F53577 /* admEditController.swift */,
 				837C796A2B056865009410B5 /* avatarController.swift */,
@@ -256,6 +259,7 @@
 				83FD8BA52B06882100F53577 /* admProfileController.swift in Sources */,
 				FB0E24902AFD563E003422F5 /* statsController.swift in Sources */,
 				83FD8BA92B06886100F53577 /* admEditController.swift in Sources */,
+				83026DA62B1662C000F992EB /* tempavatar.swift in Sources */,
 				B94D159B2B0AB9E7000A9C2E /* userViewModel.swift in Sources */,
 				83FD8BAB2B06887800F53577 /* admCrudController.swift in Sources */,
 				83FD8BAD2B0689E800F53577 /* editAvatarController.swift in Sources */,

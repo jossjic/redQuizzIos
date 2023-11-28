@@ -42,23 +42,6 @@ class statsController: UIViewController {
         profileImg.round()
         }
     
-    @IBAction func logOut(_ sender: Any) {
-        
-        do {
-            let defaults = UserDefaults.standard
-            if defaults.value(forKey: "uid") is String{
-                UserDefaults.standard.removeObject(forKey: "uid")
-                UserDefaults.standard.synchronize()
-            }
-            try Auth.auth().signOut()
-            // Cierre de sesión exitoso
-            performSegue(withIdentifier: "logOutSegue2", sender: self)
-        } catch let signOutError as NSError {
-            print("Error al cerrar sesión: \(signOutError)")
-        }
-        
-        
-    }
     
 
 

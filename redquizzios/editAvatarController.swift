@@ -4,7 +4,7 @@ import UIKit
 import Firebase
 
 class editAvatarController: UIViewController {
-    
+    /*
     // Outlets
     @IBOutlet weak var maleAvatar: UIImageView!
     @IBOutlet weak var femaleAvatar: UIImageView!
@@ -33,16 +33,18 @@ class editAvatarController: UIViewController {
     var recompensa3: Bool = false
     var recompensa4: Bool = false
     var recompensa5: Bool = false
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         getUserData()
         // Configurar visibilidad de UIImageView según el género del usuario
         configureGenderUI()
         // Configurar visibilidad de botones según la lógica descrita
         configureButtonsVisibility()
+         */
     }
-    
+    /*
     func getUserData() {
         // Obtener el ID del usuario logeado (puedes implementar esta lógica según tu aplicación)
         // ...
@@ -211,4 +213,5 @@ func configureGeneroUI() {
                 playeraMujer.image = UIImage(named: "playeraMujer_\(prendaS ?? "1")")
                 pantalonMujer.image = UIImage(named: "pantalonMujer_\(prendaI ?? "1")")
     }
+     */
 }

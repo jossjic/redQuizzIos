@@ -4,6 +4,10 @@ import UIKit
 class admEditController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     
 //outlets
+    deinit {
+        // Liberar notificaciones
+        NotificationCenter.default.removeObserver(self)
+    }
 
     @IBOutlet weak var incorrecta3Lbl: UITextField!
     @IBOutlet weak var incorrecta2Lbl: UITextField!
@@ -23,6 +27,7 @@ class admEditController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     let gameViewModel = GameViewModel()
     override func viewDidLoad() {
             super.viewDidLoad()
+        agregarGestorDeTapParaOcultarTeclado()
             
             categoriaPicker.delegate = self
             categoriaPicker.dataSource = self
@@ -48,10 +53,6 @@ class admEditController: UIViewController, UIPickerViewDataSource, UIPickerViewD
 
         }
     
-override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-   //buttons
-    }
 //actions
     
     @IBAction func updateBtn(_ sender: Any) {
@@ -87,8 +88,13 @@ override func viewDidLayoutSubviews() {
         return categorias.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categorias[row]
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let title = categorias[row]
+        let color = UIColor.white // Cambia aquí al color que desees, por ejemplo UIColor.white para texto blanco
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: color
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
     }
     
 }

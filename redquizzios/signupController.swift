@@ -32,7 +32,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        agregarGestorDeTapParaOcultarTeclado()
         genderPicker.delegate = self
         genderPicker.dataSource = self
         
@@ -73,6 +73,10 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
+    deinit {
+        // Liberar notificaciones
+        NotificationCenter.default.removeObserver(self)
+    }
     
     
     @IBAction func registerBtn(_ sender: Any) {

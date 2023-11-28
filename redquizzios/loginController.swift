@@ -1,8 +1,42 @@
 import UIKit
 import Firebase
 
-class loginController: UIViewController {
+
+extension UIViewController {
+    func agregarGestorDeTapParaOcultarTeclado() {
+        // Registrar notificaciones del teclado
+        NotificationCenter.default.addObserver(self, selector: #selector(tecladoSeMostrara(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(tecladoSeOcultara(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        // Agregar un gestor de toques para ocultar el teclado al tocar fuera
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapFueraDelTeclado))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func tecladoSeMostrara(_ notification: Notification) {
+        // Puedes realizar acciones adicionales cuando el teclado se muestra
+    }
+
+    @objc func tecladoSeOcultara(_ notification: Notification) {
+        // Puedes realizar acciones adicionales cuando el teclado se oculta
+    }
+
+    @objc func tapFueraDelTeclado() {
+        // Ocultar el teclado
+        view.endEditing(true)
+    }
+
+   
+}
+
+
+class loginController: UIViewController, UITextFieldDelegate{
     
+    deinit {
+        // Liberar notificaciones
+        NotificationCenter.default.removeObserver(self)
+    }
+   
     
     @IBOutlet weak var warningLbl: UILabel!
     @IBOutlet weak var email: UITextField!
@@ -13,6 +47,7 @@ class loginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        agregarGestorDeTapParaOcultarTeclado()
         let defaults = UserDefaults.standard
         if defaults.value(forKey: "uid") is String{
             userViewModel.fetchData {
@@ -29,6 +64,9 @@ class loginController: UIViewController {
         }
 
     }
+    
+   
+
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         
@@ -139,5 +177,10 @@ extension UIImageView {
         layer.cornerRadius = min(self.frame.width, self.frame.height) / 2
         clipsToBounds = true
     }
+    
 }
+
+
+
+
 
