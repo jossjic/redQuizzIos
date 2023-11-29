@@ -10,7 +10,7 @@ class GameViewModel {
 
     func fetchData(completion: @escaping CompletionHandler) {
         print("Fetching Data...")
-        db.collection("preguntas").getDocuments { (querySnapshot, error) in
+            db.collection("preguntas").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error fetching documents: \(error.localizedDescription)")
                 return

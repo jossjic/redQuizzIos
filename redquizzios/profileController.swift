@@ -191,10 +191,16 @@ class profileController: UIViewController {
     }
     
     func startTimer() {
+        if timer == nil || !timer!.isValid {
             // Programa un temporizador que se ejecutará cada 5 minutos
-            timer = Timer.scheduledTimer(timeInterval: 360, target: self, selector: #selector(giveLife), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(giveLife), userInfo: nil, repeats: true)
+        }
+        
+        if timerFollow == nil || !timerFollow!.isValid {
             timerFollow = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(followLifes), userInfo: nil, repeats: true)
         }
+    }
+
     
     deinit{
         timer?.invalidate()

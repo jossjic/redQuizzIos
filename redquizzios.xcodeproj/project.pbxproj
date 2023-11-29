@@ -10,6 +10,7 @@
 		83026DA62B1662C000F992EB /* tempavatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83026DA52B1662C000F992EB /* tempavatar.swift */; };
 		835F00B02B07FCB200CDD3DB /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835F00AF2B07FCB200CDD3DB /* Question.swift */; };
 		835F00B42B080CA700CDD3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835F00B32B080CA700CDD3DB /* GoogleService-Info.plist */; };
+		836189A12B17D95C006499C5 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 836189A02B17D95C006499C5 /* FirebasePerformance */; };
 		837B88572B06DCB1009E3B4A /* gameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B88562B06DCB1009E3B4A /* gameViewModel.swift */; };
 		837C79672B05635A009410B5 /* signupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C79662B056359009410B5 /* signupController.swift */; };
 		837C796B2B056865009410B5 /* avatarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C796A2B056865009410B5 /* avatarController.swift */; };
@@ -88,6 +89,7 @@
 			files = (
 				83FD8BCA2B06962100F53577 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				83FD8BEF2B069B5300F53577 /* FirebaseFirestore in Frameworks */,
+				836189A12B17D95C006499C5 /* FirebasePerformance in Frameworks */,
 				83FD8BCC2B06962100F53577 /* FirebaseFirestoreSwift in Frameworks */,
 				83FD8BBE2B06962100F53577 /* FirebaseAuth in Frameworks */,
 				83FD8BC02B06962100F53577 /* FirebaseAuthCombine-Community in Frameworks */,
@@ -182,6 +184,7 @@
 				83FD8BC92B06962100F53577 /* FirebaseFirestoreCombine-Community */,
 				83FD8BCB2B06962100F53577 /* FirebaseFirestoreSwift */,
 				83FD8BEE2B069B5300F53577 /* FirebaseFirestore */,
+				836189A02B17D95C006499C5 /* FirebasePerformance */,
 			);
 			productName = redquizzios;
 			productReference = 83D4C08F2AE1ADC900A8C167 /* redquizzios.app */;
@@ -420,20 +423,20 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S97ZUK2FQ6;
+				DEVELOPMENT_TEAM = 9SVNH2N64H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = redquizzios/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mx.tec.a01736671.redquizios;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.tec.a01736671.redquiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -448,20 +451,20 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S97ZUK2FQ6;
+				DEVELOPMENT_TEAM = 9SVNH2N64H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = redquizzios/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mx.tec.a01736671.redquizios;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.tec.a01736671.redquiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -504,6 +507,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		836189A02B17D95C006499C5 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83FD8BB02B06962100F53577 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
 		83FD8BBD2B06962100F53577 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 83FD8BB02B06962100F53577 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
