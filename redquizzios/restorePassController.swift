@@ -15,7 +15,24 @@ class restorePassController: UIViewController {
     @IBOutlet weak var correoText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        agregarGestorDeTapParaOcultarTeclado()
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            agregarGestorDeTapParaOcultarTeclado()
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
     }
     
 //actions

@@ -47,21 +47,37 @@ class loginController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        agregarGestorDeTapParaOcultarTeclado()
-        let defaults = UserDefaults.standard
-        if defaults.value(forKey: "uid") is String{
-            userViewModel.fetchData {
-                let userType = self.userViewModel.tipo
-                print(userType)
-                if userType == "usuario" {
-                    self.performSegue(withIdentifier: "loginSegueUser", sender: self)
-                } else if userType == "administrador" {
-                    self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
-                } else {
-                    print("tipo de usuario incorrecto")
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            agregarGestorDeTapParaOcultarTeclado()
+            let defaults = UserDefaults.standard
+            if defaults.value(forKey: "uid") is String{
+                userViewModel.fetchData {
+                    let userType = self.userViewModel.tipo
+                    print(userType)
+                    if userType == "usuario" {
+                        self.performSegue(withIdentifier: "loginSegueUser", sender: self)
+                    } else if userType == "administrador" {
+                        self.performSegue(withIdentifier: "loginSegueAdmin", sender: self)
+                    } else {
+                        print("tipo de usuario incorrecto")
+                    }
                 }
             }
-        }
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    present(alertController, animated: true, completion: nil)
+                }
+       
 
     }
     

@@ -57,23 +57,41 @@ class gameController: UIViewController {//outlets
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cargarAudioCorrect()
-        cargarAudioIncorrect()
-        cargarAudioEnd()
-        gameViewModel.fetchData {
-            print("dataFetched")
+        if Reachability.isConnectedToNetwork(){
+            cargarAudioCorrect()
+            cargarAudioIncorrect()
+            cargarAudioEnd()
+            gameViewModel.fetchData {
+                print("dataFetched")
+                
+                self.allQuestions = self.gameViewModel.questions
+                self.allQuestions.shuffle()
+                self.startQuestionTimer()
+                self.configureButton(for: self.btn1)
+                self.configureButton(for: self.btn2)
+                self.configureButton(for: self.btn3)
+                self.configureButton(for: self.btn4)
+                
+                
+            }
+        } else {
+            let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
             
-            self.allQuestions = self.gameViewModel.questions
-            self.allQuestions.shuffle()
-            self.startQuestionTimer()
-            self.configureButton(for: self.btn1)
-            self.configureButton(for: self.btn2)
-            self.configureButton(for: self.btn3)
-            self.configureButton(for: self.btn4)
+            // Agregar acciones (botones) a la alerta
+            let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                self.viewDidLoad()
+            }
+            alertController.addAction(okAction)
             
-            
+            // Mostrar la alerta
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
+        
         }
+    
+    
         
         
         func startQuestionTimer() {
@@ -161,7 +179,9 @@ class gameController: UIViewController {//outlets
                 alertController.addAction(okAction)
                 
                 // Mostrar la alerta
-                self.present(alertController, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.present(alertController, animated: true, completion: nil)
+                }
                 
                 progressAnimator.stopAnimation(true)
                 progressAnimator.finishAnimation(at: .current)
@@ -377,18 +397,35 @@ class gameController: UIViewController {//outlets
         
         
         func timeOut(){
-            
-            if !self.ended {
-                if let audioPlayer = audioPlayerInCorrect, audioPlayerInCorrect?.isPlaying == false {
-                    audioPlayer.play()
+            if Reachability.isConnectedToNetwork(){
+                        //code
+                if !self.ended {
+                    if let audioPlayer = audioPlayerInCorrect, audioPlayerInCorrect?.isPlaying == false {
+                        audioPlayer.play()
+                    }
+                    timeOutAux()
+                    timer?.invalidate()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                        self.time = 15
+                        self.startQuestionTimer()
+                    }
                 }
-                timeOutAux()
-                timer?.invalidate()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                    self.time = 15
-                    self.startQuestionTimer()
-                }
-            }
+                        
+                    } else {
+                        let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                        
+                        // Agregar acciones (botones) a la alerta
+                        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                            let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
+                                          self.present(profileController, animated: true, completion: nil)
+                            
+                        }
+                        alertController.addAction(okAction)
+                        
+                        // Mostrar la alerta
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+           
         }
         
         func timeOutAux(){
@@ -434,116 +471,198 @@ class gameController: UIViewController {//outlets
         
         
         @IBAction func btn1Tap(_ sender: Any) {
-            btn1.isEnabled = false
-            btn2.isEnabled = false
-            btn3.isEnabled = false
-            btn4.isEnabled = false
-            
-            
-            progressAnimator.stopAnimation(true)
-            progressAnimator.finishAnimation(at: .current)
-            timer?.invalidate()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                self.time = 15
-                self.buttonPressed = true
-                if self.currentQuestionIndex < self.allQuestions.count{
-                    self.startQuestionTimer()
-                } else {
-                    self.goodEnding()
+            if Reachability.isConnectedToNetwork(){
+                        //code
+                btn1.isEnabled = false
+                btn2.isEnabled = false
+                btn3.isEnabled = false
+                btn4.isEnabled = false
+                
+                
+                progressAnimator.stopAnimation(true)
+                progressAnimator.finishAnimation(at: .current)
+                timer?.invalidate()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                    self.time = 15
+                    self.buttonPressed = true
+                    if self.currentQuestionIndex < self.allQuestions.count{
+                        self.startQuestionTimer()
+                    } else {
+                        self.goodEnding()
+                    }
+                    
                 }
                 
+                btn1.setTitleColor(UIColor.black, for: .disabled)
+                if btn1.titleLabel!.text == correcta {
+                    resCorrecta(button: btn1)
+                } else {
+                    resIncorrecta(button: btn1)
+                }
+                
+                        
+                    } else {
+                        let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                        
+                        // Agregar acciones (botones) a la alerta
+                        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                            let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
+                            self.present(profileController, animated: true, completion: nil)
+                            
+                        }
+                        alertController.addAction(okAction)
+                        
+                        // Mostrar la alerta
+             DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
             }
-            
-            btn1.setTitleColor(UIColor.black, for: .disabled)
-            if btn1.titleLabel!.text == correcta {
-                resCorrecta(button: btn1)
-            } else {
-                resIncorrecta(button: btn1)
-            }
+                    }
             
         }
         
         @IBAction func btn2Tap(_ sender: Any) {
-            btn1.isEnabled = false
-            btn2.isEnabled = false
-            btn3.isEnabled = false
-            btn4.isEnabled = false
-            
-            progressAnimator.stopAnimation(true)
-            progressAnimator.finishAnimation(at: .current)
-            timer?.invalidate()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                self.time = 15
-                self.buttonPressed = true
-                if self.currentQuestionIndex < self.allQuestions.count{
-                    self.startQuestionTimer()
-                } else {
-                    self.goodEnding()
+            if Reachability.isConnectedToNetwork(){
+                        //code
+                btn1.isEnabled = false
+                btn2.isEnabled = false
+                btn3.isEnabled = false
+                btn4.isEnabled = false
+                
+                progressAnimator.stopAnimation(true)
+                progressAnimator.finishAnimation(at: .current)
+                timer?.invalidate()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                    self.time = 15
+                    self.buttonPressed = true
+                    if self.currentQuestionIndex < self.allQuestions.count{
+                        self.startQuestionTimer()
+                    } else {
+                        self.goodEnding()
+                    }
                 }
+                
+                btn2.setTitleColor(UIColor.black, for: .disabled)
+                if btn2.titleLabel!.text == correcta {
+                    resCorrecta(button: btn2)
+                } else {
+                    resIncorrecta(button: btn2)
+                }
+                        
+                    } else {
+                        let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                        
+                        // Agregar acciones (botones) a la alerta
+                        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                            let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
+                            self.present(profileController, animated: true, completion: nil)
+                            
+                        }
+                        alertController.addAction(okAction)
+                        
+                        // Mostrar la alerta
+             DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
             }
+                    }
             
-            btn2.setTitleColor(UIColor.black, for: .disabled)
-            if btn2.titleLabel!.text == correcta {
-                resCorrecta(button: btn2)
-            } else {
-                resIncorrecta(button: btn2)
-            }
         }
         
         @IBAction func btn3Tap(_ sender: Any) {
-            btn1.isEnabled = false
-            btn2.isEnabled = false
-            btn3.isEnabled = false
-            btn4.isEnabled = false
-            
-            
-            progressAnimator.stopAnimation(true)
-            progressAnimator.finishAnimation(at: .current)
-            timer?.invalidate()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                self.time = 15
-                self.buttonPressed = true
-                if self.currentQuestionIndex < self.allQuestions.count{
-                    self.startQuestionTimer()
+            if Reachability.isConnectedToNetwork(){
+                        //code
+                btn1.isEnabled = false
+                btn2.isEnabled = false
+                btn3.isEnabled = false
+                btn4.isEnabled = false
+                
+                
+                
+                
+                progressAnimator.stopAnimation(true)
+                progressAnimator.finishAnimation(at: .current)
+                timer?.invalidate()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                    self.time = 15
+                    self.buttonPressed = true
+                    if self.currentQuestionIndex < self.allQuestions.count{
+                        self.startQuestionTimer()
+                    } else {
+                        self.goodEnding()
+                    }        }
+                
+                btn3.setTitleColor(UIColor.black, for: .disabled)
+                if btn3.titleLabel!.text == correcta {
+                    resCorrecta(button: btn3)
                 } else {
-                    self.goodEnding()
-                }        }
-            
-            btn3.setTitleColor(UIColor.black, for: .disabled)
-            if btn3.titleLabel!.text == correcta {
-                resCorrecta(button: btn3)
-            } else {
-                resIncorrecta(button: btn3)
+                    resIncorrecta(button: btn3)
+                }
+                        
+                    } else {
+                        let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                        
+                        // Agregar acciones (botones) a la alerta
+                        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                            let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
+                            self.present(profileController, animated: true, completion: nil)
+                            
+                        }
+                        alertController.addAction(okAction)
+                        
+                        // Mostrar la alerta
+             DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
             }
+                    }
+            
         }
         
         @IBAction func btn4Tap(_ sender: Any) {
-            btn1.isEnabled = false
-            btn2.isEnabled = false
-            btn3.isEnabled = false
-            btn4.isEnabled = false
-            
-            progressAnimator.stopAnimation(true)
-            progressAnimator.finishAnimation(at: .current)
-            timer?.invalidate()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                self.time = 15
-                self.buttonPressed = true
-                if self.currentQuestionIndex < self.allQuestions.count{
-                    self.startQuestionTimer()
-                } else {
-                    self.goodEnding()
+            if Reachability.isConnectedToNetwork(){
+                        //code
+                btn1.isEnabled = false
+                btn2.isEnabled = false
+                btn3.isEnabled = false
+                btn4.isEnabled = false
+                
+                progressAnimator.stopAnimation(true)
+                progressAnimator.finishAnimation(at: .current)
+                timer?.invalidate()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                    self.time = 15
+                    self.buttonPressed = true
+                    if self.currentQuestionIndex < self.allQuestions.count{
+                        self.startQuestionTimer()
+                    } else {
+                        self.goodEnding()
+                    }
+                    
                 }
                 
+                
+                btn4.setTitleColor(UIColor.black, for: .disabled)
+                if btn4.titleLabel!.text == correcta {
+                    resCorrecta(button: btn4)
+                } else {
+                    resIncorrecta(button: btn4)
+                }
+                        
+                    } else {
+                        let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                        
+                        // Agregar acciones (botones) a la alerta
+                        let okAction = UIAlertAction(title: "Inicio", style: .default) { _ in
+                            let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileControllerID") as! profileController
+                            self.present(profileController, animated: true, completion: nil)
+                            
+                        }
+                        alertController.addAction(okAction)
+                        
+                        // Mostrar la alerta
+             DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
             }
+                    }
             
-            
-            btn4.setTitleColor(UIColor.black, for: .disabled)
-            if btn4.titleLabel!.text == correcta {
-                resCorrecta(button: btn4)
-            } else {
-                resIncorrecta(button: btn4)
-            }
         }
         
         @IBAction func volverBtn(_ sender: Any) {

@@ -26,27 +26,45 @@ class profileController: UIViewController {
     var timerFollow: Timer?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("User Home")
-        userViewModel.fetchData {
-            let userI = self.userViewModel.fetchedUser
-            self.name.text = userI.nombre + " " + userI.apellidos
-            self.vidas.text = String(userI.vidas) + " Vidas"
-            self.vidasUsu = userI.vidas
-            
-            print(userI)
-            self.startTimer()
-            if userI.genero == "Masculino" {
-                self.profileImg.image = UIImage(named: "placeHombre")
-            } else if userI.genero == "Femenino" {
-                self.profileImg.image = UIImage(named: "placeMujer")
-            } else {
-                print("genero no identificado")
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            print("User Home")
+            userViewModel.fetchData {
+                let userI = self.userViewModel.fetchedUser
+                self.name.text = userI.nombre + " " + userI.apellidos
+                self.vidas.text = String(userI.vidas) + " Vidas"
+                self.vidasUsu = userI.vidas
+                
+                print(userI)
+                self.startTimer()
+                if userI.genero == "Masculino" {
+                    self.profileImg.image = UIImage(named: "placeHombre")
+                } else if userI.genero == "Femenino" {
+                    self.profileImg.image = UIImage(named: "placeMujer")
+                } else {
+                    print("genero no identificado")
+                }
+                
+
             }
             
-
-        }
+           
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
         
-       
 
 
         

@@ -27,29 +27,47 @@ class admEditController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     let gameViewModel = GameViewModel()
     override func viewDidLoad() {
             super.viewDidLoad()
-        agregarGestorDeTapParaOcultarTeclado()
-            
-            categoriaPicker.delegate = self
-            categoriaPicker.dataSource = self
-            
-            gameViewModel.fetchData {
-                let questions = self.gameViewModel.questions
-                if let question = questions.first(where: { $0.id == self.questionID }) {
-                    // Actualizar la categoría seleccionada con la categoría de la pregunta
-                    self.selectedQuestionCategory = question.categoria
-                    self.preguntaLbl.text = question.pregunta
-                    self.puntosLbl.text = String(question.puntos)
-                    self.correctaLbl.text = question.correcta
-                    self.incorrecta1Lbl.text = question.incorrecta1
-                    self.incorrecta2Lbl.text = question.incorrecta2
-                    self.incorrecta3Lbl.text = question.incorrecta3
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            agregarGestorDeTapParaOcultarTeclado()
+                
+                categoriaPicker.delegate = self
+                categoriaPicker.dataSource = self
+                
+                gameViewModel.fetchData {
+                    let questions = self.gameViewModel.questions
+                    if let question = questions.first(where: { $0.id == self.questionID }) {
+                        // Actualizar la categoría seleccionada con la categoría de la pregunta
+                        self.selectedQuestionCategory = question.categoria
+                        self.preguntaLbl.text = question.pregunta
+                        self.puntosLbl.text = String(question.puntos)
+                        self.correctaLbl.text = question.correcta
+                        self.incorrecta1Lbl.text = question.incorrecta1
+                        self.incorrecta2Lbl.text = question.incorrecta2
+                        self.incorrecta3Lbl.text = question.incorrecta3
+                    }
+                    // Recargar el componente seleccionado del UIPickerView
+                    self.categoriaPicker.reloadAllComponents()
+                    if let categoryIndex = self.categorias.firstIndex(of: self.selectedQuestionCategory) {
+                        self.categoriaPicker.selectRow(categoryIndex, inComponent: 0, animated: false)
+                    }
                 }
-                // Recargar el componente seleccionado del UIPickerView
-                self.categoriaPicker.reloadAllComponents()
-                if let categoryIndex = self.categorias.firstIndex(of: self.selectedQuestionCategory) {
-                    self.categoriaPicker.selectRow(categoryIndex, inComponent: 0, animated: false)
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
                 }
-            }
+       
 
         }
     

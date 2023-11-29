@@ -29,57 +29,75 @@ class scoreController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            configureStackView(stackSV, color: UIColor(red: 0.729, green: 0.890, blue: 0.820, alpha: 1.0)) // Verde pastel claro
+                    configureStackView(stackC, color: UIColor(red: 1.000, green: 0.796, blue: 0.796, alpha: 1.0)) // Rojo pastel claro
+                    configureStackView(stackS, color: UIColor(red: 0.788, green: 0.847, blue: 1.000, alpha: 1.0)) // Azul pastel claro
+                    configureStackView(stackA, color: UIColor(red: 1.000, green: 1.000, blue: 0.710, alpha: 1.0)) // Amarillo pastel claro
+                    configureStackView(stackB, color: UIColor(red: 0.788, green: 0.710, blue: 1.000, alpha: 1.0)) // Morado pastel claro
+            
+            userViewModel.fetchCT {
+                self.userViewModel.fetchCat(collection: "rqBonus"){
+                    self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
+                    self.bLbl.text = String(self.porcentage) + "%"
+                    self.userViewModel.fetchCat(collection: "rqAnatomia"){
+                        self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
+                        self.aLbl.text = String(self.porcentage) + "%"
+                        self.userViewModel.fetchCat(collection: "rqSintomas"){
+                            self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
+                            self.sLbl.text = String(self.porcentage) + "%"
+                            self.userViewModel.fetchCat(collection: "rqCuracion"){
+                                self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
+                                self.cLbl.text = String(self.porcentage) + "%"
+                                self.userViewModel.fetchCat(collection: "rqSignosVitales"){
+                                    self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
+                                    self.sgLbl.text = String(self.porcentage) + "%"
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+                
+            
+            userViewModel.fetchCT {
+                let conteoT = self.userViewModel.conteoT
+                let conteoC = self.userViewModel.conteoC
+                
+                self.conteoTLbl.text = String(conteoT)
+                self.conteoCLbl.text = String(conteoC)
+                print(conteoC, conteoT)
+                self.progress = CGFloat(CGFloat(conteoC)/CGFloat(conteoT))
+                print(self.progress)
+                self.drawProgressCircle()
+                self.addPercentageLabel()
+                self.addSubtitleLabel()
+            }
+            
+            print("Conexión válida")
+                   
+                } else {
+                    print("Conexión Inválida")
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
 
         
         
 
        
-        
-        configureStackView(stackSV, color: UIColor(red: 0.729, green: 0.890, blue: 0.820, alpha: 1.0)) // Verde pastel claro
-                configureStackView(stackC, color: UIColor(red: 1.000, green: 0.796, blue: 0.796, alpha: 1.0)) // Rojo pastel claro
-                configureStackView(stackS, color: UIColor(red: 0.788, green: 0.847, blue: 1.000, alpha: 1.0)) // Azul pastel claro
-                configureStackView(stackA, color: UIColor(red: 1.000, green: 1.000, blue: 0.710, alpha: 1.0)) // Amarillo pastel claro
-                configureStackView(stackB, color: UIColor(red: 0.788, green: 0.710, blue: 1.000, alpha: 1.0)) // Morado pastel claro
-        
-        userViewModel.fetchCT {
-            self.userViewModel.fetchCat(collection: "rqBonus"){
-                self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
-                self.bLbl.text = String(self.porcentage) + "%"
-                self.userViewModel.fetchCat(collection: "rqAnatomia"){
-                    self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
-                    self.aLbl.text = String(self.porcentage) + "%"
-                    self.userViewModel.fetchCat(collection: "rqSintomas"){
-                        self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
-                        self.sLbl.text = String(self.porcentage) + "%"
-                        self.userViewModel.fetchCat(collection: "rqCuracion"){
-                            self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
-                            self.cLbl.text = String(self.porcentage) + "%"
-                            self.userViewModel.fetchCat(collection: "rqSignosVitales"){
-                                self.getPorcentage(puntajeCollection: self.userViewModel.puntajeCollection)
-                                self.sgLbl.text = String(self.porcentage) + "%"
-                            }
-                        }
-                        
-                    }
-                }
-            }
-        }
-            
-        
-        userViewModel.fetchCT {
-            let conteoT = self.userViewModel.conteoT
-            let conteoC = self.userViewModel.conteoC
-            
-            self.conteoTLbl.text = String(conteoT)
-            self.conteoCLbl.text = String(conteoC)
-            print(conteoC, conteoT)
-            self.progress = CGFloat(CGFloat(conteoC)/CGFloat(conteoT))
-            print(self.progress)
-            self.drawProgressCircle()
-            self.addPercentageLabel()
-            self.addSubtitleLabel()
-        }
         
         
     }

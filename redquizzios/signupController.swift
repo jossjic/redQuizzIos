@@ -33,10 +33,26 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        eyeBtn.setTitle("", for: .normal)
-        agregarGestorDeTapParaOcultarTeclado()
-        genderPicker.delegate = self
-        genderPicker.dataSource = self
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            eyeBtn.setTitle("", for: .normal)
+            agregarGestorDeTapParaOcultarTeclado()
+            genderPicker.delegate = self
+            genderPicker.dataSource = self
+            
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    present(alertController, animated: true, completion: nil)
+                }
         
 
         

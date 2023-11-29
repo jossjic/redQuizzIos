@@ -21,7 +21,25 @@ class avatarController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUserData()
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            fetchUserData()
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+        
     }
 
     // Function to fetch user data from Firestore

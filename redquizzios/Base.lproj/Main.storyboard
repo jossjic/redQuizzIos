@@ -66,7 +66,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnU-da-4CM">
                                                 <rect key="frame" x="272" y="0.0" width="72" height="48.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="eye"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="eye_closed"/>
                                                 <connections>
                                                     <action selector="eye:" destination="8fd-hs-Jbj" eventType="touchUpInside" id="LhG-IT-tGx"/>
                                                 </connections>
@@ -970,20 +970,15 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Inicio"/>
                                 <connections>
-                                    <segue destination="Y7j-L2-zTE" kind="show" id="aYu-uc-cgk"/>
+                                    <segue destination="Y7j-L2-zTE" kind="show" id="5vK-dP-nc4"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="j3k-zJ-lJN">
-                                <rect key="frame" x="0.0" y="66.666666666666671" width="430" height="30"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perfil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V0-2r-aMF">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <color key="textColor" systemColor="systemBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perfil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V0-2r-aMF">
+                                <rect key="frame" x="184.66666666666666" y="66.666666666666671" width="61" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2i1-pA-JGy">
                                 <rect key="frame" x="112.33333333333333" y="419.33333333333326" width="205.66666666666669" height="466"/>
                                 <subviews>
@@ -1047,14 +1042,13 @@
                         <viewLayoutGuide key="safeArea" id="sOo-fg-cfw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="j3k-zJ-lJN" firstAttribute="width" secondItem="Yad-Lp-vUl" secondAttribute="width" id="087-n5-XtB"/>
+                            <constraint firstItem="8V0-2r-aMF" firstAttribute="centerX" secondItem="Yad-Lp-vUl" secondAttribute="centerX" id="9Vr-bz-PlW"/>
                             <constraint firstItem="xHm-RH-mhw" firstAttribute="centerY" secondItem="Yad-Lp-vUl" secondAttribute="centerY" id="A88-tO-9cX"/>
                             <constraint firstItem="P1c-yf-g6f" firstAttribute="centerY" secondItem="Yad-Lp-vUl" secondAttribute="centerY" multiplier="0.18" id="Afh-rc-zlr"/>
                             <constraint firstItem="xHm-RH-mhw" firstAttribute="width" secondItem="Yad-Lp-vUl" secondAttribute="width" id="Dcw-sW-5vn"/>
-                            <constraint firstItem="j3k-zJ-lJN" firstAttribute="centerY" secondItem="Yad-Lp-vUl" secondAttribute="centerY" multiplier="0.175" id="TmX-1J-Mx6"/>
+                            <constraint firstItem="8V0-2r-aMF" firstAttribute="centerY" secondItem="Yad-Lp-vUl" secondAttribute="centerY" multiplier="0.175" id="LjL-yy-ugD"/>
                             <constraint firstItem="P1c-yf-g6f" firstAttribute="centerX" secondItem="Yad-Lp-vUl" secondAttribute="centerX" multiplier="0.4" id="adH-61-8qG"/>
                             <constraint firstItem="2i1-pA-JGy" firstAttribute="height" secondItem="Yad-Lp-vUl" secondAttribute="height" multiplier="0.5" id="ckA-JR-kRn"/>
-                            <constraint firstItem="j3k-zJ-lJN" firstAttribute="centerX" secondItem="Yad-Lp-vUl" secondAttribute="centerX" id="eAt-9P-efh"/>
                             <constraint firstItem="qHE-5z-WTa" firstAttribute="centerX" secondItem="Yad-Lp-vUl" secondAttribute="centerX" id="gPf-RH-yeR"/>
                             <constraint firstItem="qHE-5z-WTa" firstAttribute="width" secondItem="Yad-Lp-vUl" secondAttribute="width" multiplier="0.5" id="gcx-Ox-tZb"/>
                             <constraint firstItem="xHm-RH-mhw" firstAttribute="centerX" secondItem="Yad-Lp-vUl" secondAttribute="centerX" id="hcL-3f-GuR"/>
@@ -1970,15 +1964,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="XjZ-J7-P3U"/>
         <segue reference="D63-H8-jW7"/>
         <segue reference="7PO-tz-hTo"/>
         <segue reference="gUe-vU-prU"/>
-        <segue reference="aYu-uc-cgk"/>
-        <segue reference="hgN-LU-bp6"/>
+        <segue reference="5vK-dP-nc4"/>
+        <segue reference="rMq-Wv-umS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2160" height="3840"/>
-        <image name="eye" width="48" height="48"/>
+        <image name="eye_closed" width="48" height="48"/>
         <image name="female_body" width="1080" height="1400"/>
         <image name="header" width="2160" height="3840"/>
         <image name="heart" width="500" height="500"/>

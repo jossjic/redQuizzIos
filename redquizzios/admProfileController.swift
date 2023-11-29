@@ -12,12 +12,30 @@ class admProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.profileImg.image = UIImage(named: "placeHombre")
-        userViewModel.fetchData {
-            self.mail.text = self.userViewModel.fetchedAdmin.email
-        }
-        
-        print("Admin Home")
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            self.profileImg.image = UIImage(named: "placeHombre")
+            userViewModel.fetchData {
+                self.mail.text = self.userViewModel.fetchedAdmin.email
+            }
+            
+            print("Admin Home")
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+       
 
     }
     

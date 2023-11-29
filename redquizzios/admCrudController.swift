@@ -23,24 +23,43 @@ class admCrudController: UIViewController, UITableViewDataSource, UIPickerViewDe
     let gameViewModel = GameViewModel()
     var viewControllerSegue: UIViewController?
     override func viewDidLoad() {
-
-        
-        categoriaPicker.delegate = self
-        categoriaPicker.dataSource = self
-        gameViewModel.fetchData {
-            self.questionsTable.dataSource = self
-            self.questions = self.gameViewModel.questions
-            let nib = UINib(nibName: "preguntaUTableViewCell", bundle: nil)
-            self.questionsTable.register(nib, forCellReuseIdentifier: "preguntaCelda")
-            self.questionsTable.estimatedRowHeight = 104.0
-            
-            DispatchQueue.main.async {
-                self.view.layoutIfNeeded()
-                self.questionsTable.reloadData()
+        super.viewDidLoad()
+        if Reachability.isConnectedToNetwork(){
+            //code
+            categoriaPicker.delegate = self
+            categoriaPicker.dataSource = self
+            gameViewModel.fetchData {
+                self.questionsTable.dataSource = self
+                self.questions = self.gameViewModel.questions
+                let nib = UINib(nibName: "preguntaUTableViewCell", bundle: nil)
+                self.questionsTable.register(nib, forCellReuseIdentifier: "preguntaCelda")
+                self.questionsTable.estimatedRowHeight = 104.0
+                
+                DispatchQueue.main.async {
+                    self.view.layoutIfNeeded()
+                    self.questionsTable.reloadData()
+                }
+                
             }
             
+                
+            
+        } else {
+            let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+            
+            // Agregar acciones (botones) a la alerta
+            let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                self.viewDidLoad()
+                
+            }
+            alertController.addAction(okAction)
+            
+            // Mostrar la alerta
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
-        
+       
         
     }
     

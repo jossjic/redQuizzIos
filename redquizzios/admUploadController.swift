@@ -27,9 +27,27 @@ class admUploadController: UIViewController ,UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        agregarGestorDeTapParaOcultarTeclado()
-        categoriaPicker.delegate = self
-        categoriaPicker.dataSource = self
+        if Reachability.isConnectedToNetwork(){
+                    //code
+            agregarGestorDeTapParaOcultarTeclado()
+            categoriaPicker.delegate = self
+            categoriaPicker.dataSource = self
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Conexión Perdida", message: "Reconectate y vuelve a intentar", preferredStyle: .alert)
+                    
+                    // Agregar acciones (botones) a la alerta
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                        self.viewDidLoad()
+                    }
+                    alertController.addAction(okAction)
+                    
+                    // Mostrar la alerta
+                    DispatchQueue.main.async {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+        
 
     }
     
