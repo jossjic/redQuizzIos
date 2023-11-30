@@ -1,6 +1,6 @@
 # Proyecto Redquiz (Versión iOS 1.0)
 
-Este proyecto utiliza Firebase y Firestore para gestionar preguntas y usuarios en una aplicación. A continuación, se proporciona una descripción general del código y sus principales funciones.
+RedQuiz es una aplicación tipo trivia que busca preparar a los novatos de la Cruz Roja en su camino como voluntarios. La aplicación posee la modalidad principal que es una trivia con categorías relacionadas al área de la salud (signos vitales, curación, síntomas, anatomía y más), ofrece un sistema de recompensas  y personalización de avatares para mantener motivados a los usuarios, también ofrece consulta de estadísticas para que los usuarios puedan llevar un registro de su progreso y finalmente tiene un sistema de gestión de preguntas, permitiendo a los administradores consultar, actualizar, crear y eliminar preguntas.
 
 ## GameViewModel
 
