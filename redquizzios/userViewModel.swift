@@ -322,6 +322,39 @@ class UserViewModel {
         }
     }
 
+    func updateRewards(withScore score: Int, completion: @escaping CompletionHandler) {
+        guard let currentUser = Auth.auth().currentUser else {
+            print("No hay usuario autenticado.")
+            return
+        }
+
+        let rewardsRef = db.collection("rqRecompensas").document(currentUser.uid)
+
+        // Define los puntajes requeridos para cada recompensa
+        let puntajesRecompensas = [50, 100, 200, 400, 800]
+
+        // Actualiza las recompensas según el puntaje pasado como parámetro
+        var updatedRewardsArray = [Bool]()
+        for i in 0..<5 {
+            updatedRewardsArray.append(score >= puntajesRecompensas[i])
+        }
+
+        rewardsRef.updateData([
+            "recompensa1": updatedRewardsArray[0],
+            "recompensa2": updatedRewardsArray[1],
+            "recompensa3": updatedRewardsArray[2],
+            "recompensa4": updatedRewardsArray[3],
+            "recompensa5": updatedRewardsArray[4]
+        ]) { error in
+            if let error = error {
+                print("Error al actualizar las recompensas: \(error.localizedDescription)")
+            } else {
+                // Actualización exitosa
+                self.rewardsArray = updatedRewardsArray
+                completion()
+            }
+        }
+    }
     
     
     

@@ -21,6 +21,7 @@ class avatarController: UIViewController {
     @IBOutlet weak var r2: UILabel!
     @IBOutlet weak var r1: UILabel!
     // Firestore references
+    @IBOutlet weak var score: UILabel!
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid
     
@@ -30,10 +31,15 @@ class avatarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userViewModel.fetchData {
-            self.userViewModel.fetchRewards {
-                self.rewardsArray = self.userViewModel.rewardsArray
-                self.setRewardsInfo()
+            let userI = self.userViewModel.fetchedUser
+            self.score.text = "Puntaje: "+String(userI.puntaje)
+            self.userViewModel.updateRewards(withScore: userI.puntaje){
+                self.userViewModel.fetchRewards {
+                    self.rewardsArray = self.userViewModel.rewardsArray
+                    self.setRewardsInfo()
+                }
             }
+            
         }
         if Reachability.isConnectedToNetwork(){
                     //code

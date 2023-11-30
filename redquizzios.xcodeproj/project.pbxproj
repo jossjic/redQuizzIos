@@ -60,7 +60,7 @@
 		83B5F5222B0DAE270012FF38 /* preguntaUTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = preguntaUTableViewCell.xib; sourceTree = "<group>"; };
 		83C3CA162B11108A00A53136 /* restorePassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restorePassController.swift; sourceTree = "<group>"; };
 		83CEE4832B16A4B300114F60 /* reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reachability.swift; sourceTree = "<group>"; };
-		83D4C08F2AE1ADC900A8C167 /* redquizzios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = redquizzios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83D4C08F2AE1ADC900A8C167 /* RedQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D4C0922AE1ADC900A8C167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83D4C0942AE1ADC900A8C167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83D4C0962AE1ADC900A8C167 /* loginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginController.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		83D4C0902AE1ADC900A8C167 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				83D4C08F2AE1ADC900A8C167 /* redquizzios.app */,
+				83D4C08F2AE1ADC900A8C167 /* RedQuiz.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,9 +165,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		83D4C08E2AE1ADC900A8C167 /* redquizzios */ = {
+		83D4C08E2AE1ADC900A8C167 /* RedQuiz */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83D4C0A32AE1ADCB00A8C167 /* Build configuration list for PBXNativeTarget "redquizzios" */;
+			buildConfigurationList = 83D4C0A32AE1ADCB00A8C167 /* Build configuration list for PBXNativeTarget "RedQuiz" */;
 			buildPhases = (
 				83D4C08B2AE1ADC900A8C167 /* Sources */,
 				83D4C08C2AE1ADC900A8C167 /* Frameworks */,
@@ -177,7 +177,7 @@
 			);
 			dependencies = (
 			);
-			name = redquizzios;
+			name = RedQuiz;
 			packageProductDependencies = (
 				83FD8BBD2B06962100F53577 /* FirebaseAuth */,
 				83FD8BBF2B06962100F53577 /* FirebaseAuthCombine-Community */,
@@ -187,7 +187,7 @@
 				836189A02B17D95C006499C5 /* FirebasePerformance */,
 			);
 			productName = redquizzios;
-			productReference = 83D4C08F2AE1ADC900A8C167 /* redquizzios.app */;
+			productReference = 83D4C08F2AE1ADC900A8C167 /* RedQuiz.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +221,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				83D4C08E2AE1ADC900A8C167 /* redquizzios */,
+				83D4C08E2AE1ADC900A8C167 /* RedQuiz */,
 			);
 		};
 /* End PBXProject section */
@@ -426,8 +426,10 @@
 				DEVELOPMENT_TEAM = 9SVNH2N64H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = redquizzios/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RedQuiz;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -454,8 +456,10 @@
 				DEVELOPMENT_TEAM = 9SVNH2N64H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = redquizzios/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RedQuiz;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -484,7 +488,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83D4C0A32AE1ADCB00A8C167 /* Build configuration list for PBXNativeTarget "redquizzios" */ = {
+		83D4C0A32AE1ADCB00A8C167 /* Build configuration list for PBXNativeTarget "RedQuiz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83D4C0A42AE1ADCB00A8C167 /* Debug */,
