@@ -1,4 +1,4 @@
-# Proyecto de Preguntas y Usuarios
+# Proyecto Redquiz (Versión iOS 1.0)
 
 Este proyecto utiliza Firebase y Firestore para gestionar preguntas y usuarios en una aplicación. A continuación, se proporciona una descripción general del código y sus principales funciones.
 
