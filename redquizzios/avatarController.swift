@@ -15,12 +15,26 @@ class avatarController: UIViewController {
     @IBOutlet weak var zapatosMujer: UIImageView!
     @IBOutlet weak var returnBtn: UIButton!
 
+    @IBOutlet weak var r5: UILabel!
+    @IBOutlet weak var r4: UILabel!
+    @IBOutlet weak var r3: UILabel!
+    @IBOutlet weak var r2: UILabel!
+    @IBOutlet weak var r1: UILabel!
     // Firestore references
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid
+    
+    let userViewModel = UserViewModel()
+    var rewardsArray = [false, false, false, false, false]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        userViewModel.fetchData {
+            self.userViewModel.fetchRewards {
+                self.rewardsArray = self.userViewModel.rewardsArray
+                self.setRewardsInfo()
+            }
+        }
         if Reachability.isConnectedToNetwork(){
                     //code
             fetchUserData()
@@ -124,7 +138,19 @@ class avatarController: UIViewController {
             }
         }
 
-
+    func setRewardsInfo() {
+        let rewardsLabels = [self.r1, self.r2, self.r3, self.r4, self.r5]
+        
+        for (index, isUnlocked) in rewardsArray.enumerated() {
+            let label = rewardsLabels[index]
+            
+            // Set text based on reward state
+            label?.text = isUnlocked ? "Desbloqueado" : "Bloqueado"
+            
+            // Set color based on reward state
+            label?.textColor = isUnlocked ? UIColor.green : UIColor.red
+        }
+    }
     // Function to update UI based on gender
     func updateUIForGender(_ genero: String) {
         if genero == "Masculino" {

@@ -302,7 +302,7 @@ class singupController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     
     @IBAction func eye(_ sender: Any) {
         self.registerPass.isSecureTextEntry.toggle()
-                let imageName = registerPass.isSecureTextEntry ? "eye" : "eye_closed"
+                let imageName = registerPass.isSecureTextEntry ? "eye_closed" : "eye"
                 self.eyeBtn.setImage(UIImage(named: imageName), for:.normal)
     }
     

@@ -13,6 +13,7 @@ class UserViewModel {
     var conteoC = 0
     var conteoT = 0
     var tipo = ""
+    var rewardsArray = [false, false, false, false, false]
    
     
     
@@ -285,6 +286,42 @@ class UserViewModel {
         
     }
     
+    func fetchRewards(completion: @escaping CompletionHandler) {
+        guard let currentUser = Auth.auth().currentUser else {
+            print("No hay usuario autenticado.")
+            return
+        }
+
+        let rewardsRef = db.collection("rqRecompensas").document(currentUser.uid)
+
+        rewardsRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error al obtener el documento de recompensas: \(error)")
+            } else if let document = document, document.exists {
+                let data = document.data()
+
+                // Assuming recompensa1 to recompensa5 are boolean fields in Firestore
+                let recompensa1 = data?["recompensa1"] as? Bool ?? false
+                let recompensa2 = data?["recompensa2"] as? Bool ?? false
+                let recompensa3 = data?["recompensa3"] as? Bool ?? false
+                let recompensa4 = data?["recompensa4"] as? Bool ?? false
+                let recompensa5 = data?["recompensa5"] as? Bool ?? false
+
+                // You can store these values in an array or perform other actions as needed
+
+                self.rewardsArray = [recompensa1, recompensa2, recompensa3, recompensa4, recompensa5]
+
+                // Example: Print the rewards array
+                print("Rewards Array: \(self.rewardsArray)")
+
+                // Call the completion handler to signal the end of the fetching process
+                completion()
+            } else {
+                print("El documento de recompensas no existe")
+            }
+        }
+    }
+
     
     
     
