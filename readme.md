@@ -1,6 +1,6 @@
 # Proyecto Redquiz (Versión iOS 1.0)
 
-RedQuiz es una aplicación tipo trivia que busca preparar a los novatos de la Cruz Roja en su camino como voluntarios. La aplicación posee la modalidad principal que es una trivia con categorías relacionadas al área de la salud (signos vitales, curación, síntomas, anatomía y más), ofrece un sistema de recompensas  y personalización de avatares para mantener motivados a los usuarios, también ofrece consulta de estadísticas para que los usuarios puedan llevar un registro de su progreso y finalmente tiene un sistema de gestión de preguntas, permitiendo a los administradores consultar, actualizar, crear y eliminar preguntas.
+RedQuiz es una aplicación de trivia diseñada para preparar a voluntarios novatos de la Cruz Roja en temas de salud. Ofrece una trivia con categorías como signos vitales, anatomía, etc. Además, motivan a los usuarios con recompensas y avatares personalizables. La aplicación permite a los usuarios rastrear su progreso mediante estadísticas detalladas y cuenta con un sistema de gestión de preguntas para que los administradores puedan mantener el contenido actualizado. En resumen, RedQuiz combina aprendizaje interactivo, motivación y seguimiento del progreso para una preparación efectiva de voluntarios.
 
 ## GameViewModel
 
