@@ -1,6 +1,6 @@
 # Proyecto Redquiz (Versión iOS 1.0)
 
-[Click here to see the Spanish version of the documentation](README.md)
+[Click here to see the english version of the documentation](README.md)
 
 ![Gif Test](expo.gif)
 ## Project Description
