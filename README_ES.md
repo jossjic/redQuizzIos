@@ -2,96 +2,45 @@
 
 [Click here to see the english version of the documentation](README.md)
 
-![Gif Test](expo.gif)
-## Project Description
-
-The Engineering Expo is a project spanning 6 months of development, aimed at creating a complete web page (Frontend and Backend) designed for project management at the Monterrey Institute of Technology. The platform aims to facilitate efficient project management, allowing users to collaborate, supervise, and present relevant information.
-
-## Technologies Used
-
-To carry out this project, various technologies have been used to address different aspects of development:
-
-- **Backend:**
-  - PHP: Used for server logic and interaction with the database.
-  - MySQL: Database management system for efficiently storing and retrieving data.
-
-- **Frontend:**
-  - HTML5: Structuring web content.
-  - CSS3 and SCSS: Styles and design to enhance visual presentation.
-  - JavaScript: Implementing interactivity and dynamic functionalities on the client side.
-
-## Page Demonstration
-
-Explore a functional demonstration of the web page on [Github Pages](https://jossjic.github.io/ExpoIngenieria/). 
-
-### Accounts for Testing
-
-- **Administrator:**
-  - Email: `adm@expo.mx`
-  - Password: `1234`
-
-- **Collaborator:**
-  - Email: `luisa@example.com`
-  - Password: `clave123`
-
-- **Project:**
-  - Key Name: `proyecto1`
-  - Password: `123456`
-
-## Security Considerations
-
-Security is a priority in our project. Measures have been implemented to ensure data integrity and privacy. However, additional security assessments are always recommended and suggestions to improve system protection are welcome.
-
-## Additional Documentation
-
-For more technical details, project architecture, database design, and other key aspects, please refer to the documentation at [DOCUMENTATION](https://github.com/jossjic/ExpoIngenieria/blob/main/Documentaci%C3%B3n.pdf).
-
-## Feedback and Contributions
-
-We value your feedback! If you find issues, have improvement suggestions, or wish to contribute, feel free to open an issue or submit a pull request. Your participation is welcome!
-
----
-
-Thank you for your interest in the Engineering Expo! We hope this platform is useful and efficient for project management at the Monterrey Institute of Technology.
-RedQuiz es una aplicación de trivia diseñada para preparar a voluntarios novatos de la Cruz Roja en temas de salud. Ofrece una trivia con categorías como signos vitales, anatomía, etc. Además, motivan a los usuarios con recompensas y avatares personalizables. La aplicación permite a los usuarios rastrear su progreso mediante estadísticas detalladas y cuenta con un sistema de gestión de preguntas para que los administradores puedan mantener el contenido actualizado. En resumen, RedQuiz combina aprendizaje interactivo, motivación y seguimiento del progreso para una preparación efectiva de voluntarios.
+RedQuiz es una aplicación de trivia diseñada para preparar a los voluntarios novatos de la Cruz Roja sobre temas de salud. Ofrece trivia con categorías como signos vitales, anatomía, etc. Además, motiva a los usuarios con recompensas y avatares personalizables. La aplicación permite a los usuarios seguir su progreso a través de estadísticas detalladas y tiene un sistema de gestión de preguntas para que los administradores puedan mantener el contenido actualizado. En resumen, RedQuiz combina el aprendizaje interactivo, la motivación y el seguimiento del progreso para una preparación efectiva de los voluntarios.
 
 ## GameViewModel
 
-### Métodos Principales
+### Métodos principales
 
 #### fetchData
 ```swift
 func fetchData(completion: @escaping CompletionHandler)
 ```
-Este método recupera las preguntas desde la colección "preguntas" en Firestore. Las preguntas se almacenan en la propiedad `questions` del `GameViewModel`. La finalización se llama cuando la recuperación de datos está completa.
+Este método recupera las preguntas de la colección "questions" en Firestore. Las preguntas se almacenan en la propiedad `questions` del `GameViewModel`. La finalización se llama cuando se completa la recuperación de datos.
 
 #### createQuestion
 ```swift
-func createQuestion(pregunta: String, categoria: String, correcta: String, incorrecta1: String, incorrecta2: String, incorrecta3: String, puntos: Int, completion: @escaping CompletionHandler)
+func createQuestion(question: String, category: String, correct: String, incorrect1: String, incorrect2: String, incorrect3: String, points: Int, completion: @escaping CompletionHandler)
 ```
-Crea una nueva pregunta en Firestore con los datos proporcionados. Luego, llama a la finalización una vez que la operación está completa.
+Crea una nueva pregunta en Firestore con los datos proporcionados. Luego, llama a la finalización una vez que se completa la operación.
 
 #### deleteQuestion
 ```swift
 func deleteQuestion(id: String, completion: @escaping CompletionHandler)
 ```
-Elimina una pregunta específica de Firestore según su identificador (`id`). La finalización se llama después de completar la operación.
+Elimina una pregunta específica de Firestore en base a su identificador (`id`). La finalización se llama después de que se completa la operación.
 
 #### updateQuestion
 ```swift
-func updateQuestion(id: String, pregunta: String, categoria: String, correcta: String, incorrecta1: String, incorrecta2: String, incorrecta3: String, puntos: Int, completion: @escaping CompletionHandler)
+func updateQuestion(id: String, question: String, category: String, correct: String, incorrect1: String, incorrect2: String, incorrect3: String, points: Int, completion: @escaping CompletionHandler)
 ```
-Actualiza una pregunta existente en Firestore con nuevos datos. También actualiza la pregunta localmente en la propiedad `questions`. La finalización se llama al finalizar la operación.
+Actualiza una pregunta existente en Firestore con nuevos datos. También actualiza la pregunta localmente en la propiedad `questions`. La finalización se llama cuando se completa la operación.
 
 ## UserViewModel
 
-### Métodos Principales
+### Métodos principales
 
 #### fetchData
 ```swift
 func fetchData(completion: @escaping CompletionHandler)
 ```
-Recupera datos del usuario actual desde Firestore. La finalización se llama cuando la recuperación de datos está completa.
+Recupera los datos del usuario actual de Firestore. La finalización se llama cuando se completa la recuperación de datos.
 
 #### updateLives
 ```swift
@@ -103,36 +52,36 @@ Actualiza el número de vidas del usuario en Firestore y localmente en el modelo
 ```swift
 func fetchCT(completion: @escaping CompletionHandler)
 ```
-Recupera el conteo de intentos correctos (`conteoC`) y totales (`conteoT`) del usuario desde Firestore. La finalización se llama cuando la recuperación de datos está completa.
+Recupera los intentos correctos (`correctTally`) y totales (`totalTally`) del usuario de Firestore. La finalización se llama cuando se completa la recuperación de datos.
 
 #### updateCT
 ```swift
-func updateCT(cOt: Bool)
+func updateCT(cOrT: Bool)
 ```
-Actualiza el conteo de intentos correctos (`conteoC`) o totales (`conteoT`) en Firestore. Llama a `fetchCT` internamente antes de realizar la actualización.
+Actualiza los intentos correctos (`correctTally`) o totales (`totalTally`) del usuario en Firestore. Llama a `fetchCT` internamente antes de realizar la actualización.
 
 #### updateScore
 ```swift
 func updateScore(score: Int, type: String)
 ```
-Actualiza el puntaje del usuario en Firestore según el tipo de categoría especificado.
+Actualiza la puntuación del usuario en Firestore en base al tipo de categoría especificado.
 
 #### fetchCat
 ```swift
 func fetchCat(collection: String, completion: @escaping CompletionHandler)
 ```
-Recupera el puntaje acumulado del usuario para una categoría específica desde Firestore.
+Recupera la puntuación acumulada del usuario para una categoría específica de Firestore.
 
 #### fetchRewards
 ```swift
 func fetchRewards(completion: @escaping CompletionHandler)
 ```
-Recupera las recompensas del usuario desde Firestore y almacena los resultados en la propiedad `rewardsArray`.
+Recupera las recompensas del usuario de Firestore y almacena los resultados en la propiedad `rewardsArray`.
 
 #### updateRewards
 ```swift
 func updateRewards(withScore score: Int, completion: @escaping CompletionHandler)
 ```
-Actualiza las recompensas del usuario en Firestore según el puntaje proporcionado. Llama a la finalización al finalizar la operación.
+Actualiza las recompensas del usuario en Firestore en base a la puntuación proporcionada. Llama a la finalización cuando se completa la operación.
 
-Este README proporciona una visión general de las funciones principales de los modelos de datos. Asegúrate de comprender las dependencias y configuraciones necesarias de Firebase antes de ejecutar la aplicación. ¡Diviértete desarrollando! 🚀
+Este README proporciona una visión general de las principales funciones de los modelos de datos. Asegúrate de entender las dependencias y configuraciones necesarias de Firebase antes de ejecutar la aplicación. ¡Diviértete desarrollando! 🚀
