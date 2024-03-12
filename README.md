@@ -1,86 +1,86 @@
-# Proyecto RedQuiz (Versión iOS 1.0)
-[Click here to see the english version of the documentation](README.md)
+# RedQuiz Proyect (iOS Version 1.0)
+[Haz click aquí para ver la versión en español de la documentación](README.md)
 
-RedQuiz es una aplicación de trivia diseñada para preparar a los voluntarios novatos de la Cruz Roja sobre temas de salud. Ofrece trivia con categorías como signos vitales, anatomía, etc. Además, motiva a los usuarios con recompensas y avatares personalizables. La aplicación permite a los usuarios seguir su progreso a través de estadísticas detalladas y tiene un sistema de gestión de preguntas para que los administradores puedan mantener el contenido actualizado. En resumen, RedQuiz combina el aprendizaje interactivo, la motivación y el seguimiento del progreso para una preparación efectiva de los voluntarios.
+RedQuiz is a trivia application designed to prepare novice Red Cross volunteers on health topics. It offers trivia with categories such as vital signs, anatomy, etc. Additionally, it motivates users with rewards and customizable avatars. The application allows users to follow their progress through detailed statistics and has a question management system so that administrators can keep the content up-to-date. In summary, RedQuiz combines interactive learning, motivation, and progress tracking for effective volunteer preparation.
 
 ## GameViewModel
 
-### Métodos principales
+### Main Methods
 
 #### fetchData
 ```swift
 func fetchData(completion: @escaping CompletionHandler)
 ```
-Este método recupera las preguntas de la colección "questions" en Firestore. Las preguntas se almacenan en la propiedad `questions` del `GameViewModel`. La finalización se llama cuando se completa la recuperación de datos.
+This method retrieves questions from the "questions" collection in Firestore. The questions are stored in the `questions` property of the `GameViewModel`. Completion is called when data retrieval is complete.
 
 #### createQuestion
 ```swift
 func createQuestion(question: String, category: String, correct: String, incorrect1: String, incorrect2: String, incorrect3: String, points: Int, completion: @escaping CompletionHandler)
 ```
-Crea una nueva pregunta en Firestore con los datos proporcionados. Luego, llama a la finalización una vez que se completa la operación.
+Creates a new question in Firestore with the provided data. Then, calls completion once the operation is complete.
 
 #### deleteQuestion
 ```swift
 func deleteQuestion(id: String, completion: @escaping CompletionHandler)
 ```
-Elimina una pregunta específica de Firestore en base a su identificador (`id`). La finalización se llama después de que se completa la operación.
+Deletes a specific question from Firestore based on its identifier (`id`). Completion is called after the operation is complete.
 
 #### updateQuestion
 ```swift
 func updateQuestion(id: String, question: String, category: String, correct: String, incorrect1: String, incorrect2: String, incorrect3: String, points: Int, completion: @escaping CompletionHandler)
 ```
-Actualiza una pregunta existente en Firestore con nuevos datos. También actualiza la pregunta localmente en la propiedad `questions`. La finalización se llama cuando se completa la operación.
+Updates an existing question in Firestore with new data. Also updates the question locally in the `questions` property. Completion is called when the operation is complete.
 
 ## UserViewModel
 
-### Métodos principales
+### Main Methods
 
 #### fetchData
 ```swift
 func fetchData(completion: @escaping CompletionHandler)
 ```
-Recupera los datos del usuario actual de Firestore. La finalización se llama cuando se completa la recuperación de datos.
+Retrieves the current user's data from Firestore. Completion is called when data retrieval is complete.
 
 #### updateLives
 ```swift
 func updateLives(newLives: Int)
 ```
-Actualiza el número de vidas del usuario en Firestore y localmente en el modelo de usuario.
+Updates the user's number of lives in Firestore and locally in the user model.
 
 #### fetchCT
 ```swift
 func fetchCT(completion: @escaping CompletionHandler)
 ```
-Recupera los intentos correctos (`correctTally`) y totales (`totalTally`) del usuario de Firestore. La finalización se llama cuando se completa la recuperación de datos.
+Retrieves the user's correct attempts (`correctTally`) and total attempts (`totalTally`) from Firestore. Completion is called when data retrieval is complete.
 
 #### updateCT
 ```swift
 func updateCT(cOrT: Bool)
 ```
-Actualiza los intentos correctos (`correctTally`) o totales (`totalTally`) del usuario en Firestore. Llama a `fetchCT` internamente antes de realizar la actualización.
+Updates the user's correct attempts (`correctTally`) or total attempts (`totalTally`) in Firestore. Calls `fetchCT` internally before making the update.
 
 #### updateScore
 ```swift
 func updateScore(score: Int, type: String)
 ```
-Actualiza la puntuación del usuario en Firestore en base al tipo de categoría especificado.
+Updates the user's score in Firestore based on the specified category type.
 
 #### fetchCat
 ```swift
 func fetchCat(collection: String, completion: @escaping CompletionHandler)
 ```
-Recupera la puntuación acumulada del usuario para una categoría específica de Firestore.
+Retrieves the user's accumulated score for a specific category from Firestore.
 
 #### fetchRewards
 ```swift
 func fetchRewards(completion: @escaping CompletionHandler)
 ```
-Recupera las recompensas del usuario de Firestore y almacena los resultados en la propiedad `rewardsArray`.
+Retrieves the user's rewards from Firestore and stores the results in the `rewardsArray` property.
 
 #### updateRewards
 ```swift
 func updateRewards(withScore score: Int, completion: @escaping CompletionHandler)
 ```
-Actualiza las recompensas del usuario en Firestore en base a la puntuación proporcionada. Llama a la finalización cuando se completa la operación.
+Updates the user's rewards in Firestore based on the provided score. Calls completion when the operation is complete.
 
-Este README proporciona una visión general de las principales funciones de los modelos de datos. Asegúrate de entender las dependencias y configuraciones necesarias de Firebase antes de ejecutar la aplicación. ¡Diviértete desarrollando! 🚀
+This README provides an overview of the main functions of the data models. Make sure to understand the necessary Firebase dependencies and configurations before running the application. Have fun developing! 🚀
