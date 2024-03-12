@@ -1,5 +1,5 @@
 # RedQuiz Proyect (iOS Version 1.0)
-[Haz click aquí para ver la versión en español de la documentación](README.md)
+[Haz click aquí para ver la versión en español de la documentación](README_ES.md)
 
 RedQuiz is a trivia application designed to prepare novice Red Cross volunteers on health topics. It offers trivia with categories such as vital signs, anatomy, etc. Additionally, it motivates users with rewards and customizable avatars. The application allows users to follow their progress through detailed statistics and has a question management system so that administrators can keep the content up-to-date. In summary, RedQuiz combines interactive learning, motivation, and progress tracking for effective volunteer preparation.
 
